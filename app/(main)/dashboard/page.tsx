@@ -6,7 +6,7 @@
 // import store from "../../store/index";
 
 import DungeonColumn from "./dungeon-column";
-// import PlayerColumn from "./PlayerColumn/PlayerColumn";
+import PlayerColumn from "./player-column";
 // import TomeColumn from "./TomeColumn/TomeColumn";
 // import { playerActions } from "../../store/player-slice";
 // import { openModal } from "../../store/ui-actions";
@@ -28,6 +28,7 @@ const DashboardPage = () => {
   // }, [dispatch, level]);
 
   return <div className="flex justify-center p-4 h-full  gap-4">
+    <PlayerColumn />
     <DungeonColumn />
   </div>;
 };

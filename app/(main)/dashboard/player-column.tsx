@@ -13,6 +13,7 @@ import Image from "next/image";
 //   faUser,
 //   faCubes,
 // } from "@fortawesome/free-solid-svg-icons";
+import { Backpack, BookText, Users, ShieldAlert, Settings } from "lucide-react";
 
 // import Tooltip from "../../UI/Tooltip";
 // import updateStatTotals from "../../../store/stats-actions";
@@ -33,7 +34,7 @@ export default function PlayerColumn() {
   // };
 
   return (
-    <div className="relative w-1/3 h-full p-4 border-3 border-secondary rounded-lg flex flex-col transition duration-300 hover:bg-[#33395b]">
+    <div className="relative w-1/3 h-full p-4 border-3 border-secondary rounded-lg flex flex-col transition duration-300 hover:bg-[#33395b] shadow-lg">
       <div className="relative w-full flex flex-col items-center justify-between gap-4 p-4 flex-grow">
         {/* Player Header */}
         <div className="z-10 w-4/5 flex flex-col items-center gap-2">
@@ -54,57 +55,64 @@ export default function PlayerColumn() {
         </div>
 
         {/* Player Image */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-full max-h-[70vh] pointer-events-none z-0">
-          <Image
-            src={`assets/images/player/player-1.png`}
-            alt="Player Image"
-            width={300}
-            height={400}
-            className="object-contain"
-          />
-        </div>
+        <Image
+          src={`/assets/images/player/player-1.png`}
+          alt="Player Image"
+          width={300}
+          height={400}
+        />
 
         {/* Player Menu */}
         <div className="flex items-center justify-evenly flex-wrap w-full gap-4">
           <div
             // onClick={() => handleOpenModal("spellbookModal")}
-            className="text-center text-sm cursor-pointer"
+            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
+            <BookText className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
             <p>Spellbook</p>
           </div>
+
           <div
             // onClick={() => handleOpenModal("inventoryModal")}
-            className="text-center text-sm cursor-pointer"
+            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
+            <Backpack className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
             <p>Inventory</p>
           </div>
+
           <div
             // onClick={() => handleOpenModal("heroesModal")}
-            className="text-center text-sm cursor-pointer"
+            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
+            <Users className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
             <p>Heroes</p>
           </div>
+
           <div
             // onClick={() => handleOpenModal("questsModal")}
-            className="text-center text-sm cursor-pointer"
+            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
+            <ShieldAlert className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
             <p>Quests</p>
           </div>
-          <div
-            // onClick={() => handleOpenModal("attributeModal")}
-            className="text-center text-sm cursor-pointer"
-          >
-            <p>Attributes</p>
-          </div>
-        </div>
-      </div>
 
-      {/* Settings Icon */}
-      <div
-        // onClick={() => handleOpenModal("settingsModal")}
-        className="absolute top-2 right-2 cursor-pointer transition transform hover:scale-110 text-accent"
-      >
-        {/* <FontAwesomeIcon icon={faGear} /> */}
+          {/* Settings Icon */}
+          <div
+            // onClick={() => handleOpenModal("settingsModal")}
+            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
+          >
+            <Settings className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
+            <p>Settings</p>
+          </div>
+
+          {/* <div
+            // onClick={() => handleOpenModal("attributeModal")}
+            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
+          >
+            <Backpack className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
+            <p>Attributes</p>
+          </div> */}
+        </div>
       </div>
     </div>
   );
