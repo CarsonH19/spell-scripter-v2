@@ -5,9 +5,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-import store from "@/store/index";
-import { Provider } from "react-redux";
-
 const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,16 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <Provider store={store}>
-        <TooltipProvider>
-          <html lang="en">
-            <body className={`${font.className} antialiased bg-white`}>
-              {/* <Toaster /> */}
-              {children}
-            </body>
-          </html>
-        </TooltipProvider>
-      </Provider>
+      <TooltipProvider>
+        <html lang="en">
+          <body className={`${font.className} antialiased bg-white`}>
+            {/* <Toaster /> */}
+            {children}
+          </body>
+        </html>
+      </TooltipProvider>
     </ClerkProvider>
   );
 }

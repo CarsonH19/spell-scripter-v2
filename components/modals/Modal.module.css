@@ -1,0 +1,55 @@
+.modal {
+  position: fixed;
+  z-index: 5; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.6); 
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  position: fixed;
+  font-family: 'CinzelDecorative', sans-serif;
+  z-index: 5; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.6); 
+  color: var(--text);
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  height: 3rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.modal .close:hover {
+  scale: 1.1;
+  transition: 0.3s;
+}
+
+
+/* Use for custom modal close button css */
+/* .modal .inventoryModal {
+  top: 3rem;
+  right: 9.5rem;
+}
+
+.modal .spellbookModal {
+  top: 6%;
+  right: 25.3%;
+} */

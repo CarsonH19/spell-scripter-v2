@@ -1,3 +1,5 @@
+"use client"
+
 import { CircleAlert } from "lucide-react";
 
 import {
@@ -5,25 +7,19 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Progress } from "@/components/ui/progress"
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "@/store/ui-slice";
 import { openModal} from "@/store/ui-actions"
 import { TOMES } from "@/data/tomes";
 
-import { TomeState } from "@/store";
+import { TomeState } from "@/store"
 
 export default function TomeColumn() {
   const dispatch = useDispatch();
   const tomeSlice = useSelector((state: TomeState) => state.tome);
-  // const isModalOpen = useSelector((state) => state.ui.modalIsVisible);
-
-  let masteryPoints = 0;
-  for (let i = 0; i < tomeSlice.length; i++) {
-    if (tomeSlice[i].mastered) {
-      masteryPoints++;
-    }
-  }
 
   const handleOpenTome = (tome) => {
     // update the current open tome
@@ -33,10 +29,10 @@ export default function TomeColumn() {
   };
 
   return (
-    <div className="relative flex flex-col items-center w-1/3 h-full border-3 border-secondary p-4 bg-background rounded-lg hover:bg-[#33395b] transition duration-300">
+    <div className="shadow-xl relative flex flex-col items-center w-1/3 h-full border-3 border-secondary p-4 bg-background rounded-lg hover:bg-[#33395b] transition duration-300">
       <Tooltip>
         <TooltipTrigger>
-          <CircleAlert className="text-black" />
+          <CircleAlert className="absolute right-0 mr-2 text-secondary" />
         </TooltipTrigger>
         <TooltipContent
           title="What Are Tomes?"
@@ -47,7 +43,7 @@ export default function TomeColumn() {
       </Tooltip>
       <h1 className="text-center border-b-2 border-primary mb-4">Tomes</h1>
       <div className="w-full p-4 gap-4 overflow-y-auto">
-        {/* {tomeSlice.map((tome, index) => {
+        {tomeSlice.map((tome, index) => {
           const tomeInfo = TOMES[index];
           if (tome.unlocked) {
             const percentage = calculatePercentage(tome.questions);
@@ -56,21 +52,21 @@ export default function TomeColumn() {
               <div
                 key={tome.name}
                 className="relative w-full h-24 border-2 border-accent rounded-lg flex flex-col items-center justify-center gap-0 transition duration-300 ease-in-out bg-primary mb-2 hover:bg-accent hover:cursor-pointer"
-                // onClick={() => handleOpenTome(tomeInfo)}
+                onClick={() => handleOpenTome(tomeInfo)}
               >
-                <h3 className="text-xl font-semibold font-serif text-primary hover:text-primary transition-colors duration-300">
+                <h3 className="text-lg font-semibold font-serif hover:text-primary transition-colors duration-300">
                   {tome.name}
                 </h3>
-                <div className="w-4/5 h-1 bg-[#b0aaaa] rounded-md shadow-inner overflow-hidden">
+                {/* <div className="w-4/5 h-1 bg-[#b0aaaa] rounded-md shadow-inner overflow-hidden">
                   <div
                     className="h-full bg-accent transition-all duration-100 rounded-md"
                     style={{ width: `${percentage}%` }}
                   />
-                </div>
-                <progress
+                </div> */}
+                <Progress
                   className="w-4/5 h-1 bg-[#b0aaaa] rounded-md"
                   value={percentage}
-                  max="100"
+                  // max="100"
                 />
                 <p
                   className={`text-center text-lg ${
@@ -83,24 +79,24 @@ export default function TomeColumn() {
             );
           }
           return null;
-        })} */}
+        })}
       </div>
     </div>
   );
 }
 
-// function calculatePercentage(questionsArray) {
-//   let totalQuestions = 0;
-//   let answeredQuestions = 0;
+function calculatePercentage(questionsArray) {
+  let totalQuestions = 0;
+  let answeredQuestions = 0;
 
-//   questionsArray.forEach((question) => {
-//     totalQuestions++;
-//     if (question.answered) {
-//       answeredQuestions++;
-//     }
-//   });
+  questionsArray.forEach((question) => {
+    totalQuestions++;
+    if (question.answered) {
+      answeredQuestions++;
+    }
+  });
 
-//   return totalQuestions > 0
-//     ? Math.round((answeredQuestions / totalQuestions) * 100)
-//     : 0;
-// }
+  return totalQuestions > 0
+    ? Math.round((answeredQuestions / totalQuestions) * 100)
+    : 0;
+}

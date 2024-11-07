@@ -1,14 +1,14 @@
+// "use client"
+
 // import { useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
-
-// import classes from "./Dashboard.module.css";
 
 // import store from "../../store/index";
 
 import DungeonColumn from "./dungeon-column";
 import PlayerColumn from "./player-column";
 import TomeColumn from "./tome-column";
-// import TomeColumn from "./TomeColumn/TomeColumn";
+
 // import { playerActions } from "../../store/player-slice";
 // import { openModal } from "../../store/ui-actions";
 

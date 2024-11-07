@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import {
   ClerkLoaded,
@@ -10,7 +12,43 @@ import {
 import { Loader } from "lucide-react";
 import Link from "next/link";
 
+// OLD
+// import { uiActions } from "../../store/ui-slice";
+import { useState } from "react";
+// import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+// import { playerActions } from "../../store/player-slice";
+// import CONSUMABLES from "../../data/consumables";
+// import { backgroundMusic, playMusic } from "../../data/audio/music";
+// import playSoundEffect from "../../util/audio-util";
+// OLD
+
 export default function Home() {
+  const dispatch = useDispatch();
+  const [off, setOff] = useState(false);
+
+  const handleStart = () => {
+    // startTransition(dispatch);
+    setOff(true);
+
+    // // Start Dashboard Music
+    // playMusic(backgroundMusic.intangibleAscension);
+
+    // dispatch(
+    //   playerActions.changeInventory({
+    //     item: { ...CONSUMABLES.HEALTH_POTION, id: uuidv4() },
+    //     change: "ADD",
+    //   })
+    // );
+
+    // dispatch(
+    //   playerActions.changeInventory({
+    //     item: { ...CONSUMABLES.MANA_POTION, id: uuidv4() },
+    //     change: "ADD",
+    //   })
+    // );
+  };
+
   return (
     <div className="max-w-[988px] mx-auto flex-1 w-full flex flex-col lg:flex-row items-center justify-center p-4 gap-2">
       <div className="flex flex-col items-center gap-y-8">
@@ -49,7 +87,13 @@ export default function Home() {
               </SignInButton>
             </SignedOut>
             <SignedIn>
-              <Button size="lg" variant="secondary" className="w-full" asChild>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="w-full"
+                asChild
+                onClick={handleStart}
+              >
                 <Link href="/dashboard">Continue</Link>
               </Button>
             </SignedIn>
