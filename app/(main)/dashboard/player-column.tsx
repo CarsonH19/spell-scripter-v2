@@ -68,7 +68,7 @@ export default function PlayerColumn() {
             // onClick={() => handleOpenModal("spellbookModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
-            <BookText className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
+            <BookText className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
             <p>Spellbook</p>
           </div>
 
@@ -76,7 +76,7 @@ export default function PlayerColumn() {
             // onClick={() => handleOpenModal("inventoryModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
-            <Backpack className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
+            <Backpack className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
             <p>Inventory</p>
           </div>
 
@@ -84,7 +84,7 @@ export default function PlayerColumn() {
             // onClick={() => handleOpenModal("heroesModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
-            <Users className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
+            <Users className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
             <p>Heroes</p>
           </div>
 
@@ -92,7 +92,7 @@ export default function PlayerColumn() {
             // onClick={() => handleOpenModal("questsModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
-            <ShieldAlert className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
+            <ShieldAlert className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
             <p>Quests</p>
           </div>
 
@@ -101,7 +101,7 @@ export default function PlayerColumn() {
             // onClick={() => handleOpenModal("settingsModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
-            <Settings className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
+            <Settings className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
             <p>Settings</p>
           </div>
 

@@ -14,9 +14,14 @@ export default function Home() {
   return (
     <div className="max-w-[988px] mx-auto flex-1 w-full flex flex-col lg:flex-row items-center justify-center p-4 gap-2">
       <div className="flex flex-col items-center gap-y-8">
-        <h1 className="text-[6rem] font-bold text-orange-300 text-center">
-          Spell Scripter
-        </h1>
+        <div>
+          <h1 className="text-[6rem] font-bold text-orange-300 text-center">
+            Spell
+          </h1>
+          <h1 className="text-[6rem] font-bold text-orange-300 text-center mt-[-2rem]">
+            Scripter
+          </h1>
+        </div>
         <div className="flex flex-col items-center gap-y-3 max-w-[330px] w-full">
           <ClerkLoading>
             <Loader className="h-5 w-5 text-muted-foreground animate-spin" />

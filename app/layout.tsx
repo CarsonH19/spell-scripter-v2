@@ -3,7 +3,7 @@ import { Nunito } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 // import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
-
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -19,12 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`${font.className} antialiased bg-white`}>
-          {/* <Toaster /> */}
-          {children}
-        </body>
-      </html>
+      <TooltipProvider>
+        <html lang="en">
+          <body className={`${font.className} antialiased bg-white`}>
+            {/* <Toaster /> */}
+            {children}
+          </body>
+        </html>
+      </TooltipProvider>
     </ClerkProvider>
   );
 }
