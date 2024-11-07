@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-// import { Header } from "./header";
+import Header from "./header";
 
 type Props = {
   children: React.ReactNode;
@@ -14,7 +14,8 @@ const HomeLayout = ({ children }: Props) => {
       }}
     >
       <main className="flex-1 flex flex-col items-center justify-center mt-[-10rem] gap-4">
-        <h1 className=" text-orange-300 text-[6rem] uppercase font-semibold">Spell Scripter</h1>
+        {/* <h1 className=" text-orange-300 text-[6rem] uppercase font-semibold">Spell Scripter</h1> */}
+        {/* <Header /> */}
         {children}
       </main>
     </div>
