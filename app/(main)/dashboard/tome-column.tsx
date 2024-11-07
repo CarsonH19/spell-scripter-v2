@@ -6,29 +6,31 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { uiActions } from "../../../store/ui-slice";
-// import { TOMES } from "../../../data/tomes";
-// import { openModal } from "../../../store/ui-actions";
+import { useDispatch, useSelector } from "react-redux";
+import { uiActions } from "@/store/ui-slice";
+import { openModal} from "@/store/ui-actions"
+import { TOMES } from "@/data/tomes";
+
+import { TomeState } from "@/store";
 
 export default function TomeColumn() {
-  // const dispatch = useDispatch();
-  // const tomeSlice = useSelector((state) => state.tome);
+  const dispatch = useDispatch();
+  const tomeSlice = useSelector((state: TomeState) => state.tome);
   // const isModalOpen = useSelector((state) => state.ui.modalIsVisible);
 
-  // let masteryPoints = 0;
-  // for (let i = 0; i < tomeSlice.length; i++) {
-  //   if (tomeSlice[i].mastered) {
-  //     masteryPoints++;
-  //   }
-  // }
+  let masteryPoints = 0;
+  for (let i = 0; i < tomeSlice.length; i++) {
+    if (tomeSlice[i].mastered) {
+      masteryPoints++;
+    }
+  }
 
-  // const handleOpenTome = (tome) => {
-  //   // update the current open tome
-  //   dispatch(uiActions.updateActiveTome(tome));
-  //   // Open tome modal
-  //   openModal(dispatch, "tomesModal");
-  // };
+  const handleOpenTome = (tome) => {
+    // update the current open tome
+    dispatch(uiActions.updateActiveTome(tome));
+    // Open tome modal
+    openModal(dispatch, "tomesModal");
+  };
 
   return (
     <div className="relative flex flex-col items-center w-1/3 h-full border-3 border-secondary p-4 bg-background rounded-lg hover:bg-[#33395b] transition duration-300">
@@ -45,7 +47,7 @@ export default function TomeColumn() {
       </Tooltip>
       <h1 className="text-center border-b-2 border-primary mb-4">Tomes</h1>
       <div className="w-full p-4 gap-4 overflow-y-auto">
-        {tomeSlice.map((tome, index) => {
+        {/* {tomeSlice.map((tome, index) => {
           const tomeInfo = TOMES[index];
           if (tome.unlocked) {
             const percentage = calculatePercentage(tome.questions);
@@ -81,24 +83,24 @@ export default function TomeColumn() {
             );
           }
           return null;
-        })}
+        })} */}
       </div>
     </div>
   );
 }
 
-function calculatePercentage(questionsArray) {
-  let totalQuestions = 0;
-  let answeredQuestions = 0;
+// function calculatePercentage(questionsArray) {
+//   let totalQuestions = 0;
+//   let answeredQuestions = 0;
 
-  questionsArray.forEach((question) => {
-    totalQuestions++;
-    if (question.answered) {
-      answeredQuestions++;
-    }
-  });
+//   questionsArray.forEach((question) => {
+//     totalQuestions++;
+//     if (question.answered) {
+//       answeredQuestions++;
+//     }
+//   });
 
-  return totalQuestions > 0
-    ? Math.round((answeredQuestions / totalQuestions) * 100)
-    : 0;
-}
+//   return totalQuestions > 0
+//     ? Math.round((answeredQuestions / totalQuestions) * 100)
+//     : 0;
+// }
