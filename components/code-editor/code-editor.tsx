@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 
 import Output from "./output";
 import { Button } from "../ui/button";
+import { Loader } from "lucide-react";
 
 import { executeCode } from "@/util/code-editor";
 import { Expand } from "lucide-react";
@@ -16,7 +17,7 @@ export default function CodeEditor({ code }) {
   const editorRef = useRef();
   const [value, setValue] = useState("");
   const [output, setOutput] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const isQTE = useSelector(
@@ -34,7 +35,7 @@ export default function CodeEditor({ code }) {
     const sourceCode = editorRef.current.getValue();
     if (!sourceCode) return;
     try {
-      // setIsLoading(true);
+      setIsLoading(true);
       const { run: result } = await executeCode(sourceCode);
       setOutput(result.output.split("\n"));
       result.stderr ? setIsError(true) : setIsError(false);
@@ -46,7 +47,7 @@ export default function CodeEditor({ code }) {
       //   duration: 6000,
       // });
     } finally {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -82,7 +83,11 @@ export default function CodeEditor({ code }) {
               variant={"secondary"}
               // className="text-accent bg-transparent border border-accent h-8 w-24 text-base rounded hover:text-dark hover:bg-accent transition"
             >
-              Run Code
+              {isLoading ? (
+                <Loader className="h-5 w-5 text-black animate-spin" />
+              ) : (
+                "Run Code"
+              )}
             </Button>
           </div>
         </div>

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import classes from "../QTE/QTE.module.css";
-import TomeAnswers from "./TomeAnswers";
+import TomeAnswers from "./tome-answers";
 
 export default function TomeQuestion({ answers }) {
   const [answer, setAnswer] = useState({
@@ -33,7 +32,7 @@ export default function TomeQuestion({ answers }) {
   }
 
   return (
-    <div className={classes.question}>
+    <div className="flex justify-center items-start h-full w-full p-4">
       <TomeAnswers
         answers={answers}
         selectedAnswer={answer.selectedAnswer}
