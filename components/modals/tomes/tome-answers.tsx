@@ -37,7 +37,7 @@ export default function TomeAnswers({
             <Button
               variant={"secondary"}
               onClick={() => onSelect(answer)}
-              className={`w-full h-auto p-4 rounded-md whitespace-normal break-words ${
+              className={`w-full h-auto p-4 rounded-md ${
                 cssClass || "hover:bg-orange-300"
               }`}
               disabled={answerState !== ""}
