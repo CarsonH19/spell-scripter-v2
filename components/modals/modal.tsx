@@ -12,7 +12,7 @@ import { CircleX } from "lucide-react";
 // import SettingsModal from "./Settings/SettingsModal";
 // import QuestsModal from "./Quests/QuestsModal";
 // import SpellbookModal from "./Spellbook/SpellbookModal";
-import TomesModal from "./tomes/TomesModal";
+import TomesModal from "./tomes/tomes-modal";
 // import RoomSummaryModal from "./RoomSummary/RoomSummaryModal";
 // import TradeModal from "./Trade/TradeModal";
 // import HelpModal from "./Help/HelpModal";
