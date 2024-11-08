@@ -27,8 +27,8 @@ const store = configureStore({
 });
 
 // Extract the RootState type
-export type TomeState = ReturnType<typeof store.getState>;
-export type UiState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>;
+
 
 
 export default store;

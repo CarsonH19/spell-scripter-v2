@@ -20,7 +20,7 @@ interface ModalState {
 }
 
 // Define the initial state structure
-interface UiState {
+export interface UiState {
   startIsVisible: boolean;
   dashboardIsVisible: boolean;
   gameWindowIsVisible: boolean;
@@ -30,7 +30,7 @@ interface UiState {
   modalIsVisible: boolean;
   eventOptionsAreVisible: boolean;
   modal: ModalState;
-  tome: string | null;
+  tome: any | null;
   fade: boolean;
 }
 
@@ -112,4 +112,4 @@ const uiSlice = createSlice({
 });
 
 export const uiActions = uiSlice.actions;
-export default uiSlice;
+export default uiSlice.reducer;

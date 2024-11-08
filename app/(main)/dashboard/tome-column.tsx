@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { CircleAlert } from "lucide-react";
 
@@ -7,21 +7,21 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Progress } from "@/components/ui/progress"
-
+import { Progress } from "@/components/ui/progress";
 
 import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "@/store/ui-slice";
-import { openModal} from "@/store/ui-actions"
+import { openModal } from "@/store/ui-actions";
 import { TOMES } from "@/data/tomes";
 
-import { TomeState } from "@/store"
+import { RootState } from "@/store";
 
 export default function TomeColumn() {
   const dispatch = useDispatch();
-  const tomeSlice = useSelector((state: TomeState) => state.tome);
+  const tomeSlice = useSelector((state: RootState) => state.tome);
 
   const handleOpenTome = (tome) => {
+    console.log(tome);
     // update the current open tome
     dispatch(uiActions.updateActiveTome(tome));
     // Open tome modal

@@ -23,6 +23,11 @@ export default function RootLayout({
         <html lang="en">
           <body className={`${font.className} antialiased bg-white`}>
             {/* <Toaster /> */}
+            
+            {/* Modals */}
+            <div id="modal"></div>
+
+            {/* Main Content */}
             {children}
           </body>
         </html>
