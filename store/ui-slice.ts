@@ -80,6 +80,7 @@ const uiSlice = createSlice({
       const { element, visible } = action.payload;
       if (element in state) {
         state[element] = visible;
+        console.log("CLOSED")
       }
     },
     openModal(

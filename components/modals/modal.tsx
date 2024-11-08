@@ -3,7 +3,7 @@
 import { createPortal } from "react-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { uiActions } from "../../store/ui-actions";
+import { uiActions } from "@/store/ui-slice";
 
 import { CircleX } from "lucide-react";
 
@@ -29,7 +29,7 @@ import { RootState } from "@/store";
 export default function Modal() {
   const dispatch = useDispatch();
   const ui = useSelector((state: RootState) => state.ui);
-  console.log(ui);
+  console.log(ui)
   const activeModal = selectModal(ui);
   const openModal = findActiveModal(ui);
 
@@ -47,9 +47,11 @@ export default function Modal() {
   };
 
   const modalElement = document.getElementById("modal");
+  console.log(modalElement);
 
   // Ensure that modalElement is not null before calling createPortal
   if (!modalElement) {
+    console.log("No modalElement");
     return null; // Return null or handle the case where modalElement is not found
   }
 
