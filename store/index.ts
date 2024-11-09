@@ -2,8 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import uiReducer from "./ui-slice";
 // import dungeonSlice from "./dungeon-slice";
-// import heroSlice from "./hero-slice";
-// import playerSlice from "./player-slice";
+import heroReducer from "./hero-slice"
 import playerReducer from "./player-slice";
 // import combatSlice from "./combat-slice";
 // import logSlice from "./log-slice";
@@ -16,7 +15,7 @@ const store = configureStore({
   reducer: {
     ui: uiReducer,
     // dungeon: dungeonSlice.reducer,
-    // hero: heroSlice.reducer,
+    hero: heroReducer,
     player: playerReducer,
     // combat: combatSlice.reducer,
     // log: logSlice.reducer,

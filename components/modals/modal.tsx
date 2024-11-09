@@ -7,10 +7,11 @@ import { uiActions } from "@/store/ui-slice";
 
 import { CircleX } from "lucide-react";
 
-// import HeroesModal from "./Hero/HeroesModal";
+import HeroesModal from "./hero/heroes-modal";
 // import InventoryModal from "./Inventory/InventoryModal";
 // import SettingsModal from "./Settings/SettingsModal";
 // import QuestsModal from "./Quests/QuestsModal";
+import QuestsModal from "./quest/quests-modal";
 // import SpellbookModal from "./Spellbook/SpellbookModal";
 import TomesModal from "./tomes/tomes-modal";
 // import RoomSummaryModal from "./RoomSummary/RoomSummaryModal";
@@ -81,14 +82,14 @@ function selectModal(state) {
   }
 
   switch (activeModal) {
-    // case "heroesModal":
-    //   return <HeroesModal />;
+    case "heroesModal":
+      return <HeroesModal />;
 
     // case "inventoryModal":
     //   return <InventoryModal />;
 
-    // case "questsModal":
-    //   return <QuestsModal />;
+    case "questsModal":
+      return <QuestsModal />;
 
     // case "spellbookModal":
     //   return <SpellbookModal />;

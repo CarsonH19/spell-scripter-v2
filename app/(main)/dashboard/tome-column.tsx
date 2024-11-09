@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleAlert } from "lucide-react";
+import { CircleAlert, Lock } from "lucide-react";
 
 import {
   Tooltip,
@@ -51,20 +51,14 @@ export default function TomeColumn() {
             return (
               <div
                 key={tome.name}
-                className="relative w-full h-24 border-2 border-accent rounded-lg flex flex-col items-center justify-center gap-0 transition duration-300 ease-in-out bg-primary mb-2 hover:bg-accent hover:cursor-pointer"
+                className="relative w-full h-24 border-2 border-accent rounded-lg flex flex-col items-center justify-center gap-0 transition duration-300 ease-in-out bg-primary mb-2 hover:bg-accent hover:cursor-pointer hover:text-black"
                 onClick={() => handleOpenTome(tomeInfo)}
               >
-                <h3 className="text-lg font-semibold font-serif hover:text-primary transition-colors duration-300">
+                <h3 className="text-lg font-serif hover:text-black transition-colors duration-300">
                   {tome.name}
                 </h3>
-                {/* <div className="w-4/5 h-1 bg-[#b0aaaa] rounded-md shadow-inner overflow-hidden">
-                  <div
-                    className="h-full bg-accent transition-all duration-100 rounded-md"
-                    style={{ width: `${percentage}%` }}
-                  />
-                </div> */}
                 <Progress
-                  className="w-4/5 h-1 bg-[#b0aaaa] rounded-md"
+                  className="w-4/5 h-1 bg-[#b0aaaa] rounded-md hover:text-black"
                   value={percentage}
                   // max="100"
                 />
@@ -78,7 +72,20 @@ export default function TomeColumn() {
               </div>
             );
           }
-          return null;
+
+          if (!tome.unlocked) {
+            return (
+              <div
+                key={tome.name}
+                className="relative w-full h-24 border-2 border-text/50 rounded-lg flex flex-col items-center justify-center transition duration-300 ease-in-out bg-primary mb-2 opacity-50 gap-1"
+              >
+                <h3 className="text-md font-serif text-text/50">
+                  {tome.name}
+                </h3>
+                <Lock className="" />
+              </div>
+            );
+          }
         })}
       </div>
     </div>
