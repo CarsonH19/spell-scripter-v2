@@ -1,4 +1,3 @@
-import store from "../store/index";
 import { hound, knight, drake, golem } from "./summons";
 
 // const spellPower = store.getState().player.stats.arcana.spellPower;

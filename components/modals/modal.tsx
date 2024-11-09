@@ -10,9 +10,8 @@ import { CircleX } from "lucide-react";
 import HeroesModal from "./hero/heroes-modal";
 // import InventoryModal from "./Inventory/InventoryModal";
 // import SettingsModal from "./Settings/SettingsModal";
-// import QuestsModal from "./Quests/QuestsModal";
 import QuestsModal from "./quest/quests-modal";
-// import SpellbookModal from "./Spellbook/SpellbookModal";
+import SpellbookModal from "./spellbook/spellbook-modal";
 import TomesModal from "./tomes/tomes-modal";
 // import RoomSummaryModal from "./RoomSummary/RoomSummaryModal";
 // import TradeModal from "./Trade/TradeModal";
@@ -30,7 +29,6 @@ import { RootState } from "@/store";
 export default function Modal() {
   const dispatch = useDispatch();
   const ui = useSelector((state: RootState) => state.ui);
-  console.log(ui)
   const activeModal = selectModal(ui);
   const openModal = findActiveModal(ui);
 
@@ -91,8 +89,8 @@ function selectModal(state) {
     case "questsModal":
       return <QuestsModal />;
 
-    // case "spellbookModal":
-    //   return <SpellbookModal />;
+    case "spellbookModal":
+      return <SpellbookModal />;
 
     case "tomesModal":
       return <TomesModal tome={state.tome} />;

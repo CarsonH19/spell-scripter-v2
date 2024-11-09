@@ -8,7 +8,7 @@ import playerReducer from "./player-slice";
 // import logSlice from "./log-slice";
 import tomeReducer from "./tome-slice";
 // import questionSlice from "./question-slice";
-// import spellbookSlice from "./spellbook-slice";
+import spellbookReducer from "./spellbook-slice"
 // import dialogueSlice from "./dialogue-slice";
 
 const store = configureStore({
@@ -21,7 +21,7 @@ const store = configureStore({
     // log: logSlice.reducer,
     tome: tomeReducer,
     // question: questionSlice.reducer,
-    // spellbook: spellbookSlice.reducer,
+    spellbook: spellbookReducer,
     // dialogue: dialogueSlice.reducer,
   },
 });

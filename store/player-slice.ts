@@ -394,16 +394,6 @@ const playerSlice = createSlice({
   },
 });
 
-export const {
-  updatePlayer,
-  checkForLevelUp,
-  changeMasteryPoints,
-  changeAttributes,
-  changeSpellList,
-  changeInventory,
-  changeAttunement,
-  updateStatusEffects,
-  updateStats,
-} = playerSlice.actions;
+export const playerActions = playerSlice.actions;
 
 export default playerSlice.reducer;
