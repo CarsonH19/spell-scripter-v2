@@ -53,7 +53,7 @@ export default function TomesModal({ tome }) {
     case "QUESTION":
       pageContent = (
         <div className="w-full p-4 flex flex-col items-center justify-around gap-8">
-          <h2 className="font-serif text-2xl text-center px-12">Question</h2>
+          <h2 className="font-serif text-4xl text-center px-12">Question</h2>
           <h3 className="font-serif text-lg mb-[-1rem]">
             {tome.lesson[index].question}
           </h3>
@@ -76,7 +76,7 @@ export default function TomesModal({ tome }) {
         <>
           <div className="w-full p-4 flex flex-col items-center justify-around gap-8">
             <h2 className="font-serif text-4xl text-center px-12">Summary</h2>
-            <ul className="text-xl mb-60 w-[30rem] list-outside">
+            <ul className="text-xl mb-60 w-[30rem] list-disc list-outside">
               {tome.lesson[index].listItems.map((item, index) => (
                 <li key={index} className="mb-4">
                   {item}

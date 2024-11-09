@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,12 +13,14 @@ import { Loader } from "lucide-react";
 import Link from "next/link";
 
 // OLD
-// import { uiActions } from "../../store/ui-slice";
+import { uiActions } from "@/store/ui-slice";
 import { useState } from "react";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 // import { playerActions } from "../../store/player-slice";
-// import CONSUMABLES from "../../data/consumables";
+
+import CONSUMABLES from "@/data/consumables";
+
 // import { backgroundMusic, playMusic } from "../../data/audio/music";
 // import playSoundEffect from "../../util/audio-util";
 // OLD

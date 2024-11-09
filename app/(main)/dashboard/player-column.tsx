@@ -1,57 +1,49 @@
-// import classes from "./PlayerColumn.module.css";
-// import { useDispatch, useSelector } from "react-redux";
-// import { openModal } from "../../../store/ui-actions";
+"use client"
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { openModal } from "@/store/ui-actions";
 import Image from "next/image";
+import { Progress } from "@/components/ui/progress";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faToolbox,
-//   faBookOpen,
-//   faUsers,
-//   faCircleExclamation,
-//   faGear,
-//   faUser,
-//   faCubes,
-// } from "@fortawesome/free-solid-svg-icons";
 import { Backpack, BookText, Users, ShieldAlert, Settings } from "lucide-react";
+import { RootState } from "@/store";
 
-// import Tooltip from "../../UI/Tooltip";
 // import updateStatTotals from "../../../store/stats-actions";
-// import { useEffect } from "react";
 
 export default function PlayerColumn() {
-  // const dispatch = useDispatch();
-  // const player = useSelector((state) => state.player);
-  // const { prevLevel, nextLevel } = setNextLevel(player.totalMasteryPoints);
+  const dispatch = useDispatch();
+  const player = useSelector((state: RootState) => state.player);
+  const { prevLevel, nextLevel } = setNextLevel(player.totalMasteryPoints);
 
-  // useEffect(() => {
-  //   // Update player stats on render
-  //   updateStatTotals(dispatch, "Player");
-  // }, []);
+  useEffect(() => {
+    // Update player stats on render
+    // updateStatTotals(dispatch, "Player");
+  }, []);
 
-  // const handleOpenModal = (modal) => {
-  //   openModal(dispatch, modal);
-  // };
+  const handleOpenModal = (modal) => {
+    openModal(dispatch, modal);
+  };
 
   return (
     <div className="relative w-1/3 h-full p-4 border-3 border-secondary rounded-lg flex flex-col transition duration-300 hover:bg-[#33395b] shadow-lg">
       <div className="relative w-full flex flex-col items-center justify-between gap-4 p-4 flex-grow">
         {/* Player Header */}
         <div className="z-10 w-4/5 flex flex-col items-center gap-2">
-          <h1 className="text-center">player.name</h1>
+          <h1 className="text-center">{player.name}</h1>
           <div className="relative w-full flex justify-between text-sm">
-            <p>Level: player.level</p>
+            <p>Level: {player.level}</p>
             <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              {/* {Math.round(((player.totalMasteryPoints - prevLevel) / (nextLevel - prevLevel)) * 100)} */}
+              {Math.round(((player.totalMasteryPoints - prevLevel) / (nextLevel - prevLevel)) * 100)}
             </p>
-            <p>{/* {player.totalMasteryPoints}/{nextLevel} */}</p>
+            <p>{player.totalMasteryPoints}/{nextLevel}</p>
           </div>
-          {/* <progress
+          <Progress
             value={player.totalMasteryPoints - prevLevel}
             max={nextLevel - prevLevel}
             className="w-full h-2 rounded bg-gray-400"
-          ></progress>
-          <p>Mastery Points: {player.totalMasteryPoints}</p> */}
+          ></Progress>
+          <p>Mastery Points: {player.totalMasteryPoints}</p>
         </div>
 
         {/* Player Image */}
@@ -65,7 +57,7 @@ export default function PlayerColumn() {
         {/* Player Menu */}
         <div className="flex items-center justify-evenly flex-wrap w-full gap-4">
           <div
-            // onClick={() => handleOpenModal("spellbookModal")}
+            onClick={() => handleOpenModal("spellbookModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
             <BookText className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
@@ -73,7 +65,7 @@ export default function PlayerColumn() {
           </div>
 
           <div
-            // onClick={() => handleOpenModal("inventoryModal")}
+            onClick={() => handleOpenModal("inventoryModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
             <Backpack className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
@@ -81,7 +73,7 @@ export default function PlayerColumn() {
           </div>
 
           <div
-            // onClick={() => handleOpenModal("heroesModal")}
+            onClick={() => handleOpenModal("heroesModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
             <Users className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
@@ -89,7 +81,7 @@ export default function PlayerColumn() {
           </div>
 
           <div
-            // onClick={() => handleOpenModal("questsModal")}
+            onClick={() => handleOpenModal("questsModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
             <ShieldAlert className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
@@ -98,7 +90,7 @@ export default function PlayerColumn() {
 
           {/* Settings Icon */}
           <div
-            // onClick={() => handleOpenModal("settingsModal")}
+            onClick={() => handleOpenModal("settingsModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
             <Settings className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
@@ -118,24 +110,24 @@ export default function PlayerColumn() {
   );
 }
 
-// function setNextLevel(totalMasteryPoints) {
-//   if (totalMasteryPoints >= 48) {
-//     return { prevLevel: 48, nextLevel: 48 };
-//   } else if (totalMasteryPoints >= 32) {
-//     return { prevLevel: 32, nextLevel: 48 };
-//   } else if (totalMasteryPoints >= 24) {
-//     return { prevLevel: 24, nextLevel: 32 };
-//   } else if (totalMasteryPoints >= 17) {
-//     return { prevLevel: 17, nextLevel: 24 };
-//   } else if (totalMasteryPoints >= 11) {
-//     return { prevLevel: 11, nextLevel: 17 };
-//   } else if (totalMasteryPoints >= 7) {
-//     return { prevLevel: 7, nextLevel: 11 };
-//   } else if (totalMasteryPoints >= 4) {
-//     return { prevLevel: 4, nextLevel: 7 };
-//   } else if (totalMasteryPoints >= 2) {
-//     return { prevLevel: 2, nextLevel: 4 };
-//   } else if (totalMasteryPoints === 1) {
-//     return { prevLevel: 1, nextLevel: 2 };
-//   }
-// }
+function setNextLevel(totalMasteryPoints) {
+  if (totalMasteryPoints >= 48) {
+    return { prevLevel: 48, nextLevel: 48 };
+  } else if (totalMasteryPoints >= 32) {
+    return { prevLevel: 32, nextLevel: 48 };
+  } else if (totalMasteryPoints >= 24) {
+    return { prevLevel: 24, nextLevel: 32 };
+  } else if (totalMasteryPoints >= 17) {
+    return { prevLevel: 17, nextLevel: 24 };
+  } else if (totalMasteryPoints >= 11) {
+    return { prevLevel: 11, nextLevel: 17 };
+  } else if (totalMasteryPoints >= 7) {
+    return { prevLevel: 7, nextLevel: 11 };
+  } else if (totalMasteryPoints >= 4) {
+    return { prevLevel: 4, nextLevel: 7 };
+  } else if (totalMasteryPoints >= 2) {
+    return { prevLevel: 2, nextLevel: 4 };
+  } else if (totalMasteryPoints === 1) {
+    return { prevLevel: 1, nextLevel: 2 };
+  }
+}

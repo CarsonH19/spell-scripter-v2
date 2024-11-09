@@ -1,7 +1,5 @@
 import { useRef } from "react";
 
-import { Button } from "@/components/ui/button";
-
 export default function TomeAnswers({
   answers,
   selectedAnswer,
@@ -22,28 +20,30 @@ export default function TomeAnswers({
         let cssClass = "";
 
         if (answerState === "answered" && isSelected) {
-          cssClass = "bg-orange-300";
+          cssClass = "bg-orange-300"; 
         }
 
         if (
           (answerState === "correct" || answerState === "wrong") &&
           isSelected
         ) {
-          cssClass = answerState === "correct" ? "bg-green-400" : "bg-red-400";
+          cssClass =
+            answerState === "correct"
+              ? "bg-green-400"
+              : "bg-red-400";
         }
 
         return (
           <li key={answer} className="mb-4">
-            <Button
-              variant={"secondary"}
+            <button
               onClick={() => onSelect(answer)}
-              className={`w-full h-auto p-4 rounded-md ${
-                cssClass || "hover:bg-orange-300"
+              className={`w-full p-4 rounded-md ${
+                cssClass || "bg-gray-100 hover:bg-orange-300"
               }`}
-              disabled={answerState !== ""}
+              // disabled={answerState !== ""}
             >
               {answer}
-            </Button>
+            </button>
           </li>
         );
       })}
