@@ -12,18 +12,17 @@ import {
 import { Loader } from "lucide-react";
 import Link from "next/link";
 
-// OLD
 import { uiActions } from "@/store/ui-slice";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-// import { playerActions } from "../../store/player-slice";
+import { playerActions } from "@/store/player-slice";
 
 import CONSUMABLES from "@/data/consumables";
+import EQUIPMENT from "@/data/equipment";
 
 // import { backgroundMusic, playMusic } from "../../data/audio/music";
 // import playSoundEffect from "../../util/audio-util";
-// OLD
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -36,19 +35,26 @@ export default function Home() {
     // // Start Dashboard Music
     // playMusic(backgroundMusic.intangibleAscension);
 
-    // dispatch(
-    //   playerActions.changeInventory({
-    //     item: { ...CONSUMABLES.HEALTH_POTION, id: uuidv4() },
-    //     change: "ADD",
-    //   })
-    // );
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.HEALTH_POTION, id: uuidv4() },
+        change: "ADD",
+      })
+    );
 
-    // dispatch(
-    //   playerActions.changeInventory({
-    //     item: { ...CONSUMABLES.MANA_POTION, id: uuidv4() },
-    //     change: "ADD",
-    //   })
-    // );
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.MANA_POTION, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
+        change: "ADD",
+      })
+    );
   };
 
   return (

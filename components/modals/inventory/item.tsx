@@ -10,6 +10,8 @@ import { uiActions } from "@/store/ui-slice";
 
 import { setSelect } from "@/store/combat-actions";
 
+
+// TODO: move tooltip from inventory-modal here
 export default function Item({ item, count = 1 }) {
   const dispatch = useDispatch();
   const isDanger = useSelector((state: RootState) => state.dungeon.danger);
@@ -36,8 +38,9 @@ export default function Item({ item, count = 1 }) {
       style={{
         backgroundImage: `url(${item.image})`,
       }}
+      className="h-16 w-16 bg-secondary list-none cursor-pointer rounded-md border-2 border-secondary hover:scale-110 hover:border-text hover:shadow-inner transition-transform bg-center bg-no-repeat bg-cover"
     >
-      <span>{count > 1 ? `x${count}` : ""}</span>
+      <span className="absolute bottom-1 right-1">{count > 1 ? `x${count}` : ""}</span>
     </li>
   );
 }

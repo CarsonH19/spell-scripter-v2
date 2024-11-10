@@ -108,7 +108,7 @@ export default function InventoryModal() {
                 Misc. Items
               </button>
             </div>
-            <ul className="w-full h-[95%] bg-primary border border-secondary rounded-lg p-4 mb-8 flex flex-wrap justify-center items-start gap-4 overflow-visible">
+            <ul className="w-full h-[95%] bg-primary border border-secondary rounded-lg p-4 mb-8 flex flex-wrap justify-center items-start gap-4 overflow-visible ">
               {counters.map((item) => {
                 // Calculate set pieces for tooltip
                 let completeSet;
@@ -129,11 +129,11 @@ export default function InventoryModal() {
                       title={item.name}
                       text={item.rarity}
                       detailOne={item.description}
-                      detailTwo={item.effect.map((line, index) => (
-                        <span key={index} className="item-effect">
-                          {line}
-                        </span>
-                      ))}
+                      // detailTwo={item.effect.map((line, index) => (
+                      //   <span key={index} className="item-effect">
+                      //     {line}
+                      //   </span>
+                      // ))}
                       detailThree={
                         item.set ? `${item.set} Bonus (${setPieces}/3)` : null
                       }

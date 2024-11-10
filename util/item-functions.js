@@ -3,7 +3,7 @@ import { changeHealth } from "../store/health-actions";
 import { combatActions } from "../store/combat-slice";
 import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
-import EQUIPMENT from "../data/equipment";
+// import EQUIPMENT from "../data/equipment";
 import { dungeonActions } from "../store/dungeon-slice";
 
 export const itemFunctions = {
