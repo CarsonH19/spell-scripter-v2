@@ -6,7 +6,6 @@ import { RotateCcw } from "lucide-react";
 import Skill from "./skill";
 import School from "./school";
 import { spellbookActions } from "@/store/spellbook-slice";
-// import { playerActions } from "../../../store/player-slice";
 import { playerActions } from "@/store/player-slice";
 // import playSoundEffect from "../../../util/audio-util";
 import { RootState } from "@/store";

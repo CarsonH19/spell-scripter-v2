@@ -1,0 +1,265 @@
+.text {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.inventory h3 {
+  font-size: 1.5rem;
+}
+
+.inventory h4  {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+}
+
+.inventory {
+  height: 90%;
+  width: 70%;
+  min-width: 60rem;
+  min-height: 40rem;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--secondary);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.inventory h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0rem;
+  margin: 0;
+  border-bottom: 1px solid var(--secondary);
+  width: 30%;
+}
+
+.inventory .container {
+  display: flex;
+  width: 100%;
+  height: 90%;
+  flex: 1;
+}
+
+/* .inventory .container .vertical {
+  border-left: 2px solid red;
+} */
+
+.inventory .container .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+  /* height: 70%; */
+  /* margin-top: 4.5rem; */
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid var(--secondary);
+  border-radius: 10px;
+  background-color: var(--primary);
+}
+
+
+.inventory .container .left .stats {
+  flex: 1;
+  text-align: center;
+}
+
+.stats .block {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stats .block p {
+  font-size: 1rem;
+}
+
+
+
+.inventory .container .left .stats ul {
+  margin-top: 1rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.inventory .container .left .stats ul li {
+  height: 2rem;
+  width: 2rem;
+  background-color: var(--secondary); 
+  list-style: none;
+  cursor: pointer; 
+}
+
+
+.inventory .container .right {
+  width: 70%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inventory .container .right .top {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+justify-content: flex-start;}
+
+
+.inventory .container .right .buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  width: 100%;
+  height: 5%;
+  
+  /* gap: 4rem; */
+}
+
+.buttons button {
+  /* height: 1.5rem; */
+  width: 8rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--secondary);
+  border-bottom: 2px solid var(--primary);
+  border-bottom: none;
+  cursor: pointer;
+  background-color: var(--background);
+  color: var(--text);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  z-index: 3;
+
+}
+
+button.active {
+  background-color: var(--primary);
+  font-size: 0.8rem;
+}
+
+.inventory .container .right .items {
+  width: 100%;
+  height: 95%;
+  background-color: var(--primary);
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0;
+  margin-bottom: 2rem;
+  overflow: visible;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.inventory .container .right .items {
+}
+
+.items li, 
+.attuned li {
+  position: relative;
+  color: var(--text);
+  aspect-ratio: 1;
+  height: 4rem;
+  width: 4rem;
+  list-style: none;
+  border: 1px solid var(--secondary);
+  cursor: pointer;
+  border-radius: 10%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0.5rem 0.5rem 2rem rgba(0, 0, 0, 2);
+}
+
+.items li:hover,
+.attuned li:hover {
+  transition: 0.3s all;
+  transform: scale(1.1);
+  border-color: var(--text);
+  box-shadow: inset 0rem 0rem 0rem rgba(0, 0, 0, 2);
+}
+
+.items li span,
+.attuned li span {
+position: absolute;
+bottom: 5%;
+right: 5%;
+} 
+
+.item-effect {
+  display: list-item;
+  list-style-type:none; 
+  /* list-style-position: inside; */
+  /* margin-left: 0;  */
+  /* padding-left: 0;   */
+}
+
+.item-effect::before {
+  content: "-";
+  margin-right: 2px;
+}
+
+.attuned .empty {
+  box-shadow: inset 0rem 0rem 0rem rgba(0, 0, 0, 2);
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: auto;
+  pointer-events: none;
+}
+
+.inventory .container .right .attuned {
+  width: 70%;
+  min-width: 33rem;
+  align-self: center;
+  height: 25%;
+  background-color: var(--background);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.attuned h1 {
+  flex: 1;
+}
+
+.attuned ul {
+  border: 1px solid var(--secondary);
+  margin: 0;
+  padding: 1rem;
+  /* flex: 1; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  height: 8rem;
+  background-color: var(--primary);
+  border-radius: 8px;
+}
+
+.attuned ul div li {
+  list-style: none;
+  aspect-ratio: 1;
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid var(--secondary);
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+.attuned ul div li:hover {
+  transition: 0.3s;
+  scale: 1.1;
+}
+

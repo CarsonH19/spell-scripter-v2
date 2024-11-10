@@ -8,7 +8,7 @@ import { uiActions } from "@/store/ui-slice";
 import { CircleX } from "lucide-react";
 
 import HeroesModal from "./hero/heroes-modal";
-// import InventoryModal from "./Inventory/InventoryModal";
+import InventoryModal from "./inventory/inventory-modal";
 // import SettingsModal from "./Settings/SettingsModal";
 import QuestsModal from "./quest/quests-modal";
 import SpellbookModal from "./spellbook/spellbook-modal";
@@ -83,8 +83,8 @@ function selectModal(state) {
     case "heroesModal":
       return <HeroesModal />;
 
-    // case "inventoryModal":
-    //   return <InventoryModal />;
+    case "inventoryModal":
+      return <InventoryModal />;
 
     case "questsModal":
       return <QuestsModal />;

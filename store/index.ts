@@ -1,28 +1,28 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import uiReducer from "./ui-slice";
-// import dungeonSlice from "./dungeon-slice";
-import heroReducer from "./hero-slice"
+import dungeonReducer from "./dungeon-slice";
+import heroReducer from "./hero-slice";
 import playerReducer from "./player-slice";
-// import combatSlice from "./combat-slice";
-// import logSlice from "./log-slice";
+import combatReducer from "./combat-slice";
+import logReducer from "./log-slice";
 import tomeReducer from "./tome-slice";
-// import questionSlice from "./question-slice";
-import spellbookReducer from "./spellbook-slice"
-// import dialogueSlice from "./dialogue-slice";
+import questionReducer from "./question-slice";
+import spellbookReducer from "./spellbook-slice";
+import dialogueReducer from "./dialogue-slice";
 
 const store = configureStore({
   reducer: {
     ui: uiReducer,
-    // dungeon: dungeonSlice.reducer,
+    dungeon: dungeonReducer,
     hero: heroReducer,
     player: playerReducer,
-    // combat: combatSlice.reducer,
-    // log: logSlice.reducer,
+    combat: combatReducer,
+    log: logReducer,
     tome: tomeReducer,
-    // question: questionSlice.reducer,
+    question: questionReducer,
     spellbook: spellbookReducer,
-    // dialogue: dialogueSlice.reducer,
+    dialogue: dialogueReducer,
   },
 });
 
