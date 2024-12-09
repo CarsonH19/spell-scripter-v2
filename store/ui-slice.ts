@@ -37,7 +37,7 @@ export interface UiState {
 // Define initial state
 const initialState: UiState = {
   startIsVisible: true,
-  dashboardIsVisible: false,
+  dashboardIsVisible: true,
   gameWindowIsVisible: false,
   spellListIsVisible: false,
   itemListIsVisible: false,
