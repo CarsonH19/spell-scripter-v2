@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 import Item from "./item";
 import AttunedItem from "./attuned-item";
-// import Attributes from "../Attribute/Attributes";
+import Attributes from "./../attribute/Attributes"
 
 import {
   Tooltip,
@@ -50,7 +50,7 @@ export default function InventoryModal() {
   }
 
   // Counter logic
-  let counters = [];
+  const counters = [];
   itemGroup.map((item) => {
     let existingItem = counters.find((obj) => obj.name === item.name);
     if (existingItem) {
@@ -74,13 +74,14 @@ export default function InventoryModal() {
   });
 
   return (
-    <div className="h-[90%] w-[70%] min-w-[60rem] min-h-[40rem] bg-background flex flex-col items-center border-2 border-secondary p-4 rounded-lg">
+    <div className="h-[100%] w-[100%] min-w-[60rem] min-h-[40rem] bg-background flex flex-col items-center border-2 border-secondary p-4 rounded-lg">
       <h1>Inventory</h1>
-      <div className="flex w-full h-[90%]">
-        <div className="flex flex-col justify-between w-[30%] p-4 m-4 border border-secondary rounded-lg bg-primary">
-          {/* Left Component */}
+      <div className="flex gap-4 w-full mb-4 h-[90%]">
+        <div className="flex flex-col w-[30%] p-4 border border-secondary rounded-lg bg-primary mt-10">
+          {/* STATS */}
+          <Attributes />
         </div>
-        <div className="flex flex-col justify-between w-[70%] p-4">
+        <div className="flex flex-col justify-between w-[70%]">
           <div className="flex flex-col justify-start h-full">
             <div className="flex justify-evenly mt-4 w-full h-[5%]">
               <button
@@ -108,7 +109,7 @@ export default function InventoryModal() {
                 Misc. Items
               </button>
             </div>
-            <ul className="w-full h-[95%] bg-primary border border-secondary rounded-lg p-4 mb-8 flex flex-wrap justify-center items-start gap-4 overflow-visible ">
+            <ul className="w-full h-[95%] bg-primary border border-secondary rounded-lg p-4 flex flex-wrap justify-center items-start gap-4 overflow-visible ">
               {counters.map((item) => {
                 // Calculate set pieces for tooltip
                 let completeSet;

@@ -107,7 +107,7 @@ export default function TomesModal({ tome }) {
   }
 
   return (
-    <div className="relative h-[90%] min-h-[45rem] w-[70%] min-w-[35rem] bg-background flex flex-col justify-start items-center border-2 border-secondary p-4 gap-4 rounded-lg overflow-visible">
+    <div className="relative h-[100%] min-h-[45rem] w-[100%] min-w-[35rem] bg-background flex flex-col justify-start items-center border-2 border-secondary p-4 gap-4 rounded-lg overflow-visible">
       <h1 className="text-center text-2xl border-b-2 border-secondary w-[30%] p-0 m-0">
         {tome.name}
       </h1>
