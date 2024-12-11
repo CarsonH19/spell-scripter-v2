@@ -1,0 +1,264 @@
+.confirmation {
+  position: relative;
+  background-color: var(--background);
+  height: 100%;
+  min-height: 40rem;
+  width: 100%;
+  display: flex;
+  min-width: max-content;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  border: 3px solid var(--secondary);
+  padding: 1rem;
+}
+
+.confirmation h1 {
+  text-align: center;
+  font-size: 2rem;
+  padding-top: 1rem;
+  margin: 0;
+  border-bottom: 1px solid var(--primary);
+  width: 40%;
+  height: 10%;
+}
+
+.confirmation .content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 40rem;
+  min-width: 90rem;
+  height: 90%;
+  padding: 1rem;
+  gap: 0.5rem;
+  overflow: visible;
+}
+
+.content h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  margin: 1rem;
+  margin-bottom: 0rem;
+  width: 12rem;
+  border-bottom: 1px solid var(--text);
+}
+
+/* Heroes */
+
+.content .heroes {
+  position: relative;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary);
+  border-radius: 10px;
+ 
+}
+
+.player {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--primary);
+  border-radius: 10px;
+}
+
+/* .confirmation .player h3 {
+  margin-bottom: 1rem;
+} */
+
+
+
+.player-image {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0.2;
+  z-index: 0;
+  opacity: 0;
+}
+
+
+.heroes h3 {
+  margin-bottom: 3rem;
+}
+
+.content .heroes ul {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.content .heroes ul div {
+  width: 33%;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.content .heroes ul div {
+  width: 33%;
+  height: 100%;
+  overflow: visible;
+}
+
+.heroes ul div img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover; 
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.content .heroes ul div p {
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  /* border-bottom: 1px solid var(--text); */
+  width: 8rem;
+  text-align: center;
+  overflow: visible;
+  font-size: 0.8rem;
+  opacity: 0;
+}
+
+.content .container .change,
+.content .heroes .change {
+  height: 1.5rem;
+  color: var(--accent);
+  margin: 1rem;
+
+}
+
+
+
+.content .change:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.content .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 10px;
+}
+
+.content .container .dungeon {
+  text-align: center;
+}
+
+.content .container .spells {
+  /* overflow: auto; */
+  /* overflow: visible; */
+}
+
+.content .container .spells,
+.content .container .attuned  {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-height: 65%;
+  width: 100%;
+  overflow: visible;
+}
+
+.content .container .attuned {
+  height: 35%; 
+}
+
+.content .container .spells ul,
+.content .container .attuned ul {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 40rem;
+  height: 100%;
+  padding: 0.5rem;
+  list-style: none;
+  gap: 0.5rem;
+  overflow-y: auto;
+  overflow: visible;
+}
+
+.content .container .spells ul div li,
+.content .container .attuned ul div li,
+.content .container .attuned ul li  {
+  aspect-ratio: 1;
+  list-style: none;
+  height: 4rem;
+  width: 4rem;
+  cursor: pointer;
+  border-radius: 10%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid var(--secondary);
+  background-color: var(--primary);
+}
+
+.content .container .spells ul div li:hover,
+.content .container .attuned ul div li:hover {
+  transition: 0.3s;
+  transform: scale(1.1); 
+  border: 1px solid white;
+}
+
+.content .container .spells .change {
+  height: 1.5rem;
+  color: var(--accent);
+}
+
+.content .container .attuned .empty {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: auto;
+}
+
+.confirmation .ready {
+  height: 10%;
+}
+
+.confirmation button {
+  width: 16rem;
+  height: 4rem;
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+@media only screen and (max-height: 430px) {
+  .confirmation {
+    min-height: 0rem;
+    width: 100%;
+    min-width: none;
+    justify-content: center;
+  }
+  .confirmation .content {
+    display: none;
+  }
+  .confirmation button {
+    width: 24vw;
+    height: 12vh;
+    background-color: var(--accent);
+    color: var(--background);
+  }
+}

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 import Item from "./item";
 import AttunedItem from "./attuned-item";
-import Attributes from "./../attribute/Attributes"
+import Attributes from "./../attribute/Attributes";
 
 import {
   Tooltip,
@@ -75,8 +75,10 @@ export default function InventoryModal() {
 
   return (
     <div className="h-[100%] w-[100%] min-w-[60rem] min-h-[40rem] bg-background flex flex-col items-center border-2 border-secondary p-4 rounded-lg">
-      <h1>Inventory</h1>
-      <div className="flex gap-4 w-full mb-4 h-[90%]">
+      <h1 className="text-center m-0 border-b-2 border-[var(--secondary)] w-[30%]">
+        Inventory
+      </h1>
+      <div className="flex gap-4 w-[90%] my-4 h-[80%]">
         <div className="flex flex-col w-[30%] p-4 border border-secondary rounded-lg bg-primary mt-10">
           {/* STATS */}
           <Attributes />
@@ -161,43 +163,44 @@ export default function InventoryModal() {
               })}
             </ul>
           </div>
+          <div className="w-[100%] h-[25%] bg-background text-center flex flex-col items-center justify-center mt-4">
+            <h3 className="text-xl my-4 w-48 border-b border-[var(--text)]">
+              Attuned Items
+            </h3>
+            <ul className="border border-secondary m-0 p-4 flex justify-evenly items-center gap-12 h-32 bg-primary rounded-lg">
+              {/* ITEM 1 */}
+              {attunedItems[0] ? (
+                <AttunedItem item={attunedItems[0]} setCounts={setCounts} />
+              ) : (
+                <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none" />
+              )}
+              {/* ITEM 2 */}
+              {attunedItems[1] ? (
+                <AttunedItem item={attunedItems[1]} setCounts={setCounts} />
+              ) : (
+                <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
+              )}
+              {/* ITEM 3 */}
+              {attunedItems[2] ? (
+                <AttunedItem item={attunedItems[2]} setCounts={setCounts} />
+              ) : (
+                <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
+              )}
+              {/* ITEM 4 */}
+              {attunedItems[3] ? (
+                <AttunedItem item={attunedItems[3]} setCounts={setCounts} />
+              ) : (
+                <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
+              )}
+              {/* ITEM 5 */}
+              {attunedItems[4] ? (
+                <AttunedItem item={attunedItems[4]} setCounts={setCounts} />
+              ) : (
+                <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
+              )}
+            </ul>
+          </div>
         </div>
-      </div>
-
-      <div className="w-[70%] min-w-[33rem] self-center h-[25%] bg-background text-center flex flex-col mt-4">
-        <h3 className="text-lg mb-0">Attuned</h3>
-        <ul className="border border-secondary m-0 p-4 flex justify-evenly items-center gap-4 h-32 bg-primary rounded-lg">
-          {/* ITEM 1 */}
-          {attunedItems[0] ? (
-            <AttunedItem item={attunedItems[0]} setCounts={setCounts} />
-          ) : (
-            <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
-          )}
-          {/* ITEM 2 */}
-          {attunedItems[1] ? (
-            <AttunedItem item={attunedItems[1]} setCounts={setCounts} />
-          ) : (
-            <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
-          )}
-          {/* ITEM 3 */}
-          {attunedItems[2] ? (
-            <AttunedItem item={attunedItems[2]} setCounts={setCounts} />
-          ) : (
-            <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
-          )}
-          {/* ITEM 4 */}
-          {attunedItems[3] ? (
-            <AttunedItem item={attunedItems[3]} setCounts={setCounts} />
-          ) : (
-            <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
-          )}
-          {/* ITEM 5 */}
-          {attunedItems[4] ? (
-            <AttunedItem item={attunedItems[4]} setCounts={setCounts} />
-          ) : (
-            <div className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"></div>
-          )}
-        </ul>
       </div>
     </div>
   );

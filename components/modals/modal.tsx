@@ -17,6 +17,7 @@ import TomesModal from "./tomes/tomes-modal";
 // import TradeModal from "./Trade/TradeModal";
 // import HelpModal from "./Help/HelpModal";
 // import ConfirmationModal from "./Confirmation/ConfirmationModal";
+import ConfirmationModal from "./confirmation/ConfirmationModal";
 // import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
 // import DungeonTomesModal from "./DungeonTomes/DungeonTomesModal";
 // import AttributeModal from "./Attribute/AttributeModal";
@@ -111,8 +112,8 @@ function selectModal(state) {
     // case "helpModal":
     //   return <HelpModal />;
 
-    // case "confirmationModal":
-    //   return <ConfirmationModal />;
+    case "confirmationModal":
+      return <ConfirmationModal />;
 
     // case "quickTimeEventModal":
     //   playSoundEffect(false, "misc", "qteStart", 1);

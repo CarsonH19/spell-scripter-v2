@@ -1,11 +1,12 @@
 "use client";
 
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import store from "../../../store/index";
 
+// TODO: Add Tooltips to each stat to explain what they change/do
 export default function Attributes() {
   let player;
-  const isInventoryOpen = useSelector((state) => state.ui.modal.inventoryModal);
+  // const isInventoryOpen = useSelector((state) => state.ui.modal.inventoryModal);
   const dashboard = store.getState().ui.dashboardIsVisible;
 
   if (!dashboard) {
@@ -18,7 +19,7 @@ export default function Attributes() {
 
   return (
     <div className="flex flex-col justify-evenly w-full h-full bg-primary rounded-lg">
-      {!isInventoryOpen && (
+      {/* {!isInventoryOpen && (
         <div
           className={`flex items-center justify-center gap-4 text-2xl font-semibold ${
             player.attributePoints > 0 ? "text-accent" : "text-text"
@@ -26,7 +27,7 @@ export default function Attributes() {
         >
           <h4>{player.attributePoints}</h4>
         </div>
-      )}
+      )} */}
 
       {/* Strength Section */}
       <div className="flex flex-col items-center w-full">

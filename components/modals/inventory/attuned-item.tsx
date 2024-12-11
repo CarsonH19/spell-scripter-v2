@@ -4,7 +4,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import Item from "./item";
+import Item from "../confirmation/item";
 
 export default function AttunedItem(obj) {
   const item = obj.item;

@@ -69,7 +69,7 @@ export default function SpellbookModal() {
 
   return (
     <div className="h-[100%] w-[100%] min-w-[50rem] bg-[var(--background)] flex flex-col items-center border-2 border-[var(--secondary)] p-4 rounded-md overflow-visible">
-      <h1 className="text-center text-xl m-0 border-b-2 border-[var(--secondary)] w-[30%]">
+      <h1 className="text-center m-0 border-b-2 border-[var(--secondary)] w-[30%]">
         Spellbook
       </h1>
       <div className="flex p-4 h-full w-full">

@@ -1,19 +1,20 @@
-// import classes from "./DungeonColumn.module.css";
-// import { useDispatch, useSelector } from "react-redux";
-// import { setDungeon } from "../../../util/dungeon-util";
-// import { openModal } from "../../../store/ui-actions";
+"use client"
+
+import { useDispatch, useSelector } from "react-redux";
+import { setDungeon } from "../../../util/dungeon-util";
+import { openModal } from "../../../store/ui-actions";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function DungeonColumn() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const dungeon = useSelector((state) => state.dungeon);
 
-  // const handleEnter = () => {
-  //   setDungeon(dispatch, "The Great Catacomb");
-  //   openModal(dispatch, "confirmationModal");
-  // };
+  const handleEnter = () => {
+    setDungeon(dispatch, "The Great Catacomb");
+    openModal(dispatch, "confirmationModal");
+  };
 
   return (
     <div className="bg-primary text-center w-1/3 h-full border-3 border-secondary p-4 overflow-hidden rounded-xl hover:bg-[#33395b] transition duration-300 flex flex-col justify-between shadow-lg">
@@ -41,10 +42,9 @@ export default function DungeonColumn() {
           size="lg"
           variant="secondary"
           className="mb-6 w-3/5"
-          asChild
-          // onClick={handleEnter}
+          onClick={handleEnter}
         >
-          <Link href="/dungeon">Enter</Link>
+          Enter
         </Button>
       </div>
     </div>
