@@ -1,0 +1,61 @@
+.container {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* border: 1px solid red; */
+  color: var(--text);
+  gap: 3rem;
+}
+
+/* .container div {
+  position: relative;
+} */
+
+.container.skull {
+  height: 100%;
+  width: auto;
+  margin-left: 0rem;
+}
+
+/* .container .number {
+  font-size: 2rem;
+  margin-left: -0.7rem;
+} */
+
+.container .following {
+  height: 2.5rem;
+  width: auto;
+  margin-left: 0rem;
+}
+
+.container .skull {
+  height: 2.5rem;
+  width: auto;
+  margin-left: 0rem;
+}
+
+.container .icon .number {
+  font-size: 1.5rem;
+  font-weight: 600;
+  /* color: red; */
+}
+
+.container .icon {
+  height: 100%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  /* border: 1px solid red; */
+}
+
+@media only screen and (max-height: 430px) {
+  .container .following {
+    height: 6vh;
+  }
+  .container .skull {
+    height: 6vh;
+  }
+}

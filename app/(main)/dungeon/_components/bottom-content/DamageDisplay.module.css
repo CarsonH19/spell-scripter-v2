@@ -1,0 +1,140 @@
+.damage-display {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  width: 80%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  /* border: 1px solid red; */
+  display: flex; 
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  margin: 0;
+  font-size: 3.5rem;
+  list-style: none;
+}
+
+.damage-display {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.damage-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.damage-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.damage-exit {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.damage-exit-active {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.damage-display li {
+  text-align: center;
+  color: var(--text);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+ 
+.damage-display .damage {
+  color: var(--text);
+  font-weight: 400;
+}
+.damage-display .heal {
+  color: #e90000;
+  font-weight: bold;
+  font-size: 3.5rem; 
+  animation: heal-effect 1.5s ease-out forwards;
+}
+.damage-display .gain-mana {
+  color: #549ced;
+  font-weight: bold;
+  font-size: 3.5rem; 
+  animation: heal-effect 1.5s ease-out forwards;
+}
+
+@keyframes heal-effect {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(1);
+  }
+}
+.damage-display .burning {
+  color: orange;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.damage-display .fire-damage {
+  color: orange;
+}
+
+.damage-display .chilled {
+  color: lightblue;
+  font-size: 2rem;
+}
+
+.damage-display .ice-damage {
+  color: lightblue;
+}
+
+.damage-display .poisoned {
+  font-size: 2rem;
+  color: lightgreen;
+  font-weight: 600;
+
+}
+
+.damage-display .poison-damage {
+  color: lightgreen;
+}
+
+.damage-display .stunned {
+  color: lightyellow;
+  font-size: 2rem;
+  font-weight: 600;
+
+}
+
+.damage-display .lightning-damage {
+  color: lightyellow;
+  animation: damage-shake 1s ease-in;
+}
+.damage-display .diseased {}
+.damage-display .haunted {
+  font-size: 2rem;
+  color: rgb(112, 45, 131);
+  font-weight: 600;
+}
+.damage-display .cursed {}
+.damage-display .withered {}
+.damage-display .restrained {} 
+
+
+@media only screen and (max-height: 430px) {
+  .damage-display {
+    font-size: 5vh;
+  }
+}

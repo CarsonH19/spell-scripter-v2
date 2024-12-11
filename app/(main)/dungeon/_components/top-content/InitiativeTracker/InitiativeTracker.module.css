@@ -1,0 +1,13 @@
+.tracker {
+  position: relative;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tracker p {
+  position: absolute;
+  top: 100%;
+}

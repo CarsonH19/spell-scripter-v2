@@ -1,0 +1,53 @@
+.buttons {
+  position: absolute;
+  top: 96%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 33%;
+  justify-items: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.buttons .icon {
+  height: 2rem;
+  width: 2rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: var(--text);
+  border-color: var(--text);
+  background-color: var(--primary);
+  border: 1px solid var(--text);
+  z-index: 1;
+}
+
+
+.buttons .icon:hover {
+  transition: 0.3s;
+  border-radius: 10px;
+  color: var(--primary);
+  background-color: var(--text);
+}
+
+.buttons *{
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-height: 430px) {
+  .buttons .icon {
+    height: 6vh;
+    width: 6vh;
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,191 @@
+.actions {
+  position: relative;
+  width: 20%;
+  height: 85%;
+  margin: 0rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actions button {
+  height: 4rem;
+  width: 80%;
+  border: 1px solid var(--text);
+}
+
+.actions div button {
+  height: 4rem;
+  width: 100%;
+}
+
+.spells, .items {
+  position: relative;
+  width: 20%;
+  height: 70%;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  overflow: auto;
+  /* border: 1px solid var(--accent); */
+  /* background-color: var(--primary); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
+  z-index: 5;
+}
+
+.spells h3, .items h3 {
+  border-bottom: 1px solid var(--text);
+  text-align: center;
+  width: 100%;
+  /* font-weight: 600; */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.spells .close, .items .close {
+position: absolute;
+right: 2%;
+top: 2%;
+cursor: pointer;
+color: var(--text);
+/* font-weight: 600; */
+font-size: 1.2rem;
+z-index: 3;
+}
+
+.spells .close:hover, .items .close:hover {
+  transform: scale(1.1);
+}
+
+.spells .mana {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.2rem;
+  color: var(--text);
+}
+
+.spells .mana span {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  margin: 0;
+  margin-bottom: 0rem;
+  padding: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.spells .mana span .icon {
+  margin-bottom: 0.3rem;
+
+}
+
+.spells .mana progress {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.6rem; 
+  color: #4193f1;
+  border-radius: 10px;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+
+.mana progress[value]::-webkit-progress-bar,
+.mana progress[value] {
+  background-color: var(--secondary);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; 
+  border-radius: 5px; 
+}
+
+.mana progress[value]::-webkit-progress-value {
+  background-color: #4193f1;
+  transition: all 0.1s ease-out;
+  border-radius: 5px;
+}
+
+.mana progress[value]::-moz-progress-bar {
+  background-color: #4193f1;
+  transition: all 0.1s ease-out;
+  border-radius: 5px;
+}
+
+
+.spells ul, .items ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  /* height: 100%; */
+  padding: 0.5rem;
+  overflow-y: auto;
+  /* border: 1px solid red; */
+}
+
+.spells li, .items li {
+  width: 4rem;
+  height: 4rem;
+  list-style: none;
+  cursor: pointer;
+  aspect-ratio: 1;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.spells li:hover, .items li:hover {
+  transition: 0.3s;
+  border-color: var(--text);
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.spells .disabled, .items .disabled {
+  pointer-events: none;
+  cursor: none;
+  color: grey;
+}
+
+.disabled-btn {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.actions *{
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-height: 430px) {
+  .spells, .items {
+    width: 30%;
+    height: 150%;
+  }
+}

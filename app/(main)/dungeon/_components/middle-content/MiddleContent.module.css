@@ -1,0 +1,29 @@
+.middle {
+  position: relative;
+  height: 30%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  /* padding-bottom: 8rem; */
+}
+
+.middle .continue {
+  position: absolute;
+  top: 130%;
+  left: 80%;
+  /* transform: translate(-50%, -50%); */
+  height: auto;
+  width: 8rem;
+  padding: 0.5rem;
+  color: var(--text);
+
+  /* border: 1px solid var(--text); */
+}
+
+.middle .continue:hover {
+  cursor: pointer;
+  color: var(--accent);
+  transition: 0.3s;
+  transform: scale(1.1);
+}

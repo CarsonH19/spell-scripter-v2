@@ -3,6 +3,7 @@
 import { uiActions } from "../../../store/ui-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { combatActions } from "../../../store/combat-slice";
+import Link from "next/link";
 
 import updateStatTotals from "../../../store/stats-actions";
 
@@ -133,7 +134,10 @@ export default function ConfirmationModal() {
                 attunedItems[index] ? (
                   <AttunedItem key={index} item={attunedItems[index]} />
                 ) : (
-                  <div key={index} className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"/>
+                  <div
+                    key={index}
+                    className="aspect-square w-16 h-16 border-2 border-secondary cursor-auto rounded-lg bg-opacity-30 bg-black pointer-events-none"
+                  />
                 )
               )}
             </ul>
@@ -153,7 +157,7 @@ export default function ConfirmationModal() {
           className="mb-10 w-[20rem]"
           onClick={handleConfirmation}
         >
-          Ready
+          <Link href="/dungeon">Ready</Link>
         </Button>
       </div>
     </div>
@@ -166,8 +170,8 @@ function toSnakeCase(str) {
 async function enterDungeonTransition(dispatch, characters) {
   // Fade transition
   await dispatch(uiActions.updateFade({ change: "CALL" }));
-  playSoundEffect(false, "ui", "GUIMenuButton");
-  playMusic(backgroundMusic.mazeHeist);
+  // playSoundEffect(false, "ui", "GUIMenuButton");
+  // playMusic(backgroundMusic.mazeHeist);
   await delay(3000);
 
   // Ensure event options are not visible

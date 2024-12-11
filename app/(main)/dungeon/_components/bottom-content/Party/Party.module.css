@@ -1,0 +1,14 @@
+.party {
+  /* position: absolute;
+  bottom: 0%;
+  left: 0%;  */
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 0.5rem;
+  /* border: 1px solid red; */
+  overflow: visible;
+  height: 100%;
+}
+

@@ -44,7 +44,7 @@ const initialState: DungeonState = {
   threat: -1,
   danger: false,
   image:
-    "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3.jpg",
+    "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg",
   music: null,
   contents: {
     enemies: [],
