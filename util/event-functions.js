@@ -22,13 +22,16 @@ import { getImageFromList } from "./misc-util";
 import { dialogueActions } from "../store/dialogue-slice";
 import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
-import playSoundEffect from "./audio-util";
+// import playSoundEffect from "./audio-util";
 
-import { roomTransition } from "../components/GameWindow/MiddleContent/MiddleContent";
-import { backgroundMusic, playMusic } from "../data/audio/music";
+import { roomTransition } from "@/app/(main)/dungeon/_components/middle-content/MiddleContent";
 
-import { callFadeTransition } from "../components/UI/FadeEffect";
-import { locationNarration } from "../components/GameWindow/GameWindow";
+// import { backgroundMusic, playMusic } from "../data/audio/music";
+
+// import { callFadeTransition } from "../components/UI/FadeEffect";
+import callFadeTransition from "@/components/ui/FadeEffect";
+// import { locationNarration } from "../components/GameWindow/GameWindow";
+import { locationNarration } from "@/app/(main)/dungeon/page";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {

@@ -7,7 +7,6 @@ import { dungeonActions } from "../store/dungeon-slice";
 import CONSUMABLES from "../data/consumables";
 import EQUIPMENT from "../data/equipment";
 import MISC_ITEMS from "../data/misc-items";
-import { propNames } from "@chakra-ui/react";
 
 export default function loot(dispatch, enemy) {
   const lootTable = enemy.lootTable;

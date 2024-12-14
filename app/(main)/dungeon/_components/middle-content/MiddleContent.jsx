@@ -1,20 +1,18 @@
-import classes from "./MiddleContent.module.css";
-
-import EventOptions from "./EventOptions/EventOptions";
+// import EventOptions from "./EventOptions/EventOptions";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createNewRoom } from "../../../util/dungeon-util";
-import { uiActions } from "../../../store/ui-slice";
+// import { createNewRoom } from "../../../util/dungeon-util";
+import { uiActions } from "@/store/ui-slice";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
-import playSoundEffect from "../../../util/audio-util";
+
+import { ArrowBigRight } from "lucide-react";
+// import playSoundEffect from "../../../util/audio-util";
 
 export default function MiddleContent() {
   const dispatch = useDispatch();
-  const eventOptionsAreVisible = useSelector(
-    (state) => state.ui.eventOptionsAreVisible
-  );
+  // const eventOptionsAreVisible = useSelector(
+  //   (state) => state.ui.eventOptionsAreVisible
+  // );
 
   // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
@@ -27,15 +25,14 @@ export default function MiddleContent() {
   };
 
   return (
-    <div className={classes.middle}>
+    <div className="relative h-[30%] w-full flex items-end justify-center">
       {continueIsVisible && (
-        <FontAwesomeIcon
-          className={classes.continue}
-          icon={faArrowRightLong}
+        <ArrowBigRight
+          className="absolute top-[130%] left-[80%] text-text hover:text-accent transition-transform duration-300 transform hover:scale-110 w-32 h-auto p-2 cursor-pointer"
           onClick={handleContinue}
         />
       )}
-      {eventOptionsAreVisible && <EventOptions />}
+      {/* {eventOptionsAreVisible && <EventOptions />} */}
     </div>
   );
 }

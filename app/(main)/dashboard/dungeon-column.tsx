@@ -24,7 +24,7 @@ export default function DungeonColumn() {
           <h2>The Great Catacombs</h2>
           <div className="flex flex-col items-center justify-between h-full max-h-[18rem] w-full border-3 border-red-500 rounded-xl relative">
             <Image
-              src="/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3.jpg"
+              src="/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg"
               alt="Dungeon"
               className="object-cover object-center rounded-md border-2 border-secondary"
               layout="fill" // Ensures the image fills the parent container

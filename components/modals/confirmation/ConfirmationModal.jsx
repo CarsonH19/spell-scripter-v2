@@ -191,6 +191,7 @@ async function enterDungeonTransition(dispatch, characters) {
   dispatch(
     uiActions.changeUi({ element: "gameWindowIsVisible", visible: true })
   );
+
   // Add the characters array to the combat-slice order
   dispatch(combatActions.setInitiative({ characters }));
 

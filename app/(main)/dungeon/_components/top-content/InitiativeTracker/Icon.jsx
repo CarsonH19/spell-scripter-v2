@@ -1,12 +1,10 @@
 import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { combatActions } from "../../../../store/combat-slice";
-import classes from "./Icon.module.css";
+import { combatActions } from "@/store/combat-slice";
 
 const Icon = ({ character }) => {
   const dispatch = useDispatch();
 
-  // Use direct equality check instead of useSelector to avoid unnecessary rerenders
   const isHighlighted = useSelector(
     (state) => state.combat.highlightedCharacter === character.id
   );
@@ -25,9 +23,9 @@ const Icon = ({ character }) => {
 
   return (
     <div
-      className={`${isHighlighted ? classes.highlighted : classes.icon} ${
-        isCharacterTurn ? classes.turn : ""
-      }`}
+      className={`h-10 w-10 rounded border-2 bg-cover bg-[var(--primary)] 
+        ${isHighlighted ? "border-[var(--text)]" : "border-[var(--secondary)]"} 
+        ${isCharacterTurn ? "border-[var(--accent)] bg-[var(--accent)]" : ""}`}
       style={{
         backgroundImage: `url(${character.icon}.png)`,
       }}
@@ -37,7 +35,6 @@ const Icon = ({ character }) => {
   );
 };
 
-// Memoize the Icon component to prevent unnecessary rerenders
 const MemoizedIcon = memo(Icon);
 
 export default MemoizedIcon;

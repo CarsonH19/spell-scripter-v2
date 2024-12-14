@@ -1,6 +1,4 @@
 import { useSelector } from "react-redux";
-
-import classes from "./InitiativeTracker.module.css";
 import MemoizedIcon from "./Icon";
 
 export default function InitiativeTracker() {
@@ -18,11 +16,11 @@ export default function InitiativeTracker() {
   }
 
   return (
-    <div className={classes.tracker}>
+    <div className="relative w-1/3 flex justify-center items-center gap-4">
       {order.map((character, index) => (
         <MemoizedIcon key={index} character={character} />
       ))}
-      {id && <p>{`${character.name}'s Turn!`}</p>}
+      {id && <p className="absolute top-full">{`${character.name}'s Turn!`}</p>}
     </div>
   );
 }
