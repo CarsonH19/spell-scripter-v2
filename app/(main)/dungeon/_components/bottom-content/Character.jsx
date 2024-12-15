@@ -1,4 +1,3 @@
-import classes from "./Character.module.css";
 import { Heart } from "lucide-react";
 
 import {
@@ -6,6 +5,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+
+import { Progress } from "@/components/ui/progress";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -29,6 +30,7 @@ export default function Character({ character }) {
   const isHighlighted = useSelector(
     (state) => state.combat.highlightedCharacter === character.id
   );
+
   const isCharacterTurn = useSelector((state) => state.combat.isCharacterTurn);
 
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -55,6 +57,14 @@ export default function Character({ character }) {
   useEffect(() => {
     updateStatTotals(dispatch, character.id);
   }, [character.level]);
+
+  const handleMouseEnter = () => {
+    dispatch(combatActions.highlightCharacter(character.id));
+  };
+
+  const handleMouseLeave = () => {
+    dispatch(combatActions.clearHighlight());
+  };
 
   const handleSetTarget = () => {
     if (
@@ -84,85 +94,59 @@ export default function Character({ character }) {
     }
   }, [character.currentHealth, dispatch, character.id]);
 
+  // Container opens when a character is highlighted to show info
   const container = (
     <div
       className={cn(
-        "relative flex items-center overflow-visible box-border transition-opacity duration-1000 ease-in",
+        "flex items-center flex-col overflow-visible box-border transition-opacity duration-300 ease-in-out h-[3rem] w-[90%] gap-1",
         character.identifier === "ENEMY"
-          ? "absolute top-1/3 right-20 transform -translate-x-1/2 overflow-hidden opacity-0 w-0"
-          : "absolute top-1/3 left-20 transform -translate-x-1/2 overflow-hidden opacity-0 w-0"
+          ? "absolute top-[-15%] right-1/2 transform -translate-x-1/2 overflow-hidden opacity-0 w-0"
+          : "absolute top-[-15%] left-1/2 transform -translate-x-1/2  overflow-hidden opacity-0 w-0",
+        isHighlighted && "opacity-100 w-[90%]"
       )}
     >
-      <p
-        className={`text-shadow-md text-sm font-medium ${
-          character.identifier === "ENEMY" ? "text-right" : ""
-        }`}
-      >
-        {character.name}
-      </p>
-
-      <div className="relative flex items-center overflow-visible box-border transition-opacity duration-1000">
-        {/* Character container */}
+      {/* Name & Health Info*/}
+      <div className="relative flex justify-between transition-opacity duration-1000 w-full h-auto">
+        <p className="text-sm text-shadow-md">{character.name}</p>
         <div
-          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 overflow-hidden opacity-0 transition-all duration-300 ${
-            character.identifier === "ENEMY" ? "right-20" : "left-20"
-          } group-hover:w-48 group-hover:opacity-100`}
+          className={`flex items-center gap-1 ${
+            character.identifier === "ENEMY" ? "justify-start" : "justify-end"
+          }`}
         >
-          {/* Status effects container */}
-          <div className="flex gap-1 flex-wrap justify-center opacity-0 mt-[-1.8rem] transition-opacity duration-1000 group-hover:opacity-100">
-            {character.statusEffects.map((effect) => (
-              <div
-                key={effect.id}
-                className="h-7 w-7 border-2 border-primary rounded bg-cover bg-center cursor-pointer hover:scale-110 hover:border-white transition-transform"
-                style={{ backgroundImage: `url(${effect.imageUrl})` }}
-              >
-                {effect.stack > 1 && (
-                  <span className="absolute bottom-0 right-0 text-xs">
-                    {effect.stack}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Name */}
-          <p className="text-sm text-shadow-md">{character.name}</p>
-
-          {/* Info */}
-          <div
-            className={`flex gap-4 mb-[-0.8rem] ${
-              character.identifier === "ENEMY" ? "justify-start" : "justify-end"
-            }`}
-          >
-            <p>
-              <Heart /> {character.currentHealth}/
-              {character.stats.strength.maxHealth}
-            </p>
-          </div>
-
-          {/* Health Bar */}
-          <progress
-            className="w-full h-1 appearance-none bg-gray-400 border border-red-700"
-            max={character.stats.strength.maxHealth}
-            value={character.currentHealth}
-          >
-            Health Bar
-          </progress>
+          <Heart size={"1rem"} className="text-red-500" />
+          <p className="text-sm">
+            <span>{character.currentHealth}</span>/
+            <span>{character.stats.strength.maxHealth}</span>
+          </p>
         </div>
       </div>
 
-      {/* 
-      // 
-      // 
-       */}
+      {/* Health Bar */}
+      <Progress
+        className="relative mt-[-0.2rem] w-full h-[0.4rem] rounded-md overflow-hidden shadow-inner"
+        max={character.stats.strength.maxHealth}
+        value={character.currentHealth}
+      >
+        {/* <div
+          className="absolute top-0 left-0 h-full bg-[#ad0505] transition-all duration-100"
+          style={{
+            width: `${
+              (character.currentHealth / character.stats.strength.maxHealth) *
+              100
+            }%`,
+          }}
+        ></div> */}
+      </Progress>
+
+      {/* Status Effects */}
       <div
-        className={`flex flex-wrap justify-center gap-1 ${
-          character.identifier !== "ENEMY" ? "mt-[-1.8rem]" : ""
+        className={`flex justify-center gap-1 h-auto w-full border border-green-500 flex-wrap ${
+          character.identifier !== "ENEMY" ? "" : ""
         }`}
       >
         {character.statusEffects.map((effect) => {
           if (effect.display) {
-            const isCharacterEnemy = character.identifier === "ENEMY";
+            // const isCharacterEnemy = character.identifier === "ENEMY";
 
             // Duration logic
             const duration =
@@ -216,9 +200,11 @@ export default function Character({ character }) {
 
   const image = (
     <div
-      className={`relative ${isHighlighted ? "ring-4 ring-yellow-500" : ""} ${
-        isCharacterTurn === character.id ? "animate-pulse" : ""
-      }`}
+      className={cn(
+        "relative w-auto h-[65vh] mb-0 flex justify-start items-end rounded-lg overflow-visible box-border opacity-90",
+        isHighlighted && "opacity-100",
+        isCharacterTurn === character.id && "opacity-100"
+      )}
     >
       <img
         src={`${character.image}.png`}
@@ -248,10 +234,12 @@ export default function Character({ character }) {
 
   return (
     <div
-      className={`cursor-pointer transition-opacity duration-500 ${
+      className={`relative cursor-pointer transition-opacity duration-500 ${
         character.identifier === "ENEMY" ? "text-red-500" : ""
       } ${isFadingOut ? "opacity-50" : "opacity-100"}`}
       onClick={handleSetTarget}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {content}
     </div>
