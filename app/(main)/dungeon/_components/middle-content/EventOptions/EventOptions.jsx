@@ -1,17 +1,18 @@
+
+"use client"
+
 import { useDispatch, useSelector } from "react-redux";
-import classes from "./EventOptions.module.css";
 
-import store from "../../../../store/index";
+import store from "@/store/index";
 
-import eventFunctions from "../../../../util/event-functions";
+import eventFunctions from "@/util/event-functions";
 
-import { useEffect } from "react";
-import { logActions } from "../../../../store/log-slice";
-import { uiActions } from "../../../../store/ui-slice";
-import { dungeonActions } from "../../../../store/dungeon-slice";
-// import { setDialogues } from "../../../../util/dialogue-util";
+// import { useEffect } from "react";
+import { logActions } from "@/store/log-slice";
+import { uiActions } from "@/store/ui-slice";
+import { dungeonActions } from "@/store/dungeon-slice";
 
-import { getDialogue } from "../../../../util/dialogue-util";
+import { getDialogue } from "@/util/dialogue-util";
 
 export default function EventOptions() {
   const dispatch = useDispatch();
@@ -63,13 +64,14 @@ export default function EventOptions() {
           return (
             <button
               key={option.text}
+              className="min-w-[12rem] p-2 border border-text animate-fadeIn hover:bg-primary hover:text-white"
               onClick={() =>
                 handleClickEventOption(dispatch, eventFunction, choice, option)
               }
             >
               {Array.isArray(option.text) ? (
                 option.text.map((line, index) => (
-                  <span key={index} style={{ display: "block" }}>
+                  <span key={index} className="block">
                     {line}
                   </span>
                 ))
@@ -83,7 +85,11 @@ export default function EventOptions() {
     );
   }
 
-  return <div className={classes.events}>{content}</div>;
+  return (
+    <div className="absolute top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[70%] flex justify-center gap-8 z-10">
+      {content}
+    </div>
+  );
 }
 
 function getEventOptions(event) {
@@ -118,14 +124,4 @@ function getEventOptions(event) {
   }
 
   return eventOptions;
-}
-
-async function dialogueHandler(dispatch, type, choice) {
-  await checkForDialogue(dispatch, type, choice);
-}
-
-// Helper Functions
-function containsSpecialItem(items) {
-  const specialItems = ["Gravebloom", "Gravelight Lily", "Witchfire Orchid"];
-  return items.some((item) => specialItems.includes(item.name));
 }

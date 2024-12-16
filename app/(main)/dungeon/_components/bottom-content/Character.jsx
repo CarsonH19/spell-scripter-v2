@@ -98,11 +98,11 @@ export default function Character({ character }) {
   const container = (
     <div
       className={cn(
-        "flex items-center flex-col overflow-visible box-border transition-opacity duration-300 ease-in-out h-[3rem] w-[90%] gap-1",
+        "flex items-center flex-col overflow-visible box-border transition-opacity duration-300 ease-in-out h-[3rem] w-[0%] gap-1",
         character.identifier === "ENEMY"
           ? "absolute top-[-15%] right-1/2 transform -translate-x-1/2 overflow-hidden opacity-0 w-0"
           : "absolute top-[-15%] left-1/2 transform -translate-x-1/2  overflow-hidden opacity-0 w-0",
-        isHighlighted && "opacity-100 w-[90%]"
+        isHighlighted && "opacity-100 w-[85%]"
       )}
     >
       {/* Name & Health Info*/}

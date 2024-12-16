@@ -4,6 +4,7 @@ import store from "@/store";
 
 import BottomContent from "./_components/bottom-content/BottomContent";
 // import Buttons from "./Buttons/Buttons";
+import Buttons from "../dungeon/_components/buttons/Buttons";
 
 import MiddleContent from "./_components/middle-content/MiddleContent";
 import TopContent from "./_components/top-content/TopContent";
@@ -38,7 +39,7 @@ const DungeonPage = () => {
       <TopContent />
       <MiddleContent />
       {showBottom && <BottomContent />}
-      {/* {showBottom && <Buttons />} */}
+      {showBottom && <Buttons />}
     </div>
   );
 };

@@ -1,26 +1,34 @@
-import classes from "./Actions.module.css";
-
-import { setPlayerAction } from "../../../../store/combat-actions";
+"use client";
+// import { setPlayerAction } from "../../../../store/combat-actions";
+import { setPlayerAction } from "@/store/combat-actions";
 import { useSelector, useDispatch } from "react-redux";
-import { uiActions } from "../../../../store/ui-slice";
+import { uiActions } from "@/store/ui-slice";
 
-import { setSelect } from "../../../../store/combat-actions";
+import { setSelect } from "@/store/combat-actions";
 
-import Item from "../../../Modals/Inventory/Item";
-import castSpell, { checkForSummonInOrder } from "../../../../util/cast-spell";
-import { getSpell } from "../../../../util/spell-util";
+// import Item from "../../../Modals/Inventory/Item";
+import Item from "../../../../../../components/modals/inventory/item";
+import castSpell, {
+  checkForSummonInOrder,
+} from "../../../../../../util/cast-spell";
+import { getSpell } from "../../../../../../util/spell-util";
 
-import Tooltip from "../../../UI/Tooltip";
-import Icon from "../../../UI/Icon";
+// import Tooltip from "../../../UI/Tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "../../../../../../components/ui/tooltip";
 
-import spellDescriptions from "../../../../util/spell-descriptions";
+import spellDescriptions from "../../../../../../util/spell-descriptions";
 import { useEffect, useState } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHandSparkles,
-  faCircleXmark,
-} from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faHandSparkles,
+//   faCircleXmark,
+// } from "@fortawesome/free-solid-svg-icons";
+import { X, Sparkles } from "lucide-react";
 
 export default function Actions() {
   const dispatch = useDispatch();
@@ -99,39 +107,54 @@ export default function Actions() {
     const playerMana = player.currentMana;
 
     content = (
-      <div className={classes.spells}>
-        <div className={classes.mana}>
-          {/* ICONS */}
-          <span>
-            <FontAwesomeIcon icon={faHandSparkles} className={classes.icon} />
+      <div className="relative w-1/5 h-[70%] p-4 mx-4 overflow-visible bg-black/50 rounded-lg z-5 flex flex-col items-center">
+        {/* Mana */}
+        <div className="w-full flex flex-col items-center mb-1 text-white">
+          <span className="w-full flex justify-start items-center gap-2 text-sm text-shadow">
+            <Sparkles className="mb-1" />
             {player.currentMana} / {player.stats.arcana.maxMana}
           </span>
-          {/* MANA BAR */}
           <progress
             max={player.stats.arcana.maxMana}
             value={player.currentMana}
-            className={classes.mana}
+            className="w-full h-2 appearance-none border border-primary rounded bg-secondary shadow-inner"
+            style={{
+              "--tw-border-color": "var(--primary)",
+              "--tw-bg-color": "var(--secondary)",
+            }}
           ></progress>
         </div>
-        <h3>Spell List</h3>
-        <ul>
-          {spellList.map(
-            (spell) => {
-              // SPELLS Object
-              const spellObject = getSpell(spell);
-              // spell-descriptions.js
-              const snakeCaseSpellName = toSnakeCase(spell);
-              const descriptionFunction = spellDescriptions[snakeCaseSpellName];
-              const spellDescription = descriptionFunction(
-                player.stats.arcana.spellPower
-              );
+        <h3 className="w-full border-b border-white text-center text-shadow">
+          Spell List
+        </h3>
+        <ul className="w-full flex flex-wrap justify-center items-center gap-2 p-2 overflow-y-auto">
+          {spellList.map((spell) => {
+            const spellObject = getSpell(spell);
+            const snakeCaseSpellName = toSnakeCase(spell);
+            const descriptionFunction = spellDescriptions[snakeCaseSpellName];
+            const spellDescription = descriptionFunction(
+              player.stats.arcana.spellPower
+            );
 
-              // if (
-              //   spellObject.castTime === search ||
-              //   spellObject.castTime === "ANYTIME"
-              // ) {
-              return (
-                <Tooltip
+            return (
+              <Tooltip key={spell.name}>
+                <TooltipTrigger>
+                  <div
+                    key={spellObject.name}
+                    onClick={() =>
+                      handleSelectChoice(spellObject, "spellListIsVisible")
+                    }
+                    className={`w-16 h-16 bg-center bg-no-repeat bg-cover rounded-lg border-2 ${
+                      playerMana >= spellObject.manaCost
+                        ? "border-primary opacity-100 cursor-pointer"
+                        : "border-gray-600 opacity-60 pointer-events-none"
+                    }`}
+                    style={{
+                      backgroundImage: `url(${spellObject.image})`,
+                    }}
+                  />
+                </TooltipTrigger>
+                <TooltipContent
                   key={spellObject.name}
                   title={spellObject.name}
                   text={spellObject.school}
@@ -139,57 +162,18 @@ export default function Actions() {
                   detailTwo={`Mana Cost: ${spellObject.manaCost}`}
                   position="skill"
                   container="spell-list-container"
-                >
-                  <Icon
-                    key={spellObject.name}
-                    onClick={() =>
-                      handleSelectChoice(spellObject, "spellListIsVisible")
-                    }
-                    style={{
-                      backgroundImage: `url(${spellObject.image})`,
-                      opacity:
-                        playerMana >= spellObject.manaCost &&
-                        spellObject.spellType !== "SUMMON" &&
-                        (spellObject.castTime === search ||
-                          spellObject.castTime === "ANYTIME")
-                          ? "1"
-                          : (spellObject.spellType === "SUMMON" &&
-                              checkForSummonInOrder(spellObject)) ||
-                            (spellObject.spellType === "SUMMON" &&
-                              party.length < 3)
-                          ? "1"
-                          : "0.6",
-                      pointerEvents:
-                        playerMana >= spellObject.manaCost &&
-                        spellObject.spellType !== "SUMMON" &&
-                        (spellObject.castTime === search ||
-                          spellObject.castTime === "ANYTIME")
-                          ? "auto"
-                          : (spellObject.spellType === "SUMMON" &&
-                              checkForSummonInOrder(spellObject)) ||
-                            (spellObject.spellType === "SUMMON" &&
-                              party.length < 3)
-                          ? "auto"
-                          : "none",
-                    }}
-                  >
-                    {/* {spellObject.name} */}
-                  </Icon>
-                </Tooltip>
-              );
-            }
-            // }
-          )}
+                />
+              </Tooltip>
+            );
+          })}
         </ul>
-        <FontAwesomeIcon
-          icon={faCircleXmark}
+        <X
           onClick={() => handleCloseList("spellListIsVisible")}
-          className={classes.close}
+          className="absolute top-2 right-2 text-xl text-white hover:scale-110 cursor-pointer"
         />
       </div>
     );
   } else if (itemUI) {
-    // Counter logic
     let counters = [];
     const itemList = player.inventory.consumables;
 
@@ -203,9 +187,11 @@ export default function Actions() {
     });
 
     content = (
-      <div className={classes.items}>
-        <h3>Item List</h3>
-        <ul>
+      <div className="relative w-1/5 h-[70%] p-4 mx-4 overflow-auto bg-black/50 rounded-lg z-5 flex flex-col items-center">
+        <h3 className="w-full border-b border-white text-center text-shadow">
+          Item List
+        </h3>
+        <ul className="w-full flex flex-wrap justify-center items-center gap-2 p-2 overflow-y-auto">
           {counters.map((item) => {
             if (item.useInCombat) {
               return (
@@ -214,73 +200,59 @@ export default function Actions() {
                   item={item}
                   count={item.counter}
                   onClick={() => handleSelectChoice(item, "itemListIsVisible")}
+                  className="w-16 h-16 bg-center bg-no-repeat bg-cover rounded-lg border-2 border-primary hover:scale-110 cursor-pointer"
                 />
               );
             }
           })}
         </ul>
-        <FontAwesomeIcon
-          icon={faCircleXmark}
+        <X
           onClick={() => handleCloseList("itemListIsVisible")}
-          className={classes.close}
+          className="absolute top-2 right-2 text-xl text-white hover:scale-110 cursor-pointer"
         />
       </div>
     );
   } else {
     content = (
-      <div className={classes.actions}>
+      <div className="relative w-1/5 h-[85%] mx-4 mb-[4.5rem] flex flex-col justify-end items-center gap-2">
         {(!isDisabled || entrance) && (
           <button
             disabled={isDisabled}
             onClick={() => handlePlayerChoice("CAST SPELL")}
-            className={isDisabled ? classes["disabled-btn"] : ""}
+            className={`h-16 w-4/5 border text-white ${
+              isDisabled ? "opacity-40 pointer-events-none" : ""
+            }`}
           >
             Cast Spell
           </button>
         )}
         {!isDisabled && isCharacterTurn && (
-          <button
-            disabled={isDisabled || !isCharacterTurn}
-            onClick={() => handlePlayerChoice("ATTACK")}
-            className={
-              isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
-            }
-          >
-            Attack
-          </button>
-        )}
-        {!isDisabled && isCharacterTurn && (
-          <button
-            disabled={isDisabled || !isCharacterTurn}
-            onClick={() => handlePlayerChoice("GUARD")}
-            className={
-              isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
-            }
-          >
-            Guard
-          </button>
-        )}
-        {!isDisabled && isCharacterTurn && (
-          <button
-            disabled={isDisabled || !isCharacterTurn}
-            onClick={() => handlePlayerChoice("USE ITEM")}
-            className={
-              isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
-            }
-          >
-            Use Item
-          </button>
+          <>
+            <button
+              onClick={() => handlePlayerChoice("ATTACK")}
+              className="h-16 w-4/5 border text-white"
+            >
+              Attack
+            </button>
+            <button
+              onClick={() => handlePlayerChoice("GUARD")}
+              className="h-16 w-4/5 border text-white"
+            >
+              Guard
+            </button>
+            <button
+              onClick={() => handlePlayerChoice("USE ITEM")}
+              className="h-16 w-4/5 border text-white"
+            >
+              Use Item
+            </button>
+          </>
         )}
       </div>
     );
   }
 
-  if (event) {
-    return;
-  } else {
-    // Don't show actions with dialogue or modals
-    // Show actions when there is no danger
-    // Show actions when there is danger & its the player's turn
+  if (!event) {
     return (
       !isDialogue &&
       !isModal &&

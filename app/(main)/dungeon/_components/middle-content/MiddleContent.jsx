@@ -1,7 +1,7 @@
-// import EventOptions from "./EventOptions/EventOptions";
+import EventOptions from "./EventOptions/EventOptions";
 import { useDispatch, useSelector } from "react-redux";
 
-// import { createNewRoom } from "../../../util/dungeon-util";
+import { createNewRoom } from "@/util/dungeon-util";
 import { uiActions } from "@/store/ui-slice";
 
 
@@ -10,9 +10,9 @@ import { ArrowBigRight } from "lucide-react";
 
 export default function MiddleContent() {
   const dispatch = useDispatch();
-  // const eventOptionsAreVisible = useSelector(
-  //   (state) => state.ui.eventOptionsAreVisible
-  // );
+  const eventOptionsAreVisible = useSelector(
+    (state) => state.ui.eventOptionsAreVisible
+  );
 
   // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
@@ -32,14 +32,14 @@ export default function MiddleContent() {
           onClick={handleContinue}
         />
       )}
-      {/* {eventOptionsAreVisible && <EventOptions />} */}
+      {eventOptionsAreVisible && <EventOptions />}
     </div>
   );
 }
 
 export async function roomTransition(dispatch) {
   await dispatch(uiActions.updateFade({ change: "CALL" }));
-  playSoundEffect(false, "misc", "whooshLowAir");
+  // playSoundEffect(false, "misc", "whooshLowAir");
   await delay(3000);
   // Ensure modals are not visible
   dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
