@@ -16,7 +16,7 @@ export default function MiddleContent() {
   // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
 
-  // console.log(continueIsVisible);
+  console.log("continueIsVisible", continueIsVisible);
 
   const handleContinue = () => {
     dispatch(

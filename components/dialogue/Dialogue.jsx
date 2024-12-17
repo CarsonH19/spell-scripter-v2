@@ -16,7 +16,7 @@ export default function Dialogue() {
     activeDialogue[index].position === "LEFT" ? "left-0" : "right-0";
 
   useEffect(() => {
-    playSoundEffect(false, "ui", "softs", 0.7);
+    // playSoundEffect(false, "ui", "softs", 0.7);
   }, []);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function Dialogue() {
   const handleNextPage = () => {
     if (index < activeDialogue.length - 1) {
       setIndex((prevIndex) => prevIndex + 1);
-      playSoundEffect(false, "ui", "medievalGUI1");
+      // playSoundEffect(false, "ui", "medievalGUI1");
     } else {
       handleEndDialogue();
     }
@@ -45,13 +45,13 @@ export default function Dialogue() {
   const handlePrevPage = () => {
     if (index > 0) {
       setIndex((prevIndex) => prevIndex - 1);
-      playSoundEffect(false, "ui", "medievalGUI2");
+      // playSoundEffect(false, "ui", "medievalGUI2");
     }
   };
 
   const handleEndDialogue = () => {
     endDialogue(dispatch);
-    playSoundEffect(false, "ui", "softs2", 0.7);
+    // playSoundEffect(false, "ui", "softs2", 0.7);
   };
 
   return createPortal(
