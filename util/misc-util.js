@@ -2,9 +2,8 @@ import store from "../store/index";
 
 import { constructStats } from "./dungeon-util";
 import { v4 as uuidv4 } from "uuid";
-import { combatActions } from "../store/combat-slice";
-import updateStatTotals from "../store/stats-actions";
-// import { Img } from "@chakra-ui/react";
+import { combatActions } from "@/store/combat-slice";
+import updateStatTotals from "@/store/stats-actions";
 
 // Used to randomly select an image for a character when it is added to the combat order
 export function getImageFromList(url, numberOfImages) {

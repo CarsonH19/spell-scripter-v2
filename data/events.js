@@ -1,4 +1,4 @@
-import store from "@/store/index";
+// import store from "@/store/index";
 
 // Enemies
 import { UNDEAD, THIEVES } from "./enemies";
@@ -173,9 +173,10 @@ export const UNLOCK_HERO = {
     type: "AUTO",
     characters: [
       { identifier: "HERO", name: "Siggurd" },
-      UNDEAD.DECREPIT_SKELETON,
-      UNDEAD.DECREPIT_SKELETON,
-      UNDEAD.DECREPIT_SKELETON,
+      // TODO: Fix import error to render skeletons before battle starts
+      // UNDEAD.DECREPIT_SKELETON,
+      // UNDEAD.DECREPIT_SKELETON,
+      // UNDEAD.DECREPIT_SKELETON,
     ],
     description: [""],
     function: "UNLOCK_HERO_SIGGURD",
@@ -202,7 +203,9 @@ export const UNLOCK_HERO = {
 export const AMBUSH = {
   name: "Ambush",
   type: "CHOICE",
-  characters: [THIEVES.THIEF, THIEVES.THIEF, THIEVES.THIEF],
+  characters: [
+    // THIEVES.THIEF, THIEVES.THIEF, THIEVES.THIEF
+  ],
   description: [
     "You are ambushed by thieves.",
     "They demand you surrender your items or suffer the consequence.",
@@ -261,8 +264,7 @@ export const PATH_ENTRANCE = {
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        outcome:
-          "The map lead you to Thieves' Ruin and you decided to enter.",
+        outcome: "The map lead you to Thieves' Ruin and you decided to enter.",
       },
       {
         text: ["Leave"],

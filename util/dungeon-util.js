@@ -55,7 +55,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.pathCounter = null;
       dungeon.threat = 0;
       dungeon.image =
-        "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance";
+        "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg";
       // dungeon.music =
       dungeon.contents; // add Entrance event
       break;

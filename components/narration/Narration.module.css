@@ -1,0 +1,103 @@
+.narration {
+  position: fixed;
+  z-index: 2; 
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  pointer-events: none;
+  /* border: 1px solid red; */
+}
+
+.narration ul {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  /* width: 80%; */
+  min-height: 35rem;
+  z-index: 3;
+  list-style: none;
+}
+
+.narration ul li {
+  font-size: 2rem;
+  color: var(--text);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* font-weight: 600; */
+  text-align: center;
+  transition: 0.3s;
+}
+
+/* .narration ul .fade-in {
+  animation: fadeInAndOut 2s ease-in;
+} */
+
+.narration ul .fade-in-out {
+  animation: fadeInAndOut 3.1s ease-in-out;
+}
+
+.narration .announcement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  z-index: 3;
+}
+
+.narration .announcement li {
+  font-family: 'CinzelDecorative', sans-serif;
+  font-size: 7rem;
+  margin-bottom: 10rem;
+  color: var(--text);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* font-weight: 600; */
+  text-align: center;
+  animation: fadeInAndOut 4.1s ease-in-out;
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+@media only screen and (max-height: 430px) {
+  .narration {
+    position: fixed;
+    z-index: 2; 
+    top: 50%;
+    left: 50%;
+  }
+  .narration ul {
+    min-height: 35rem;
+  }
+  .narration ul li {
+    font-size: 2rem;
+   }
+  .narration .announcement li {
+    font-size: 10vh;
+    margin-bottom: 0rem;
+  }
+  
+}

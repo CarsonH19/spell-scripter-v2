@@ -3,7 +3,6 @@
 import store from "@/store";
 
 import BottomContent from "./_components/bottom-content/BottomContent";
-// import Buttons from "./Buttons/Buttons";
 import Buttons from "../dungeon/_components/buttons/Buttons";
 
 import MiddleContent from "./_components/middle-content/MiddleContent";
@@ -102,6 +101,7 @@ async function handleGameFlow(dispatch, setShowBottom) {
 }
 
 export async function locationNarration(dispatch, location) {
+  console.log("locationNArration Called")
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
   await delay(2000);

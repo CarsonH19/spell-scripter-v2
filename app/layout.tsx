@@ -17,15 +17,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    return (
+  return (
     <ClerkProvider>
       <TooltipProvider>
         <html lang="en">
           <body className={`${font.className} antialiased bg-white`}>
             {/* <Toaster /> */}
 
+            {/* Dialogue */}
+            <div id="dialogue" />
+
+            {/* Narration */}
+            <div id="narration" />
+
             {/* Modals */}
-            <div id="modal"></div>
+            <div id="modal" />
 
             {/* Main Content */}
             {children}

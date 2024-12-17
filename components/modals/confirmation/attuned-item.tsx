@@ -7,7 +7,6 @@ import {
 import Item from "./item";
 
 export default function AttunedItem({ item }) {
-  console.log(item);
   // const item = itemObject.item;
   // const setCounts = itemObject.setCounts;
   // let completeSet;

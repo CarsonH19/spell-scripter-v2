@@ -21,7 +21,6 @@ export default function TomeColumn() {
   const tomeSlice = useSelector((state: RootState) => state.tome);
 
   const handleOpenTome = (tome) => {
-    console.log(tome);
     // update the current open tome
     dispatch(uiActions.updateActiveTome(tome));
     // Open tome modal

@@ -6,6 +6,9 @@ import { Provider } from "react-redux";
 import store, { RootState } from "@/store/index";
 import Modal from "@/components/modals/modal";
 import { useSelector } from "react-redux";
+import FadeEffect from "@/components/ui/FadeEffect";
+import Dialogue from "@/components/dialogue/Dialogue";
+import Narration from "@/components/narration/Narration";
 
 type Props = {
   children: React.ReactNode;
@@ -23,16 +26,29 @@ export default MainLayout;
 
 const ContentWrapper = ({ children }: { children: React.ReactNode }) => {
   const {
+    // Using NextJS route paths instead of ui-state variables
     // startIsVisible,
     // dashboardIsVisible,
     // gameWindowIsVisible,
     modalIsVisible,
   } = useSelector((state: RootState) => state.ui);
-  // const dialogueActive = useSelector((state) => state.dialogue.active);
+  const dialogueActive = useSelector((state) => state.dialogue.active);
+  console.log("dialogueActive", dialogueActive);
 
   return (
     <>
+      {/* FADE EFFECT */}
+      {<FadeEffect />}
+
+      {/* NARRATION */}
+      <Narration />
+
+      {/* MODAL */}
       {modalIsVisible && <Modal />}
+
+      {/* DIALOGUE */}
+      {dialogueActive && <Dialogue />}
+
       <main className="h-full w-screen min-w-[1250px] bg-background">
         <div className="absolute top-0 right-0 p-4">
           <ClerkLoading>

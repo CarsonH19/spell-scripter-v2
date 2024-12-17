@@ -47,7 +47,6 @@ export default function Modal() {
   };
 
   const modalElement = document.getElementById("modal");
-  console.log(modalElement);
 
   // Ensure that modalElement is not null before calling createPortal
   if (!modalElement) {

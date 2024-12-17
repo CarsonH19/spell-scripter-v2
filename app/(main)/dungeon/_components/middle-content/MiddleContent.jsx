@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createNewRoom } from "@/util/dungeon-util";
 import { uiActions } from "@/store/ui-slice";
 
-
 import { ArrowBigRight } from "lucide-react";
 // import playSoundEffect from "../../../util/audio-util";
 
@@ -16,6 +15,8 @@ export default function MiddleContent() {
 
   // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
+
+  // console.log(continueIsVisible);
 
   const handleContinue = () => {
     dispatch(

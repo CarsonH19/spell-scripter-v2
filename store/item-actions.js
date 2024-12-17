@@ -13,7 +13,6 @@ import { getTarget } from "./combat-actions";
 
 export default async function activateItem(dispatch, item) {
   const dashboard = store.getState().ui.dashboardIsVisible;
-  console.log("UI", dashboard)
   let player;
 
   if (!dashboard) {
@@ -25,14 +24,11 @@ export default async function activateItem(dispatch, item) {
     player = store.getState().player;
   }
 
-  console.log(player)
-
   switch (item.type) {
     case "EQUIPMENT":
       {
         // In Dungeon -> combat-slice
         if (!dashboard) {
-          console.log(player);
           if (player.inventory.attunedItems.includes(item)) {
             // remove item from attunedItems
             dispatch(

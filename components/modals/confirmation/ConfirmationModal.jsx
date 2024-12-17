@@ -1,5 +1,7 @@
 "use client";
 
+import store from "@/store/index";
+
 import { uiActions } from "../../../store/ui-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { combatActions } from "../../../store/combat-slice";
@@ -88,7 +90,7 @@ export default function ConfirmationModal() {
               Spell List
             </h3>
             <ul className="flex justify-center items-start flex-wrap  h-full w-[90%] p-2 gap-2 overflow-y-auto rounded-lg bg-opacity-30 bg-black">
-              {spellList.map((spell) => {
+              {spellList.map((spell, index) => {
                 const spellObject = getSpell(spell);
                 const snakeCaseSpellName = toSnakeCase(spell);
                 const descriptionFunction =
@@ -98,7 +100,7 @@ export default function ConfirmationModal() {
                 );
 
                 return (
-                  <Tooltip key={spell.name}>
+                  <Tooltip key={index}>
                     <TooltipTrigger>
                       <div
                         className="aspect-square h-16 w-16 cursor-pointer rounded-lg bg-cover bg-center border-2 border-[var(--secondary)] bg-[var(--primary)] hover:scale-110 transition-transform duration-300"
@@ -151,14 +153,16 @@ export default function ConfirmationModal() {
 
       {/* Ready Button */}
       <div className="h-10 flex justify-center items-center">
-        <Button
-          size="lg"
-          variant="secondary"
-          className="mb-10 w-[20rem]"
-          onClick={handleConfirmation}
-        >
-          <Link href="/dungeon">Ready</Link>
-        </Button>
+        <Link href="/dungeon">
+          <Button
+            size="lg"
+            variant="secondary"
+            className="mb-10 w-[20rem]"
+            onClick={handleConfirmation}
+          >
+            Ready
+          </Button>
+        </Link>
       </div>
     </div>
   );

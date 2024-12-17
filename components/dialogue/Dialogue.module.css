@@ -1,0 +1,113 @@
+.dialogue {
+  position: fixed;
+  z-index: 10; 
+  left: 0;
+  top: 0;
+  width: 100vw; 
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
+}
+
+.dialogue .image {
+  height: 90%;
+  width: auto;
+  background-position: center;
+  background-size: cover;
+}
+
+.dialogue .dialogue-box {
+  border: 1px solid var(--secondary);
+  position: fixed;
+  min-height: 10rem;
+  width: 30rem;
+  z-index: 10; 
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  z-index: 11; 
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+  padding-top: 1rem;
+  text-align: center;
+  background-color: var(--background);
+  border-radius: 10px;
+
+}
+
+.dialogue .dialogue-box h3 {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  font-size: 1.2rem;
+  /* font-weight: 600; */
+  padding: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: var(--background);
+  border: 1px solid var(--text);
+  border-radius: 7px;
+}
+
+
+.dialogue .dialogue-box p {
+  font-size: 1.2rem;
+}
+
+.dialogue .dialogue-box .box-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialogue .dialogue-box .box-buttons .arrow {
+  color: var(--text);
+  height: 1.2rem;
+  pointer-events: all;
+}
+
+.dialogue .dialogue-box .box-buttons .arrow:hover {
+  transition: 0.3s all;
+  transform: scale(1.2);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+/* LEFT */
+
+.dialogue .left .image {
+  position: fixed;
+  z-index: 10; 
+  bottom: 0%;
+  left: 0%;
+}
+
+/* RIGHT */
+
+.dialogue .right .image {
+  position: fixed;
+  z-index: 10; 
+  bottom: 0%;
+  right: 0%;
+}
+
+@media only screen and (max-height: 430px) {
+  .dialogue .dialogue-box {
+    min-height: 0rem;
+    width: 80;
+  }
+  .dialogue .dialogue-box h3 {
+    font-size: 4vh;
+    padding: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  } 
+  .dialogue .dialogue-box p {
+    font-size: 4vh;
+  }
+}
