@@ -97,11 +97,12 @@ export default function Character({ character }) {
   // Container opens when a character is highlighted to show info
   const container = (
     <div
+      id="container"
       className={cn(
-        "flex items-center flex-col overflow-visible box-border transition-opacity duration-500 ease-in-out h-[3.5rem] w-[0%] gap-1 border border-red-500",
+        "relative overflow-visible flex items-center flex-col  box-border transition-opacity duration-500 ease-in-out h-[4.5rem] w-[0%] gap-1 border border-red-500",
         character.identifier === "ENEMY"
-          ? "absolute top-[-10%] left-1/2 transform -translate-x-1/2 overflow-hidden opacity-0 w-0"
-          : "absolute top-[-10%] left-1/2 transform -translate-x-1/2  overflow-hidden opacity-0 w-0",
+          ? "absolute top-[-12%] left-1/2 transform -translate-x-1/2 overflow-hidden opacity-0 w-0"
+          : "absolute top-[-12%] left-1/2 transform -translate-x-1/2  overflow-hidden opacity-0 w-0",
         isHighlighted && "opacity-100 w-[85%]"
       )}
     >
@@ -140,7 +141,7 @@ export default function Character({ character }) {
 
       {/* Status Effects */}
       <div
-        className={`flex justify-center gap-1 h-auto w-full border border-green-500 flex-wrap ${
+        className={`relative overflow-visible flex justify-center gap-1 h-auto w-full flex-wrap ${
           character.identifier !== "ENEMY" ? "" : ""
         }`}
       >
@@ -165,9 +166,9 @@ export default function Character({ character }) {
 
             return (
               <Tooltip key={effect.name}>
-                <TooltipTrigger>
+                <TooltipTrigger key={effect.name}>
                   <div
-                    className="relative h-7 w-7 bg-cover bg-center border-2 border-primary rounded cursor-pointer transition-transform hover:scale-110 hover:border-white"
+                    className="relative overflow-visible h-7 w-7 bg-cover bg-center border-2 border-primary rounded cursor-pointer transition-transform hover:scale-110 hover:border-white"
                     style={{ backgroundImage: `url(${effect.image})` }}
                   >
                     {stack && effect.stack > 1 && (
@@ -188,6 +189,7 @@ export default function Character({ character }) {
                         ))
                       : null
                   }
+                  container="container"
                   position="effect"
                 />
               </Tooltip>
@@ -201,7 +203,7 @@ export default function Character({ character }) {
   const image = (
     <div
       className={cn(
-        "relative w-auto h-[65vh] mb-0 flex justify-start items-end rounded-lg overflow-visible box-border opacity-90",
+        "relative w-auto h-[65vh] mb-0 flex justify-start items-end rounded-lg  box-border opacity-90 overflow-visible",
         isHighlighted && "opacity-100",
         isCharacterTurn === character.id && "opacity-100"
       )}
@@ -209,40 +211,24 @@ export default function Character({ character }) {
       <img
         src={`${character.image}.png`}
         alt={character.name}
-        className="w-full h-full object-cover z-10"
+        className="w-full h-full object-cover overflow-visible z-10"
       />
       {/* TODO: Fix Damage  */}
       {/* <DamageDisplay character={character} /> */}
     </div>
   );
 
-  let content;
-  if (character.identifier === "HERO" || character.identifier === "PLAYER") {
-    content = (
-      <>
-        {image}
-        {container}
-      </>
-    );
-  } else if (character.identifier === "ENEMY") {
-    content = (
-      <>
-        {container}
-        {image}
-      </>
-    );
-  }
-
   return (
     <div
-      className={`relative cursor-pointer transition-opacity duration-500 border border-red-500 ${
+      className={`relative overflow-visible cursor-pointer transition-opacity duration-500 ${
         character.identifier === "ENEMY" ? "text-red-500" : ""
       } ${isFadingOut ? "opacity-50" : "opacity-100"}`}
       onClick={handleSetTarget}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {content}
+      {image}
+      {container}
     </div>
   );
 }

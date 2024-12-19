@@ -1,7 +1,8 @@
+"use client"
+
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
-// import store from "../../store/index";
 import store from "./../../store/index";
 
 const FadeEffect = () => {

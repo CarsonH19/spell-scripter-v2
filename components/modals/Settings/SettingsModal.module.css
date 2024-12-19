@@ -1,0 +1,40 @@
+.settings {
+  height: 90%;
+  width: 30%;
+  min-width: 40rem;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid var(--secondary);
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.settings h1 {
+  text-align: center;
+  font-size: 2rem;
+  padding: 0rem;
+  margin: 0;
+  border-bottom: 2px solid var(--secondary);
+  width: 50%;
+}
+
+.settings button {
+  width: 10rem;
+  height: 4rem;
+  color: var(--background);
+  background-color: var(--accent);
+} 
+
+
+.settings button:hover {
+  width: 10rem;
+  height: 4rem;
+  color: var(--text);
+  background-color: var(--primary);
+  transition: 0.3s;
+}

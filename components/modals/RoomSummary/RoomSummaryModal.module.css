@@ -1,0 +1,81 @@
+.summary {
+  height: 90%;
+  width: 30%;
+  min-width: 40rem;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid var(--secondary);
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.summary h1 {
+  text-align: center;
+  font-size: 2rem;
+  padding: 0rem;
+  margin: 0;
+  border-bottom: 2px solid var(--secondary);
+  width: 50%;
+}
+
+.summary .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%
+}
+
+.summary h2 {
+  /* font-weight: 600; */
+  border-bottom: 1px solid var(--secondary);
+}
+
+.container .event,
+.container .enemies,
+.container .items {
+  width: 100%;
+  margin: 1rem;
+}
+.summary .enemies h2,
+.summary .items h2 {
+  margin-bottom: 3rem;
+}
+
+.summary h4 {
+  /* font-weight: 600; */
+  margin-bottom: -1rem;
+}
+
+.summary .event p {
+  margin: 1rem;
+}
+
+.summary ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.container ul li {
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid var(--secondary);
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  list-style: none;
+  background-color: var(--primary);
+}
+
+.summary ul li:hover {
+  transform: scale(1.1);
+  border-color: var(--text);
+}
+

@@ -1,0 +1,31 @@
+.defeated {
+  /* height: 60%; */
+  /* width: 30%;
+  min-width: 40rem; */
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid var(--secondary);
+  padding: 2rem;
+  gap: 3rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.defeated h1 {
+  text-align: center;
+  font-size: 2rem;
+  padding: 0rem;
+  margin: 0;
+  border-bottom: 2px solid var(--secondary);
+  /* width: 50%; */
+}
+
+.defeated button {
+  width: 16rem;
+  height: 4rem;
+  background-color: var(--accent);
+  color: var(--background);
+}

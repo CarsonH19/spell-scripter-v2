@@ -9,23 +9,22 @@ import { CircleX } from "lucide-react";
 
 import HeroesModal from "./hero/heroes-modal";
 import InventoryModal from "./inventory/inventory-modal";
-// import SettingsModal from "./Settings/SettingsModal";
+import SettingsModal from "./Settings/SettingsModal";
 import QuestsModal from "./quest/quests-modal";
 import SpellbookModal from "./spellbook/spellbook-modal";
 import TomesModal from "./tomes/tomes-modal";
-// import RoomSummaryModal from "./RoomSummary/RoomSummaryModal";
+import RoomSummaryModal from "./RoomSummary/RoomSummaryModal";
 // import TradeModal from "./Trade/TradeModal";
 // import HelpModal from "./Help/HelpModal";
-// import ConfirmationModal from "./Confirmation/ConfirmationModal";
 import ConfirmationModal from "./confirmation/ConfirmationModal";
-// import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
-// import DungeonTomesModal from "./DungeonTomes/DungeonTomesModal";
+import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
+import DungeonTomesModal from "./DungeonTomes/DungeonTomesModal";
 // import AttributeModal from "./Attribute/AttributeModal";
 // import PartyModal from "./Party/PartyModal";
-// import DefeatedModal from "./Defeated/DefeatedModal";
+import DefeatedModal from "./Defeated/DefeatedModal";
 
 import { RootState } from "@/store";
-// import playSoundEffect from "../../util/audio-util";
+import playSoundEffect from "@/util/audio-util";
 
 export default function Modal() {
   const dispatch = useDispatch();
@@ -95,18 +94,18 @@ function selectModal(state) {
     case "tomesModal":
       return <TomesModal tome={state.tome} />;
 
-    // case "dungeonTomesModal":
-    //   return <DungeonTomesModal />;
+    case "dungeonTomesModal":
+      return <DungeonTomesModal />;
 
-    // case "roomSummaryModal":
-    //   playSoundEffect(false, "misc", "hitReverbDark4", 0.8);
-    //   return <RoomSummaryModal />;
+    case "roomSummaryModal":
+      playSoundEffect(false, "misc", "hitReverbDark4", 0.8);
+      return <RoomSummaryModal />;
 
     // case "tradeModal":
     //   return <TradeModal />;
 
-    // case "settingsModal":
-    //   return <SettingsModal />;
+    case "settingsModal":
+      return <SettingsModal />;
 
     // case "helpModal":
     //   return <HelpModal />;
@@ -114,9 +113,9 @@ function selectModal(state) {
     case "confirmationModal":
       return <ConfirmationModal />;
 
-    // case "quickTimeEventModal":
-    //   playSoundEffect(false, "misc", "qteStart", 1);
-    //   return <QuickTimeEventModal />;
+    case "quickTimeEventModal":
+      playSoundEffect(false, "misc", "qteStart", 1);
+      return <QuickTimeEventModal />;
 
     // case "partyModal":
     //   return <PartyModal />;
@@ -124,8 +123,8 @@ function selectModal(state) {
     // case "attributeModal":
     //   return <AttributeModal />;
 
-    // case "defeatedModal":
-    //   return <DefeatedModal />;
+    case "defeatedModal":
+      return <DefeatedModal />;
   }
 }
 
