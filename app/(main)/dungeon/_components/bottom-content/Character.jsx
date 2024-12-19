@@ -1,8 +1,11 @@
 import { Heart } from "lucide-react";
 
+import { createPortal } from "react-dom";
+
 import {
   Tooltip,
   TooltipContent,
+  TooltipPortal,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
@@ -97,7 +100,6 @@ export default function Character({ character }) {
   // Container opens when a character is highlighted to show info
   const container = (
     <div
-      id="container"
       className={cn(
         "relative overflow-visible flex items-center flex-col  box-border transition-opacity duration-500 ease-in-out h-[4.5rem] w-[0%] gap-1 border border-red-500",
         character.identifier === "ENEMY"
@@ -178,20 +180,21 @@ export default function Character({ character }) {
                     )}
                   </div>
                 </TooltipTrigger>
-                <TooltipContent
-                  title={effect.name}
-                  text={effect.description}
-                  detailOne={duration}
-                  detailTwo={
-                    effect.effect
-                      ? effect.effect.map((line, index) => (
-                          <span key={index}>{line}</span>
-                        ))
-                      : null
-                  }
-                  container="container"
-                  position="effect"
-                />
+                <TooltipPortal container={document.getElementById("container")}>
+                  <TooltipContent
+                    title={effect.name}
+                    text={effect.description}
+                    detailOne={duration}
+                    detailTwo={
+                      effect.effect
+                        ? effect.effect.map((line, index) => (
+                            <span key={index}>{line}</span>
+                          ))
+                        : null
+                    }
+                    position="effect"
+                  />
+                </TooltipPortal>
               </Tooltip>
             );
           }
@@ -220,6 +223,7 @@ export default function Character({ character }) {
 
   return (
     <div
+      id="container"
       className={`relative overflow-visible cursor-pointer transition-opacity duration-500 ${
         character.identifier === "ENEMY" ? "text-red-500" : ""
       } ${isFadingOut ? "opacity-50" : "opacity-100"}`}
