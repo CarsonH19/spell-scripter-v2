@@ -13,7 +13,6 @@ import castSpell, {
 } from "../../../../../../util/cast-spell";
 import { getSpell } from "../../../../../../util/spell-util";
 
-// import Tooltip from "../../../UI/Tooltip";
 import {
   Tooltip,
   TooltipContent,
@@ -23,11 +22,6 @@ import {
 import spellDescriptions from "../../../../../../util/spell-descriptions";
 import { useEffect, useState } from "react";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faHandSparkles,
-//   faCircleXmark,
-// } from "@fortawesome/free-solid-svg-icons";
 import { X, Sparkles } from "lucide-react";
 
 export default function Actions() {
@@ -137,7 +131,7 @@ export default function Actions() {
             );
 
             return (
-              <Tooltip key={spell.name}>
+              <Tooltip key={spellObject.name}>
                 <TooltipTrigger>
                   <div
                     key={spellObject.name}
