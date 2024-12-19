@@ -17,13 +17,15 @@ import { logActions } from "@/store/log-slice";
 import { addCharacterToOrder } from "@/util/misc-util";
 import { dungeonActions } from "@/store/dungeon-slice";
 import eventFunctions from "@/util/event-functions";
-// import playSoundEffect from "../../util/audio-util";
+import playSoundEffect from "@/util/audio-util";
 
 const DungeonPage = () => {
   const [showBottom, setShowBottom] = useState(true);
   const dispatch = useDispatch();
   const { roomCounter, image } = useSelector((state) => state.dungeon);
 
+  console.log(`url(${image})`);
+  
   useEffect(() => {
     handleGameFlow(dispatch, setShowBottom);
   }, [roomCounter]);
@@ -32,7 +34,7 @@ const DungeonPage = () => {
     <div
       className="relative flex flex-col justify-between h-full w-full bg-center bg-no-repeat bg-cover p-4 pb-0 border-4 border-[var(--primary)]"
       style={{
-        backgroundImage: `url(${image})`,
+        backgroundImage: `url(${image}.jpg)`,
       }}
     >
       <TopContent />
@@ -101,11 +103,11 @@ async function handleGameFlow(dispatch, setShowBottom) {
 }
 
 export async function locationNarration(dispatch, location) {
-  console.log("locationNArration Called")
+  console.log("locationNArration Called");
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
   await delay(2000);
-  // playSoundEffect(false, "misc", "enterDungeon");
+  playSoundEffect(false, "misc", "enterDungeon");
   dispatch(
     logActions.updateLogs({
       change: "ADD",

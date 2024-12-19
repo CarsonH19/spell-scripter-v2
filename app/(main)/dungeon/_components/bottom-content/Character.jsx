@@ -211,7 +211,7 @@ export default function Character({ character }) {
         alt={character.name}
         className="w-full h-full object-cover z-10"
       />
-      <DamageDisplay character={character} />
+      {/* <DamageDisplay character={character} /> */}
     </div>
   );
 

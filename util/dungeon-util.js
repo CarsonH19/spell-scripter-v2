@@ -56,7 +56,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.pathCounter = null;
       dungeon.threat = 0;
       dungeon.image =
-        "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg";
+        "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance";
       // dungeon.music =
       dungeon.contents; // add Entrance event
       break;
@@ -696,11 +696,11 @@ export function playEncounterMusic() {
     }
   }
 
-  if (music) {
-    const musicURL = `/assets/audio/music/${music}.mp3`;
-    if (musicURL !== currentMusic._src) {
-      playMusic(backgroundMusic[music]);
-      playMusic(backgroundMusic[music]);
-    }
-  }
+  // if (music) {
+  //   const musicURL = `/assets/audio/music/${music}.mp3`;
+  //   if (musicURL !== currentMusic._src) {
+  //     playMusic(backgroundMusic[music]);
+  //     playMusic(backgroundMusic[music]);
+  //   }
+  // }
 }
