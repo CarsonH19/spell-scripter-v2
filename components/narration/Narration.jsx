@@ -1,5 +1,6 @@
-import { createPortal } from "react-dom";
-// import classes from "./Narration.module.css";
+"use client";
+
+// import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useMemo } from "react";
 import { logActions } from "@/store/log-slice";
@@ -32,7 +33,7 @@ export default function Narration() {
     };
   }, [narration, dispatch]);
 
-  return createPortal(
+  return (
     <div className="fixed z-10 top-1/2 left-1/2 w-full transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center pointer-events-none">
       <ul className={`flex flex-col min-h-[35rem] list-none ${style}`}>
         {narration.map((item) => (
@@ -46,8 +47,7 @@ export default function Narration() {
           </li>
         ))}
       </ul>
-    </div>,
-    document.getElementById("narration")
+    </div>
   );
 }
 

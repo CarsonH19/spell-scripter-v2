@@ -121,7 +121,7 @@ const eventFunctions = {
         // Enemy spawned
       } else {
         // Play encounter song
-        // playMusic(backgroundMusic.warningSignal);
+        playMusic(backgroundMusic.warningSignal);
         // Play dialogue
         await checkForDialogue(dispatch, "response", choice);
         // Set dialogue for after combat

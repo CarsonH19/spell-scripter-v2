@@ -21,19 +21,19 @@ import { playerActions } from "@/store/player-slice";
 import CONSUMABLES from "@/data/consumables";
 import EQUIPMENT from "@/data/equipment";
 
-// import { backgroundMusic, playMusic } from "../../data/audio/music";
-// import playSoundEffect from "../../util/audio-util";
+import { backgroundMusic, playMusic } from "@/data/audio/music";
+import playSoundEffect from "@/util/audio-util";
 
 export default function Home() {
   const dispatch = useDispatch();
   const [off, setOff] = useState(false);
 
   const handleStart = () => {
-    // startTransition(dispatch);
+    startTransition(dispatch);
     setOff(true);
 
     // // Start Dashboard Music
-    // playMusic(backgroundMusic.intangibleAscension);
+    playMusic(backgroundMusic.intangibleAscension);
 
     dispatch(
       playerActions.changeInventory({
@@ -110,4 +110,21 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+async function startTransition(dispatch) {
+  playSoundEffect(false, "ui", "GUIMenuButton", 0.9);
+
+  await dispatch(uiActions.updateFade({ change: "CALL" }));
+  await delay(2000);
+  dispatch(uiActions.changeUi({ element: "startIsVisible", visible: false })); // false
+  dispatch(
+    uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
+  );
+
+  await dispatch(uiActions.updateFade({ change: "CLEAR" }));
+
+  async function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }

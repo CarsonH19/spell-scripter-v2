@@ -26,10 +26,12 @@ import { getSpell } from "../../../util/spell-util";
 import spellDescriptions from "../../../util/spell-descriptions";
 import changeStatusEffect from "../../../store/status-effect-actions";
 import { checkSkillPoints } from "../../../util/spellbook-util";
-// import { createArcaneShield } from "../../../util/skills";
+
+import { createArcaneShield } from "@/util/skills";
 import { openModal } from "../../../store/ui-actions";
-// import playSoundEffect from "../../../util/audio-util";
-// import { backgroundMusic, playMusic } from "../../../data/audio/music";
+
+import { backgroundMusic, playMusic } from "@/data/audio/music";
+import playSoundEffect from "@/util/audio-util";
 
 export default function ConfirmationModal() {
   const dispatch = useDispatch();
@@ -174,8 +176,8 @@ function toSnakeCase(str) {
 async function enterDungeonTransition(dispatch, characters) {
   // Fade transition
   await dispatch(uiActions.updateFade({ change: "CALL" }));
-  // playSoundEffect(false, "ui", "GUIMenuButton");
-  // playMusic(backgroundMusic.mazeHeist);
+  playSoundEffect(false, "ui", "GUIMenuButton");
+  playMusic(backgroundMusic.mazeHeist);
   await delay(3000);
 
   // Ensure event options are not visible

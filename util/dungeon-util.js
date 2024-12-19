@@ -19,14 +19,15 @@ import {
 import store from "../store/index";
 
 import { v4 as uuidv4 } from "uuid";
-// import { checkForActiveQuest } from "./quest-util";
+import { checkForActiveQuest } from "./quest-util";
+import { getImageFromList } from "./misc-util";
 
-// import { getImageFromList } from "./misc-util";
 // import { getTraderItems } from "../components/Modals/Trade/TradeModal";
-// import { getRandomCooldown } from "./misc-util";
-// import { musicPaths, playMusic } from "../data/audio/music";
-// import { backgroundMusic } from "../data/audio/music";
-// import { currentMusic } from "../data/audio/music";
+import { getRandomCooldown } from "./misc-util";
+
+import { musicPaths, playMusic } from "@/data/audio/music";
+import { backgroundMusic } from "@/data/audio/music";
+import { currentMusic } from "@/data/audio/music";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -695,11 +696,11 @@ export function playEncounterMusic() {
     }
   }
 
-  // if (music) {
-  //   const musicURL = `/assets/audio/music/${music}.mp3`;
-  //   if (musicURL !== currentMusic._src) {
-  //     playMusic(backgroundMusic[music]);
-  //     playMusic(backgroundMusic[music]);
-  //   }
-  // }
+  if (music) {
+    const musicURL = `/assets/audio/music/${music}.mp3`;
+    if (musicURL !== currentMusic._src) {
+      playMusic(backgroundMusic[music]);
+      playMusic(backgroundMusic[music]);
+    }
+  }
 }

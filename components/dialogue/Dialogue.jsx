@@ -1,10 +1,12 @@
+"use client"
+
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { endDialogue } from "@/util/dialogue-util";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-// import playSoundEffect from "../../util/audio-util";
+import playSoundEffect from "@/util/audio-util";
 
 export default function Dialogue() {
   const [index, setIndex] = useState(0);
@@ -16,7 +18,7 @@ export default function Dialogue() {
     activeDialogue[index].position === "LEFT" ? "left-0" : "right-0";
 
   useEffect(() => {
-    // playSoundEffect(false, "ui", "softs", 0.7);
+    playSoundEffect(false, "ui", "softs", 0.7);
   }, []);
 
   useEffect(() => {

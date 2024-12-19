@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 // import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Narration from "@/components/narration/Narration";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -26,9 +27,6 @@ export default function RootLayout({
 
             {/* Dialogue */}
             <div id="dialogue" />
-
-            {/* Narration */}
-            <div id="narration" />
 
             {/* Modals */}
             <div id="modal" />
