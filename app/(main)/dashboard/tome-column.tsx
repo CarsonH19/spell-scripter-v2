@@ -1,12 +1,11 @@
 "use client";
-
 import { CircleAlert, Lock } from "lucide-react";
-
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+
 import { Progress } from "@/components/ui/progress";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +40,7 @@ export default function TomeColumn() {
         />
       </Tooltip>
       <h1 className="text-center border-b-2 border-primary mb-4">Tomes</h1>
-      <div className="w-full p-4 gap-4 overflow-y-auto scrollbar-track-rounded-full scrollbar scrollbar-track-slate-300 custom-scrollbar">
+      <div className="w-full p-4 gap-4 overflow-y-auto scrollbar-custom">
         {tomeSlice.map((tome, index) => {
           const tomeInfo = TOMES[index];
           if (tome.unlocked) {
