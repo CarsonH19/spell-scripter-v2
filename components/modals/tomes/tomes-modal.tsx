@@ -12,6 +12,8 @@ import TomeQuestion from "./tome-question";
 import TomeText from "./tome-text";
 import CodeEditor from "@/components/code-editor/code-editor";
 
+import playSoundEffect from "@/util/audio-util";
+
 export default function TomesModal({ tome }) {
   const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
@@ -89,7 +91,7 @@ export default function TomesModal({ tome }) {
             variant={"secondary"}
             className="w-[15rem]"
             onClick={() => {
-              // playSoundEffect(false, "ui", "softs2", 0.7);
+              playSoundEffect(false, "ui", "softs2", 0.7);
 
               dispatch(
                 uiActions.changeUi({

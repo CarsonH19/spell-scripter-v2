@@ -5,7 +5,8 @@ import { createNewRoom } from "@/util/dungeon-util";
 import { uiActions } from "@/store/ui-slice";
 
 import { ArrowBigRight } from "lucide-react";
-// import playSoundEffect from "../../../util/audio-util";
+
+import playSoundEffect from "@/util/audio-util";
 
 export default function MiddleContent() {
   const dispatch = useDispatch();
@@ -15,8 +16,6 @@ export default function MiddleContent() {
 
   // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
-
-  console.log("continueIsVisible", continueIsVisible);
 
   const handleContinue = () => {
     dispatch(
@@ -29,7 +28,7 @@ export default function MiddleContent() {
     <div className="relative h-[30%] w-full flex items-end justify-center">
       {continueIsVisible && (
         <ArrowBigRight
-          className="absolute top-[130%] left-[80%] text-text hover:text-accent transition-transform duration-300 transform hover:scale-110 w-32 h-auto p-2 cursor-pointer"
+          className="absolute top-[130%] left-[80%] text-text hover:text-accent transition-transform duration-300 transform hover:scale-110 w-48 h-auto p-2 cursor-pointer animate-pulse"
           onClick={handleContinue}
         />
       )}
@@ -40,7 +39,7 @@ export default function MiddleContent() {
 
 export async function roomTransition(dispatch) {
   await dispatch(uiActions.updateFade({ change: "CALL" }));
-  // playSoundEffect(false, "misc", "whooshLowAir");
+  playSoundEffect(false, "misc", "whooshLowAir");
   await delay(3000);
   // Ensure modals are not visible
   dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));

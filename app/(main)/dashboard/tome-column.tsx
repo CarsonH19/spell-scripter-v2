@@ -41,7 +41,7 @@ export default function TomeColumn() {
         />
       </Tooltip>
       <h1 className="text-center border-b-2 border-primary mb-4">Tomes</h1>
-      <div className="w-full p-4 gap-4 overflow-y-auto">
+      <div className="w-full p-4 gap-4 overflow-y-auto scrollbar-track-rounded-full scrollbar scrollbar-track-slate-300 custom-scrollbar">
         {tomeSlice.map((tome, index) => {
           const tomeInfo = TOMES[index];
           if (tome.unlocked) {
@@ -78,9 +78,7 @@ export default function TomeColumn() {
                 key={tome.name}
                 className="relative w-full h-24 border-2 border-text/50 rounded-lg flex flex-col items-center justify-center transition duration-300 ease-in-out bg-primary mb-2 opacity-50 gap-1"
               >
-                <h3 className="text-md font-serif text-text/50">
-                  {tome.name}
-                </h3>
+                <h3 className="text-md font-serif text-text/50">{tome.name}</h3>
                 <Lock className="" />
               </div>
             );

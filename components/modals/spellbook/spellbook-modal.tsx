@@ -7,7 +7,8 @@ import Skill from "./skill";
 import School from "./school";
 import { spellbookActions } from "@/store/spellbook-slice";
 import { playerActions } from "@/store/player-slice";
-// import playSoundEffect from "../../../util/audio-util";
+
+import playSoundEffect from "@/util/audio-util";
 import { RootState } from "@/store";
 
 export default function SpellbookModal() {
@@ -31,7 +32,7 @@ export default function SpellbookModal() {
 
   // Callback to handle reset button
   const handleResetButton = useCallback(() => {
-    // playSoundEffect(false, "misc", "shimmerCrysta", 0.3);
+    playSoundEffect(false, "misc", "shimmerCrysta", 0.3);
     const totalPoints = calculateSchoolPoints(spellbook[school]);
     dispatch(spellbookActions.resetSkillTree({ school, totalPoints }));
     dispatch(

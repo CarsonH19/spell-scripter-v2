@@ -8,7 +8,8 @@ import { uiActions } from "./ui-slice";
 import changeStatusEffect from "./status-effect-actions";
 import { itemFunctions } from "../util/item-functions";
 import updateStatTotals from "./stats-actions";
-// import playSoundEffect from "../util/audio-util";
+
+import playSoundEffect from "@/util/audio-util";
 import { getTarget } from "./combat-actions";
 
 export default async function activateItem(dispatch, item) {
@@ -35,7 +36,7 @@ export default async function activateItem(dispatch, item) {
               combatActions.changePlayerAttunement({ item, change: "REMOVE" })
             );
             changeStatusEffect(dispatch, player, "REMOVE", item);
-            // playSoundEffect(false, "ui", "unattune");
+            playSoundEffect(false, "ui", "unattune");
           } else if (player.inventory.attunedItems.length < 5) {
             // equip item to attunedItems
             dispatch(
@@ -43,7 +44,7 @@ export default async function activateItem(dispatch, item) {
             );
             // NOTE - must update player state at the end of the dungeon gameplay
             changeStatusEffect(dispatch, player, "ADD", item);
-            // playSoundEffect(false, "ui", "magicStone", 0.2);
+            playSoundEffect(false, "ui", "magicStone", 0.2);
           }
         }
         // In Dashboard -> player-slice
@@ -54,12 +55,12 @@ export default async function activateItem(dispatch, item) {
               playerActions.changeAttunement({ item, change: "REMOVE" })
             );
             changeStatusEffect(dispatch, player, "REMOVE", item);
-            // playSoundEffect(false, "ui", "unattune");
+            playSoundEffect(false, "ui", "unattune");
           } else if (player.inventory.attunedItems.length < 5) {
             // equip item to attunedItems
             dispatch(playerActions.changeAttunement({ item, change: "ADD" }));
             changeStatusEffect(dispatch, player, "ADD", item);
-            // playSoundEffect(false, "ui", "magicStone", 0.2);
+            playSoundEffect(false, "ui", "magicStone", 0.2);
           }
         }
       }

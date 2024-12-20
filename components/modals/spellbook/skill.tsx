@@ -16,7 +16,8 @@ import { getSpell } from "@/util/spell-util";
 
 import { useState } from "react";
 import { RootState } from "@/store";
-// import playSoundEffect from "../../../util/audio-util";
+
+import playSoundEffect from "@/util/audio-util";
 
 export default function Skill({ school, skill, activeExpertise }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -69,7 +70,7 @@ export default function Skill({ school, skill, activeExpertise }) {
         }
       }
 
-      // playSoundEffect(true, "skill");
+      playSoundEffect(true, "skill");
     }
   };
 

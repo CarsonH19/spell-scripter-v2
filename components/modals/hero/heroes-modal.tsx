@@ -5,10 +5,10 @@ import { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { heroActions } from "@/store/hero-slice";
-// import Icon from "../../UI/Icon";
 
 import { constructStats } from "@/util/dungeon-util";
-// import playSoundEffect from "../../../util/audio-util";
+
+import playSoundEffect from "@/util/audio-util";
 
 import Image from "next/image";
 
@@ -35,7 +35,7 @@ export default function HeroesModal() {
 
     if (isInParty) {
       dispatch(heroActions.changeParty({ change: "REMOVE", hero }));
-      // playSoundEffect(false, "ui", "unattune");
+      playSoundEffect(false, "ui", "unattune");
     } else {
       const baseStats = constructStats(hero.stats);
       const updatedHero = {
@@ -45,7 +45,7 @@ export default function HeroesModal() {
       };
 
       dispatch(heroActions.changeParty({ change: "ADD", hero: updatedHero }));
-      // playSoundEffect(false, "ui", "selectHero");
+      playSoundEffect(false, "ui", "selectHero");
     }
   };
 

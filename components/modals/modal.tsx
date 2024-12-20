@@ -39,7 +39,7 @@ export default function Modal() {
         uiActions.changeUi({ element: "continueIsVisible", visible: true })
       );
     } else {
-      // playSoundEffect(false, "ui", "softs2", 0.7);
+      playSoundEffect(false, "ui", "softs2", 0.7);
     }
 
     dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
@@ -75,7 +75,7 @@ function selectModal(state) {
     activeModal !== "roomSummaryModal" &&
     activeModal !== "quickTimeEventModal"
   ) {
-    // playSoundEffect(false, "ui", "softs", 0.7);
+    playSoundEffect(false, "ui", "softs", 0.7);
   }
 
   switch (activeModal) {

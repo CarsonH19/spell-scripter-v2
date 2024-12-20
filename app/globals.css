@@ -217,3 +217,9 @@ body {
     }
     
   }
+
+  /* Scroll Bar */
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 9999px; /* Fully rounded scrollbar */
+    color: red;
+  }
