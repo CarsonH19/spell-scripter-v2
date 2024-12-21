@@ -21,9 +21,10 @@ import updateStatTotals from "@/store/stats-actions";
 import { setTarget } from "@/store/combat-actions";
 
 import { useEffect, useState } from "react";
-// import playSoundEffect from "../../../util/audio-util";
+import playSoundEffect from "@/util/audio-util";
 import DamageDisplay from "./DamageDisplay";
 import { cn } from "@/util/utils";
+import Image from "next/image";
 
 export default function Character({ character }) {
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ export default function Character({ character }) {
   const container = (
     <div
       className={cn(
-        "relative overflow-visible flex items-center flex-col  box-border transition-opacity duration-500 ease-in-out h-[4.5rem] w-[0%] gap-1 border border-red-500",
+        "relative overflow-visible flex items-center flex-col  box-border transition-opacity duration-500 ease-in-out h-[4.5rem] w-[0%] gap-1",
         character.identifier === "ENEMY"
           ? "absolute top-[-12%] left-1/2 transform -translate-x-1/2 overflow-hidden opacity-0 w-0"
           : "absolute top-[-12%] left-1/2 transform -translate-x-1/2  overflow-hidden opacity-0 w-0",
@@ -211,13 +212,12 @@ export default function Character({ character }) {
         isCharacterTurn === character.id && "opacity-100"
       )}
     >
-      <img
+      <Image
         src={`${character.image}.png`}
         alt={character.name}
         className="w-full h-full object-cover overflow-visible z-10"
       />
-      {/* TODO: Fix Damage  */}
-      {/* <DamageDisplay character={character} /> */}
+      <DamageDisplay character={character} />
     </div>
   );
 

@@ -28,7 +28,7 @@ export default function MiddleContent() {
     <div className="relative h-[30%] w-full flex items-end justify-center">
       {continueIsVisible && (
         <ArrowBigRight
-          className="absolute top-[130%] left-[80%] text-text hover:text-accent transition-transform duration-300 transform hover:scale-110 w-48 h-auto p-2 cursor-pointer animate-pulse"
+          className="absolute top-[130%] left-[75%] text-text hover:text-accent transition-transform  transform hover:scale-110 w-48 h-auto p-2 cursor-pointer animate-pulse duration-1000"
           onClick={handleContinue}
         />
       )}

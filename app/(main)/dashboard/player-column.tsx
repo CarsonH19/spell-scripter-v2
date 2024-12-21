@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { Backpack, BookText, Users, ShieldAlert, Settings } from "lucide-react";
 import { RootState } from "@/store";
 
-// import updateStatTotals from "../../../store/stats-actions";
+import updateStatTotals from "@/store/stats-actions";
 
 export default function PlayerColumn() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function PlayerColumn() {
 
   useEffect(() => {
     // Update player stats on render
-    // updateStatTotals(dispatch, "Player");
+    updateStatTotals(dispatch, "Player");
   }, []);
 
   const handleOpenModal = (modal) => {
@@ -34,9 +34,15 @@ export default function PlayerColumn() {
           <div className="relative w-full flex justify-between text-sm">
             <p>Level: {player.level}</p>
             <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              {Math.round(((player.totalMasteryPoints - prevLevel) / (nextLevel - prevLevel)) * 100)}
+              {Math.round(
+                ((player.totalMasteryPoints - prevLevel) /
+                  (nextLevel - prevLevel)) *
+                  100
+              )}
             </p>
-            <p>{player.totalMasteryPoints}/{nextLevel}</p>
+            <p>
+              {player.totalMasteryPoints}/{nextLevel}
+            </p>
           </div>
           <Progress
             value={player.totalMasteryPoints - prevLevel}

@@ -15,6 +15,10 @@ const config: Config = {
           "25%, 75%": { opacity: "1" },
           "100%": { opacity: "0" },
         },
+        // fadeAndBounce: {
+        //   '0%, 100%': { opacity: '0'},
+        //   '50%': { opacity: '1'},
+        // },
       },
       animation: {
         fadeInAndOut: "fadeInAndOut 3.1s ease-in-out",

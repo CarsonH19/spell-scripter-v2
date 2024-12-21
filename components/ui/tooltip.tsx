@@ -17,6 +17,7 @@ const TooltipContent = React.forwardRef<
     position?: string;
     detailOne?: string;
     detailTwo?: string;
+    detailThree?: string;
     // container?: string;
   }
 >(
@@ -29,6 +30,7 @@ const TooltipContent = React.forwardRef<
       position,
       detailOne,
       detailTwo,
+      detailThree,
       // container,
       ...props
     },
@@ -50,6 +52,7 @@ const TooltipContent = React.forwardRef<
             {position && <p className="italic text-xs mb-1">{position}</p>}
             {detailOne && <p className="text-sm">{detailOne}</p>}
             {detailTwo && <p className="text-sm">{detailTwo}</p>}
+            {detailThree && <p className="text-sm">{detailThree}</p>}
           </div>
         </TooltipPrimitive.Content>
     );

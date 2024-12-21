@@ -1,18 +1,20 @@
+"use client"
+
 import { useDispatch, useSelector } from "react-redux";
 
-import store from "../../../store/index";
+import store from "@/store/index";
 
-import classes from "./SettingsModal.module.css";
+// import classes from "./SettingsModal.module.css";
 
-import { uiActions } from "../../../store/ui-slice";
-import { logActions } from "../../../store/log-slice";
-import { dungeonActions } from "../../../store/dungeon-slice";
-import { dialogueActions } from "../../../store/dialogue-slice";
-import playSoundEffect from "../../../util/audio-util";
-import { playMusic } from "../../../data/audio/music";
-import { backgroundMusic } from "../../../data/audio/music";
-import { combatActions } from "../../../store/combat-slice";
-import { playerActions } from "../../../store/player-slice";
+import { uiActions } from "@/store/ui-slice";
+import { logActions } from "@/store/log-slice";
+import { dungeonActions } from "@/store/dungeon-slice";
+import { dialogueActions } from "@/store/dialogue-slice";
+import playSoundEffect from "@/util/audio-util";
+import { playMusic } from "@/data/audio/music";
+import { backgroundMusic } from "@/data/audio/music";
+import { combatActions } from "@/store/combat-slice";
+import { playerActions } from "@/store/player-slice";
 
 export default function SettingsModal() {
   const dispatch = useDispatch();
@@ -75,7 +77,7 @@ export async function exitDungeonTransition(dispatch) {
     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
   );
   await delay(3000);
-  const newPlayer = store.getState().player;
+  // const newPlayer = store.getState().player;
 
   playMusic(backgroundMusic.intangibleAscension);
   // Open dashboard
