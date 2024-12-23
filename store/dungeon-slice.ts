@@ -57,7 +57,7 @@ const dungeonSlice = createSlice({
   name: "dungeon",
   initialState,
   reducers: {
-    updateRoom(state, action: PayloadAction<Partial<DungeonState>>) {
+    updateDungeon(state, action: PayloadAction<Partial<DungeonState>>) {
       return {
         ...state,
         ...action.payload,

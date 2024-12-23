@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Narration from "@/components/narration/Narration";
+import { useEffect } from "react";
 
 const font = Nunito({ subsets: ["latin"] });
 

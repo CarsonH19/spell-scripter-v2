@@ -18,6 +18,7 @@ const TooltipContent = React.forwardRef<
     detailOne?: string;
     detailTwo?: string;
     detailThree?: string;
+    detailFour?: string;
     // container?: string;
   }
 >(
@@ -31,30 +32,32 @@ const TooltipContent = React.forwardRef<
       detailOne,
       detailTwo,
       detailThree,
+      detailFour,
       // container,
       ...props
     },
     ref
   ) => {
-// 
+    //
     return (
-          <TooltipPrimitive.Content
-          ref={ref}
-          sideOffset={sideOffset}
-          className={cn(
-            "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-            className
-          )}
-          {...props}
-        >
-          <div className={containerStyles}>
-            {title && <h3 className="font-bold mb-1">{title}</h3>}
-            {position && <p className="italic text-xs mb-1">{position}</p>}
-            {detailOne && <p className="text-sm">{detailOne}</p>}
-            {detailTwo && <p className="text-sm">{detailTwo}</p>}
-            {detailThree && <p className="text-sm">{detailThree}</p>}
-          </div>
-        </TooltipPrimitive.Content>
+      <TooltipPrimitive.Content
+        ref={ref}
+        sideOffset={sideOffset}
+        className={cn(
+          "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          className
+        )}
+        {...props}
+      >
+        <div className={containerStyles}>
+          {title && <h3 className="font-bold mb-1">{title}</h3>}
+          {position && <p className="italic text-xs mb-1">{position}</p>}
+          {detailOne && <p className="text-sm">{detailOne}</p>}
+          {detailTwo && <p className="text-sm">{detailTwo}</p>}
+          {detailThree && <p className="text-sm">{detailThree}</p>}
+          {detailFour && <p className="text-sm">{detailFour}</p>}
+        </div>
+      </TooltipPrimitive.Content>
     );
   }
 );

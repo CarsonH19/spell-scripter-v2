@@ -33,7 +33,7 @@ const ContentWrapper = ({ children }: { children: React.ReactNode }) => {
     modalIsVisible,
   } = useSelector((state: RootState) => state.ui);
   const dialogueActive = useSelector((state) => state.dialogue.active);
-  console.log("dialogueActive", dialogueActive);
+  // console.log("dialogueActive", dialogueActive);
 
   return (
     <>

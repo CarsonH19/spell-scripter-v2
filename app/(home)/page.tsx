@@ -24,6 +24,10 @@ import EQUIPMENT from "@/data/equipment";
 import { backgroundMusic, playMusic } from "@/data/audio/music";
 import playSoundEffect from "@/util/audio-util";
 
+import { upsertPlayer } from "@/actions/players-actions";
+import { upsertDungeon } from "@/actions/dungeons-actions";
+import { dungeonActions } from "@/store/dungeon-slice";
+
 export default function Home() {
   const dispatch = useDispatch();
   const [off, setOff] = useState(false);
@@ -34,27 +38,6 @@ export default function Home() {
 
     // // Start Dashboard Music
     playMusic(backgroundMusic.intangibleAscension);
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...CONSUMABLES.HEALTH_POTION, id: uuidv4() },
-        change: "ADD",
-      })
-    );
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...CONSUMABLES.MANA_POTION, id: uuidv4() },
-        change: "ADD",
-      })
-    );
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
-        change: "ADD",
-      })
-    );
   };
 
   return (
@@ -117,12 +100,47 @@ async function startTransition(dispatch) {
 
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   await delay(2000);
-  dispatch(uiActions.changeUi({ element: "startIsVisible", visible: false })); // false
-  dispatch(
-    uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
-  );
+
+  // Get Player & Update State
+  const player = await upsertPlayer();
+  const dungeon = await upsertDungeon();
+
+  dispatch(playerActions.updatePlayer(player));
+  dispatch(dungeonActions.updateDungeon(dungeon));
+
+  console.log("PLAYER", player);
+  console.log("DUNGEON", dungeon);
+
+
+
+  // dispatch(uiActions.changeUi({ element: "startIsVisible", visible: false })); // false
+
+  // dispatch(
+  //   uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
+  // );
 
   await dispatch(uiActions.updateFade({ change: "CLEAR" }));
+
+  dispatch(
+    playerActions.changeInventory({
+      item: { ...CONSUMABLES.HEALTH_POTION, id: uuidv4() },
+      change: "ADD",
+    })
+  );
+
+  dispatch(
+    playerActions.changeInventory({
+      item: { ...CONSUMABLES.MANA_POTION, id: uuidv4() },
+      change: "ADD",
+    })
+  );
+
+  dispatch(
+    playerActions.changeInventory({
+      item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
+      change: "ADD",
+    })
+  );
 
   async function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));

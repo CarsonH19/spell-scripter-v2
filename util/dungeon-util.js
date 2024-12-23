@@ -62,7 +62,7 @@ export function setDungeon(dispatch, dungeonName) {
       break;
   }
 
-  dispatch(dungeonActions.updateRoom(dungeon));
+  dispatch(dungeonActions.updateDungeon(dungeon));
 }
 
 // =====================================================================
@@ -119,7 +119,7 @@ export function createNewRoom(dispatch) {
 
   // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);
-  dispatch(dungeonActions.updateRoom(newRoom));
+  dispatch(dungeonActions.updateDungeon(newRoom));
 }
 
 // =====================================================================
