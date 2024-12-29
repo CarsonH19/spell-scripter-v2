@@ -132,7 +132,9 @@ export default function RoomSummaryModal() {
                     <TooltipTrigger>
                       <li
                         style={{
-                          backgroundImage: `url(${enemy.icon}.png)`,
+                          backgroundImage: enemy.icon
+                            ? `url(${enemy.icon}.png)`
+                            : "none",
                         }}
                       ></li>
                     </TooltipTrigger>
@@ -157,7 +159,9 @@ export default function RoomSummaryModal() {
                     <TooltipTrigger>
                       <li
                         style={{
-                          backgroundImage: `url(${item.image})`,
+                          backgroundImage: item.image
+                            ? `url(${item.image}.png)`
+                            : "none",
                         }}
                       ></li>
                     </TooltipTrigger>

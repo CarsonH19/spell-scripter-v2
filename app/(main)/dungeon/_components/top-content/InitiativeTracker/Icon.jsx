@@ -23,9 +23,9 @@ const Icon = ({ character }) => {
 
   return (
     <div
-      className={`h-10 w-10 rounded border-2 bg-cover bg-[var(--primary)] 
-        ${isHighlighted ? "border-[var(--text)]" : "border-[var(--secondary)]"} 
-        ${isCharacterTurn ? "border-[var(--accent)] bg-[var(--accent)]" : ""}`}
+      className={`h-10 w-10 rounded border-2 bg-cover bg-primary 
+        ${isHighlighted ? "border-text" : "border-secondary"} 
+        ${isCharacterTurn ? "border-[#f6b17a] bg-accent" : ""}`}
       style={{
         backgroundImage: `url(${character.icon}.png)`,
       }}

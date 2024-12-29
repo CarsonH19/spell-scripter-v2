@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,6 +15,8 @@ import { playMusic } from "@/data/audio/music";
 import { backgroundMusic } from "@/data/audio/music";
 import { combatActions } from "@/store/combat-slice";
 import { playerActions } from "@/store/player-slice";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function SettingsModal() {
   const dispatch = useDispatch();
@@ -35,9 +37,21 @@ export default function SettingsModal() {
   };
 
   return (
-    <div className={classes.settings}>
-      <h1>Settings</h1>
-      {!dashboard && <button onClick={handleExitDungeon}>Exit Dungeon</button>}
+    <div className="h-[90%] w-[30%] min-w-[40rem] bg-background flex flex-col justify-start items-center border-2 border-secondary p-4 gap-4 rounded-lg text-center">
+      <h1 className="text-2xl m-0 p-0 border-b-2 border-secondary w-1/2">
+        Settings
+      </h1>
+      {/* {!dashboard && ( */}
+      <Link href={"/dashboard"}>
+        <Button
+          onClick={handleExitDungeon}
+          className="w-[10rem] h-[4rem] text-background bg-accent hover:text-text hover:bg-primary transition duration-300"
+        >
+          Exit Dungeon
+        </Button>
+      </Link>
+
+      {/* )} */}
     </div>
   );
 }

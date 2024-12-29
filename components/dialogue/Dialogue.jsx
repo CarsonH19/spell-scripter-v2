@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,14 +56,19 @@ export default function Dialogue() {
     playSoundEffect(false, "ui", "softs2", 0.7);
   };
 
+  console.log("ACTIVE DIALOGUE", activeDialogue);
+  console.log("Index", index);
+
   return createPortal(
     <div className="fixed inset-0 z-10 flex justify-center items-center bg-black/50">
       <div className={`absolute bottom-0 ${position}`}>
-        <img
-          className="h-[90%] w-auto object-cover"
-          src={activeDialogue[index].image}
-          alt=""
-        />
+        {activeDialogue[index].image && (
+          <img
+            className="h-[90%] w-auto object-cover"
+            src={activeDialogue[index].image}
+            alt=""
+          />
+        )}
       </div>
 
       <div className="fixed top-[75%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 min-h-[10rem] w-[30rem] p-2 pt-4 flex flex-col justify-between text-center bg-[var(--background)] border border-[var(--secondary)] rounded-lg">
@@ -88,6 +93,8 @@ export default function Dialogue() {
               index === 0 ? "pointer-events-none opacity-60" : ""
             }`}
           />
+
+          <p className="animate-pulse text-sm">Press Enter to Continue</p>
 
           <ArrowRight
             onClick={

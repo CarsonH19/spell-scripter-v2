@@ -91,7 +91,7 @@ const initialState: PlayerState = {
     attack: [true, "punch"],
     death: [true, "fightGrunt"],
   },
-  level: 1,
+  level: 9,
   masteryPoints: 0,
   totalMasteryPoints: 1,
   attributePoints: 0,
@@ -112,7 +112,7 @@ const initialState: PlayerState = {
       speed: 0,
       hitChance: 0,
     },
-    baseArcana: 1,
+    baseArcana: 9,
     arcana: {
       totalArcana: 0,
       spellPower: 0,

@@ -106,7 +106,8 @@ export default function Character({ character }) {
         character.identifier === "ENEMY"
           ? "absolute top-[-12%] left-1/2 transform -translate-x-1/2 overflow-hidden opacity-0 w-0"
           : "absolute top-[-12%] left-1/2 transform -translate-x-1/2  overflow-hidden opacity-0 w-0",
-        isHighlighted && "opacity-100 w-[85%]"
+        isHighlighted && "opacity-100 w-[85%]",
+        isCharacterTurn === character.id && "opacity-100 w-[85%]"
       )}
     >
       {/* Name & Health Info*/}
@@ -207,7 +208,7 @@ export default function Character({ character }) {
   const image = (
     <div
       className={cn(
-        "relative w-auto h-[65vh] mb-0 flex justify-start items-end rounded-lg  box-border opacity-90 overflow-visible",
+        "relative w-[15rem] h-[65vh] mb-0 flex justify-start items-end rounded-lg  box-border opacity-90 overflow-visible",
         isHighlighted && "opacity-100",
         isCharacterTurn === character.id && "opacity-100"
       )}
@@ -215,7 +216,8 @@ export default function Character({ character }) {
       <Image
         src={`${character.image}.png`}
         alt={character.name}
-        className="w-full h-full object-cover overflow-visible z-10"
+        fill
+        className="h-full w-full object-cover overflow-visible z-2"
       />
       <DamageDisplay character={character} />
     </div>

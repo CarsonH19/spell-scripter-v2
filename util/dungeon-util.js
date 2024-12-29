@@ -135,7 +135,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 80) {
+      if (eventChance > 1000) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
