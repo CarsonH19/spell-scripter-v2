@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Item from "./item";
 import AttunedItem from "./attuned-item";
@@ -15,7 +15,14 @@ import {
 
 import { RootState } from "@/store";
 
+// For item testing
+import { v4 as uuidv4 } from "uuid";
+import CONSUMABLES from "@/data/consumables";
+import EQUIPMENT from "@/data/equipment";
+import { playerActions } from "@/store/player-slice";
+
 export default function InventoryModal() {
+  const dispatch = useDispatch();
   const [active, setActive] = useState(1);
   const order = useSelector((state: RootState) => state.combat.order);
   const inDungeon = useSelector(
@@ -29,6 +36,27 @@ export default function InventoryModal() {
   } else {
     player = playerSlice;
   }
+
+  dispatch(
+    playerActions.changeInventory({
+      item: { ...CONSUMABLES.HEALTH_POTION, id: uuidv4() },
+      change: "ADD",
+    })
+  );
+
+  dispatch(
+    playerActions.changeInventory({
+      item: { ...CONSUMABLES.MANA_POTION, id: uuidv4() },
+      change: "ADD",
+    })
+  );
+
+  dispatch(
+    playerActions.changeInventory({
+      item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
+      change: "ADD",
+    })
+  );
 
   const handleButtonClick = (index) => {
     setActive(index);

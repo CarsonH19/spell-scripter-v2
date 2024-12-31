@@ -86,6 +86,7 @@ export default function QuestsModal() {
             <Image
               src={`${hoveredElement.image}.png`}
               alt={hoveredElement.name}
+              fill
               className="w-auto h-[80%] object-contain"
             />
           </div>

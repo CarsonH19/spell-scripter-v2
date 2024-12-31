@@ -14,12 +14,12 @@ import Link from "next/link";
 
 import { uiActions } from "@/store/ui-slice";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { playerActions } from "@/store/player-slice";
 
-import CONSUMABLES from "@/data/consumables";
-import EQUIPMENT from "@/data/equipment";
+// import CONSUMABLES from "@/data/consumables";
+// import EQUIPMENT from "@/data/equipment";
 
 import { backgroundMusic, playMusic } from "@/data/audio/music";
 import playSoundEffect from "@/util/audio-util";
@@ -120,27 +120,6 @@ async function startTransition(dispatch) {
   // );
 
   await dispatch(uiActions.updateFade({ change: "CLEAR" }));
-
-  dispatch(
-    playerActions.changeInventory({
-      item: { ...CONSUMABLES.HEALTH_POTION, id: uuidv4() },
-      change: "ADD",
-    })
-  );
-
-  dispatch(
-    playerActions.changeInventory({
-      item: { ...CONSUMABLES.MANA_POTION, id: uuidv4() },
-      change: "ADD",
-    })
-  );
-
-  dispatch(
-    playerActions.changeInventory({
-      item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
-      change: "ADD",
-    })
-  );
 
   async function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));

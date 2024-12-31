@@ -19,7 +19,7 @@ const TooltipContent = React.forwardRef<
     detailTwo?: string;
     detailThree?: string;
     detailFour?: string;
-    // container?: string;
+    type?: "ITEM" | "SKILL" | "SPELL" | "TIP";
   }
 >(
   (
@@ -33,18 +33,39 @@ const TooltipContent = React.forwardRef<
       detailTwo,
       detailThree,
       detailFour,
-      // container,
+      type,
       ...props
     },
     ref
   ) => {
-    //
+    // TODO: add type styles
+    let typeStyles;
+
+    switch (type) {
+      case "ITEM":
+        typeStyles = "";
+        break;
+
+      case "SKILL":
+        typeStyles = "";
+        break;
+
+      case "SPELL":
+        typeStyles = "";
+        break;
+
+      case "TIP":
+        typeStyles = "";
+        break;
+    }
+
     return (
       <TooltipPrimitive.Content
         ref={ref}
         sideOffset={sideOffset}
         className={cn(
           "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          typeStyles,
           className
         )}
         {...props}

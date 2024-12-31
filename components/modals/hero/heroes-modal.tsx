@@ -85,6 +85,7 @@ export default function HeroesModal() {
             <Image
               src={`${hoveredElement.image}.png`}
               alt={hoveredElement.name}
+              fill
               className="w-auto h-[67%] object-contain border-b border-[var(--secondary)]"
             />
             <div className="party flex flex-col items-center w-full p-2">
