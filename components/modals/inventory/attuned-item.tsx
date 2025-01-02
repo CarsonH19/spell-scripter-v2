@@ -18,33 +18,27 @@ export default function AttunedItem(obj) {
   if (setPieces === 3) completeSet = true;
 
   return (
-    <Tooltip>
+    <Tooltip key={item.id}>
       <TooltipTrigger>
         <Item key={item.id} item={item} />
       </TooltipTrigger>
       <TooltipContent
         key={item.id}
-        position="item"
+        type={"ITEM"}
+        position={"TOP"}
         title={item.name}
-        text={item.rarity}
-        detailOne={item.description}
-        detailTwo={item.effect.map((line, index) => (
-          <span
-            key={index}
-            className="list-none before:content-['-'] before:mr-1"
-          >
-            {line}
-          </span>
-        ))}
-        detailThree={item.set ? `${item.set} ${setPieces}/3` : null}
-        detailFour={
+        detailOne={item.rarity}
+        count={item.counter}
+        detailTwo={item.description}
+        detailThree={item.effect}
+        detailFour={item.set ? `${item.set} Bonus (${setPieces}/3)` : null}
+        detailFive={
           item.setBonus
             ? item.setBonus.map((line, index) => (
                 <span
                   key={index}
-                  className={`list-none before:content-['-'] before:mr-1 ${
-                    completeSet ? "" : "text-gray-500"
-                  }`}
+                  className="item-effect"
+                  style={completeSet ? {} : { color: "rgb(97, 97, 97)" }}
                 >
                   {line}
                 </span>

@@ -15,12 +15,6 @@ import {
 
 import { RootState } from "@/store";
 
-// For item testing
-import { v4 as uuidv4 } from "uuid";
-import CONSUMABLES from "@/data/consumables";
-import EQUIPMENT from "@/data/equipment";
-import { playerActions } from "@/store/player-slice";
-
 export default function InventoryModal() {
   const dispatch = useDispatch();
   const [active, setActive] = useState(1);
@@ -37,30 +31,11 @@ export default function InventoryModal() {
     player = playerSlice;
   }
 
-  dispatch(
-    playerActions.changeInventory({
-      item: { ...CONSUMABLES.HEALTH_POTION, id: uuidv4() },
-      change: "ADD",
-    })
-  );
-
-  dispatch(
-    playerActions.changeInventory({
-      item: { ...CONSUMABLES.MANA_POTION, id: uuidv4() },
-      change: "ADD",
-    })
-  );
-
-  dispatch(
-    playerActions.changeInventory({
-      item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
-      change: "ADD",
-    })
-  );
-
   const handleButtonClick = (index) => {
     setActive(index);
   };
+
+  console.log(player);
 
   let itemGroup;
   const attunedItems = player.inventory.attunedItems;
@@ -156,19 +131,17 @@ export default function InventoryModal() {
                     </TooltipTrigger>
                     <TooltipContent
                       key={item.id}
-                      position="item"
+                      type={"ITEM"}
+                      position={"LEFT"}
                       title={item.name}
-                      text={item.rarity}
-                      detailOne={item.description}
-                      // detailTwo={item.effect.map((line, index) => (
-                      //   <span key={index} className="item-effect">
-                      //     {line}
-                      //   </span>
-                      // ))}
-                      detailThree={
+                      detailOne={item.rarity}
+                      count={item.counter}
+                      detailTwo={item.description}
+                      detailThree={item.effect}
+                      detailFour={
                         item.set ? `${item.set} Bonus (${setPieces}/3)` : null
                       }
-                      detailFour={
+                      detailFive={
                         item.setBonus
                           ? item.setBonus.map((line, index) => (
                               <span

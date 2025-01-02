@@ -38,9 +38,9 @@ export default function Item({ item, count = 1 }) {
       style={{
         backgroundImage: `url(${item.image})`,
       }}
-      className="h-16 w-16 bg-secondary list-none cursor-pointer rounded-md border-2 border-secondary hover:scale-110 hover:border-text hover:shadow-inner transition-transform bg-center bg-no-repeat bg-cover"
+      className="h-16 w-16 bg-secondary list-none cursor-pointer rounded-md border-2 border-secondary hover:scale-110 hover:border-text transition-transform bg-center bg-no-repeat bg-cover flex justify-end items-end pr-1"
     >
-      <span className="absolute bottom-1 right-1">{count > 1 ? `x${count}` : ""}</span>
+      <span className="text-text">{count > 1 ? `x${count}` : ""}</span>
     </li>
   );
 }

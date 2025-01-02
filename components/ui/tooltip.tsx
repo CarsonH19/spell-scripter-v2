@@ -13,49 +13,116 @@ const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> & {
     title?: string;
+
     containerStyles?: string;
-    position?: string;
+    position: "LEFT" | "RIGHT" | "TOP" | "BOTTOM";
     detailOne?: string;
-    detailTwo?: string;
+    count?: number;
+    detailTwo?: string | string[];
     detailThree?: string;
     detailFour?: string;
+    detailFive?: string;
     type?: "ITEM" | "SKILL" | "SPELL" | "TIP";
   }
 >(
   (
     {
       className,
-      sideOffset = 4,
+      sideOffset = 5,
       title,
       containerStyles,
       position,
       detailOne,
+      count,
       detailTwo,
       detailThree,
       detailFour,
+      detailFive,
       type,
       ...props
     },
     ref
   ) => {
-    // TODO: add type styles
-    let typeStyles;
+    let positionStyles;
+    let content;
+
+    switch (position) {
+      case "LEFT":
+        positionStyles = "absolute right-[2rem] top-[0rem] mr-2";
+        break;
+      case "RIGHT":
+        break;
+      case "TOP":
+        positionStyles = "absolute left-[-7.5rem] bottom-[0.20rem]";
+        break;
+      case "BOTTOM":
+        break;
+    }
 
     switch (type) {
       case "ITEM":
-        typeStyles = "";
+        let rarityColor = "";
+        if (detailOne === "Common") {
+          rarityColor = "text-gray-500";
+        } else if (detailOne === "Rare") {
+          rarityColor = "text-blue-500";
+        } else if (detailOne === "Epic") {
+          rarityColor = "text-purple-500";
+        } else if (rarityColor === "Legendary") {
+          rarityColor = "text-yellow-500";
+        }
+
+        content = (
+          <div className={containerStyles}>
+            {title && <h3 className="text-center font-bold mb-1">{title}</h3>}
+            <hr className="my-2" />
+            {detailOne && (
+              <div className="flex justify-between">
+                <p className={`text-sm ${rarityColor}`}>{detailOne}</p>
+                <p className={`text-sm text-text`}>Quantity: {count}</p>
+              </div>
+            )}
+            {detailTwo && (
+              <p className="text-left text-sm italic mt-1">{detailTwo}</p>
+            )}
+            <hr className="my-2" />
+            {detailThree && (
+              <ol className="text-sm text-text text-left">
+                {detailThree.map((item, index) => {
+                  let statChangeColor = "";
+                  const firstChar = item.charAt(0);
+                  if (firstChar === "+") {
+                    statChangeColor = "text-green-500";
+                  } else if (firstChar === "-") {
+                    statChangeColor = "text-red-500";
+                  }
+
+                  return (
+                    <li key={index} className={statChangeColor}>
+                      <span className="text-text pb-1 pr-1">o</span>
+                      {item}
+                    </li>
+                  );
+                })}
+              </ol>
+            )}
+
+            {detailFour && <p className="text-sm">{detailFour}</p>}
+            {detailFive && <p className="text-sm">{detailFive}</p>}
+          </div>
+        );
         break;
 
       case "SKILL":
-        typeStyles = "";
+        content = "";
         break;
 
       case "SPELL":
-        typeStyles = "";
+        content = "";
         break;
 
       case "TIP":
-        typeStyles = "";
+        content = "";
         break;
     }
 
@@ -64,20 +131,21 @@ const TooltipContent = React.forwardRef<
         ref={ref}
         sideOffset={sideOffset}
         className={cn(
-          "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-          typeStyles,
-          className
+          "w-[15rem] z-50 overflow-hidden rounded-md border border-text bg-popover bg-slate-900 bg-opacity-65 px-3 py-2.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95",
+          positionStyles,
+          className,
         )}
         {...props}
       >
-        <div className={containerStyles}>
+        {content}
+        {/* <div className={containerStyles}>
           {title && <h3 className="font-bold mb-1">{title}</h3>}
           {position && <p className="italic text-xs mb-1">{position}</p>}
           {detailOne && <p className="text-sm">{detailOne}</p>}
           {detailTwo && <p className="text-sm">{detailTwo}</p>}
           {detailThree && <p className="text-sm">{detailThree}</p>}
           {detailFour && <p className="text-sm">{detailFour}</p>}
-        </div>
+        </div> */}
       </TooltipPrimitive.Content>
     );
   }

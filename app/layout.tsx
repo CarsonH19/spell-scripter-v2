@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <TooltipProvider>
+      <TooltipProvider delayDuration={0}>
         <html lang="en">
           <body className={`${font.className} antialiased bg-white`}>
             {/* <Toaster /> */}

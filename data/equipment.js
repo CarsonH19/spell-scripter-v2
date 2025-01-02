@@ -79,8 +79,7 @@ const EQUIPMENT = {
   SCOUNDRELS_EDGE: {
     //IMAGE
     name: "Scoundrel's Edge",
-    description:
-      "A dagger often carried by the wicked.",
+    description: "A dagger often carried by the wicked.",
     display: false,
     image: "/assets/images/items/equipment/scoundrels-edge.jpg",
     type: "EQUIPMENT",
@@ -254,11 +253,12 @@ const EQUIPMENT = {
   // ====================================================================
   SPINE_OF_THE_NECROMANCER: {
     name: "Spine of the Necromancer",
-    description: "Staff",
+    description:
+      "A staff crafted from the twisted remains of a long-dead necromancer, pulsing with dark, unholy energy.",
     display: false,
     image: "/assets/images/items/equipment/spine-of-the-necromancer.jpg",
     type: "EQUIPMENT",
-    rarity: "Rare",
+    rarity: "Epic",
     useInCombat: false,
     effect: ["+12 Spell Power", "-1 Agility", "-1 Strength"],
     stats: {
@@ -437,7 +437,9 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     set: "Plagueborn Set",
-    setBonus: ["You gain +8 HP Regeneration for each stack of the Diseased condition you possess."],
+    setBonus: [
+      "You gain +8 HP Regeneration for each stack of the Diseased condition you possess.",
+    ],
     effect: ["+10 Max HP"],
     stats: { strength: { maxHealth: +10 } },
   },
@@ -450,7 +452,9 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     set: "Plagueborn Set",
-    setBonus: ["You gain +8 HP Regeneration for each stack of the Diseased condition you possess."],
+    setBonus: [
+      "You gain +8 HP Regeneration for each stack of the Diseased condition you possess.",
+    ],
     effect: ["+2 Attack"],
     stats: { strength: { attack: +2 } },
   },
@@ -463,7 +467,9 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     set: "Plagueborn Set",
-    setBonus: ["You gain +8 HP Regeneration for each stack of the Diseased condition you possess."],
+    setBonus: [
+      "You gain +8 HP Regeneration for each stack of the Diseased condition you possess.",
+    ],
     effect: ["+1 Hit"],
     stats: { agility: { hitChance: +1 } },
   },
@@ -480,7 +486,9 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     set: "Shadowbound Set",
-    setBonus: ["When guarding, you have a chance to meld into the shadows, causing enemies to be unable to target you."],
+    setBonus: [
+      "When guarding, you have a chance to meld into the shadows, causing enemies to be unable to target you.",
+    ],
     effect: ["+1 Defense"],
     stats: { agility: { defense: +1 } },
   },
@@ -493,7 +501,9 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     set: "Shadowbound Set",
-    setBonus: ["When guarding, you have a chance to meld into the shadows, causing enemies to be unable to target you."],
+    setBonus: [
+      "When guarding, you have a chance to meld into the shadows, causing enemies to be unable to target you.",
+    ],
     effect: ["+10 Max MP"],
     stats: { arcana: { maxMana: +10 } },
   },
@@ -506,7 +516,9 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     set: "Shadowbound Set",
-    setBonus: ["When guarding, you have a chance to meld into the shadows, causing enemies to be unable to target you."],
+    setBonus: [
+      "When guarding, you have a chance to meld into the shadows, causing enemies to be unable to target you.",
+    ],
     effect: ["+1 Hit"],
     stats: { agility: { hitChance: +1 } },
   },
@@ -741,7 +753,9 @@ const EQUIPMENT = {
     rarity: "Rare",
     useInCombat: false,
     set: "Rattlebone Set",
-    setBonus: ["When starting combat against humanoid & beast type enemies their is a chance they will gain the Feared condition."],
+    setBonus: [
+      "When starting combat against humanoid & beast type enemies their is a chance they will gain the Feared condition.",
+    ],
     effect: ["+2 Attack", "+10 Max MP"],
     stats: { strength: { attack: +2 }, arcana: { maxMana: +10 } },
   },
@@ -754,7 +768,9 @@ const EQUIPMENT = {
     rarity: "Rare",
     useInCombat: false,
     set: "Rattlebone Set",
-    setBonus: ["When starting combat against humanoid & beast type enemies their is a chance they will gain the Feared condition."],
+    setBonus: [
+      "When starting combat against humanoid & beast type enemies their is a chance they will gain the Feared condition.",
+    ],
     effect: ["+10 Max HP", "+2 Spell Power"],
     stats: { strength: { maxHealth: +10 }, arcana: { spellPower: +2 } },
   },
@@ -767,7 +783,9 @@ const EQUIPMENT = {
     rarity: "Rare",
     useInCombat: false,
     set: "Rattlebone Set",
-    setBonus: ["When starting combat against humanoid & beast type enemies their is a chance they will gain the Feared condition."],
+    setBonus: [
+      "When starting combat against humanoid & beast type enemies their is a chance they will gain the Feared condition.",
+    ],
     effect: ["+2 HP Regen.", "+2 MP Regen."],
     stats: { strength: { healthRegen: +2 }, arcana: { manaRegen: +2 } },
   },
