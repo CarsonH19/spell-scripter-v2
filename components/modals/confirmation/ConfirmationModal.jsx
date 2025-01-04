@@ -18,7 +18,8 @@ import {
 import { Button } from "@/components/ui/button";
 
 import Attributes from "../attribute/Attributes";
-import AttunedItem from "./attuned-item";
+// import AttunedItem from "./attuned-item";
+import AttunedItem from "../inventory/attuned-item";
 
 import { Repeat } from "lucide-react";
 

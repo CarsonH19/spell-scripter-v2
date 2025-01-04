@@ -4,7 +4,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import Item from "../confirmation/item";
+import Item from "./item";
 
 export default function AttunedItem(obj) {
   const item = obj.item;
@@ -16,6 +16,7 @@ export default function AttunedItem(obj) {
   }
 
   if (setPieces === 3) completeSet = true;
+
 
   return (
     <Tooltip key={item.id}>

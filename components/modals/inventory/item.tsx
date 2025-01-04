@@ -10,7 +10,6 @@ import { uiActions } from "@/store/ui-slice";
 
 import { setSelect } from "@/store/combat-actions";
 
-
 // TODO: move tooltip from inventory-modal here
 export default function Item({ item, count = 1 }) {
   const dispatch = useDispatch();
