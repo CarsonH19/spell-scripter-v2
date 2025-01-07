@@ -92,7 +92,7 @@ const initialState: PlayerState = {
     death: [true, "fightGrunt"],
   },
   level: 9,
-  masteryPoints: 0,
+  masteryPoints: 18,
   totalMasteryPoints: 1,
   attributePoints: 0,
   currentHealth: 0,

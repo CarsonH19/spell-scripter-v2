@@ -117,42 +117,47 @@ export default function SpellbookModal() {
         </div>
 
         <div className="flex flex-col justify-between items-center w-[90%] gap-0.5 bg-[var(--background)] rounded-md">
-          {expertiseLevels.map((level) => (
-            <div
-              key={level.name}
-              className={`relative h-[25%] w-full bg-[var(--primary)] rounded-md ${
-                pointsExpended >= level.threshold ? "" : "bg-opacity-20"
-              }`}
-            >
-              {pointsExpended >= level.threshold && (
-                <h3 className="absolute top-2.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg">
-                  {level.name}
-                </h3>
-              )}
-              {pointsExpended >= level.threshold && (
-                <h4 className="absolute top-2.5 right-0 transform -translate-x-1/2 -translate-y-1/2 text-base">
-                  {pointsExpended} / {level.maxPoints}
-                </h4>
-              )}
-              <ul className="m-0 p-0 h-full list-none flex justify-around items-center">
-                {spellbook[school][level.name.toLowerCase()].map((skill) => {
-                  const activeExpertise =
-                    skill.points < skill.max &&
-                    pointsExpended >= level.threshold &&
-                    pointsExpended < level.maxPoints;
+          {expertiseLevels.map((level) => {
+            const expertise = level.name;
 
-                  return (
-                    <Skill
-                      key={skill.name}
-                      skill={skill}
-                      school={school}
-                      activeExpertise={activeExpertise}
-                    />
-                  );
-                })}
-              </ul>
-            </div>
-          ))}
+            return (
+              <div
+                key={level.name}
+                className={`relative h-[25%] w-full bg-[var(--primary)] rounded-md ${
+                  pointsExpended >= level.threshold ? "" : "bg-opacity-20"
+                }`}
+              >
+                {pointsExpended >= level.threshold && (
+                  <h3 className="absolute top-[1.5rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg">
+                    {level.name}
+                  </h3>
+                )}
+                {pointsExpended >= level.threshold && (
+                  <h4 className="absolute top-[1.5rem] right-0 transform -translate-x-1/2 -translate-y-1/2 text-base">
+                    {pointsExpended} / {level.maxPoints}
+                  </h4>
+                )}
+                <ul className="m-0 p-0 h-full list-none flex justify-around items-center">
+                  {spellbook[school][level.name.toLowerCase()].map((skill) => {
+                    const activeExpertise =
+                      skill.points < skill.max &&
+                      pointsExpended >= level.threshold &&
+                      pointsExpended < level.maxPoints;
+
+                    return (
+                      <Skill
+                        key={skill.name}
+                        skill={skill}
+                        school={school}
+                        expertise={expertise}
+                        activeExpertise={activeExpertise}
+                      />
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

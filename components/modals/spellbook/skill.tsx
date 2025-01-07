@@ -19,9 +19,8 @@ import { RootState } from "@/store";
 
 import playSoundEffect from "@/util/audio-util";
 
-export default function Skill({ school, skill, activeExpertise }) {
+export default function Skill({ school, skill, expertise, activeExpertise }) {
   const [isHovered, setIsHovered] = useState(false);
-
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
   const spellPower = useSelector(
@@ -48,6 +47,8 @@ export default function Skill({ school, skill, activeExpertise }) {
     }
     skillDescription = skill.description[descriptionIndex];
   }
+
+  console.log(expertise);
 
   const handleSkillClick = (school, name) => {
     // Check if point is available and add point to skill
@@ -79,51 +80,32 @@ export default function Skill({ school, skill, activeExpertise }) {
       {(activeExpertise || activeSkill) && (
         <Tooltip>
           <TooltipTrigger>
-            <div className="shadow-inner">
-              <div
-                onClick={
-                  activeExpertise
-                    ? () => handleSkillClick(school, skill.name)
-                    : undefined
-                }
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className="h-16 w-16 rounded-lg bg-cover bg-center border transition-transform"
-                style={{
-                  backgroundImage: `url(${skill.image})`,
-                  borderWidth: "1px",
-                  borderStyle: "solid",
-                  borderColor: isHovered
-                    ? "var(--text)"
-                    : activeExpertise
-                    ? skill.points === skill.max
-                      ? "var(--text)"
-                      : "var(--secondary)"
-                    : skill.points === skill.max
-                    ? "var(--text)"
-                    : "var(--secondary)",
-                  cursor: skill.points < skill.max ? "pointer" : "",
-                  pointerEvents: activeExpertise
-                    ? skill.points === skill.max
-                      ? "none"
-                      : "auto"
-                    : "none",
-                  boxShadow: activeSkill
-                    ? "inset 0px 0px 0px rgba(0, 0, 0, 4.8)"
-                    : "",
-                }}
-              />
-            </div>
+            <div
+              className="h-16 w-16 bg-secondary list-none cursor-pointer rounded-md border-2 border-secondary hover:scale-110 hover:border-text transition-transform bg-center bg-no-repeat bg-cover flex justify-end items-end pr-1"
+              onClick={
+                activeExpertise
+                  ? () => handleSkillClick(school, skill.name)
+                  : undefined
+              }
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              style={{
+                backgroundImage: `url(${skill.image})`,
+              }}
+            ></div>
           </TooltipTrigger>
           <TooltipContent
             key={skill.name}
+            type={"SKILL"}
             title={skill.name}
-            text={skill.type}
-            detailOne={skillDescription}
+            detailOne={skill.type}
+            detailTwo={skillDescription}
             {...(isSpell && spellObject
-              ? { detailTwo: `Mana Cost: ${spellObject.manaCost}` }
+              ? { detailThree: `Mana Cost: ${spellObject.manaCost}` }
               : {})}
-            position="skill"
+            position={
+              expertise === "Expert" || expertise === "Adept" ? "BOTTOM" : "TOP"
+            }
           />
         </Tooltip>
       )}
@@ -134,14 +116,17 @@ export default function Skill({ school, skill, activeExpertise }) {
               ? () => handleSkillClick(school, skill.name)
               : undefined
           }
-          className="h-16 w-16 bg-cover bg-center rounded-lg"
+          className="h-16 w-16 bg-cover bg-center rounded-lg pointer-events-none border-2 border-secondary opacity-40"
           style={{
             backgroundImage: `url(${skill.image})`,
-            pointerEvents: "none",
           }}
         />
       )}
-      <p className={`text-lg ${activeSkill ? "opacity-100" : "opacity-40"}`}>
+      <p
+        className={`text-sm text-center ${
+          activeSkill ? "opacity-100" : "opacity-40"
+        }`}
+      >
         {skill.points} / {skill.max}
       </p>
     </div>
