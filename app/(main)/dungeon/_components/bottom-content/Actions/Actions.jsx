@@ -150,12 +150,12 @@ export default function Actions() {
                 </TooltipTrigger>
                 <TooltipContent
                   key={spellObject.name}
+                  type={"SKILL"}
                   title={spellObject.name}
                   text={spellObject.school}
                   detailOne={spellDescription}
                   detailTwo={`Mana Cost: ${spellObject.manaCost}`}
-                  position="skill"
-                  container="spell-list-container"
+                  position="TOP"
                 />
               </Tooltip>
             );

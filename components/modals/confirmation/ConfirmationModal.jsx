@@ -92,7 +92,8 @@ export default function ConfirmationModal() {
             <h3 className="text-center text-xl my-4 w-48 border-b border-[var(--text)]">
               Spell List
             </h3>
-            <ul className="flex justify-center items-start flex-wrap  h-full w-[90%] p-2 gap-2 overflow-y-auto rounded-lg bg-opacity-30 bg-black">
+            <ul className="w-[85%] h-auto rounded-lg bg-opacity-30 bg-black
+            flex flex-wrap justify-center items-start gap-6 p-2 overflow-y-auto">
               {spellList.map((spell, index) => {
                 const spellObject = getSpell(spell);
                 const snakeCaseSpellName = toSnakeCase(spell);
@@ -112,11 +113,12 @@ export default function ConfirmationModal() {
                     </TooltipTrigger>
                     <TooltipContent
                       key={spellObject.name}
+                      type={"SKILL"}
                       title={spellObject.name}
-                      text={spellObject.school}
-                      detailOne={spellDescription}
-                      detailTwo={`Mana Cost: ${spellObject.manaCost}`}
-                      position="right-middle"
+                      detailOne={spellObject.type}
+                      detailTwo={spellDescription}
+                      detailThree={`Mana Cost: ${spellObject.manaCost}`}
+                      position={"LEFT"}
                     />
                   </Tooltip>
                 );
@@ -130,7 +132,7 @@ export default function ConfirmationModal() {
           </div>
 
           {/* Attuned Items */}
-          <div className="relative flex flex-col justify-start items-center w-full h-1/3">
+          <div className="relative flex flex-col justify-end items-center w-full h-auto pb-[1rem]">
             <h3 className="text-center text-xl my-4 w-48 border-b border-[var(--text)]">
               Attuned Items
             </h3>
