@@ -27,7 +27,7 @@ export default function TomeColumn() {
   };
 
   return (
-    <div className="shadow-xl relative flex flex-col items-center w-1/3 h-full border-3 border-secondary p-4 bg-background rounded-lg hover:bg-[#33395b] transition duration-300">
+    <div className="shadow-xl relative flex flex-col items-center w-1/3 h-full border-[3px] border-secondary p-4 bg-background rounded-lg hover:bg-[#33395b] transition duration-300">
       <Tooltip>
         <TooltipTrigger>
           <CircleAlert className="absolute right-0 mr-2 text-secondary" />

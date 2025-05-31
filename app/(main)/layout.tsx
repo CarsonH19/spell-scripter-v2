@@ -49,7 +49,7 @@ const ContentWrapper = ({ children }: { children: React.ReactNode }) => {
       {/* DIALOGUE */}
       {dialogueActive && <Dialogue />}
 
-      <main className="h-full w-screen min-w-[1250px] bg-background">
+      <main className="h-screen w-screen min-w-[1250px] bg-background">
         <div className="absolute top-0 right-0 p-4">
           <ClerkLoading>
             <Loader className="h-5 w-5 text-muted-foreground animate-spin" />

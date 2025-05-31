@@ -26,8 +26,8 @@ export default function PlayerColumn() {
   };
 
   return (
-    <div className="relative w-1/3 h-full p-4 border-3 border-secondary rounded-lg flex flex-col transition duration-300 hover:bg-[#33395b] shadow-lg">
-      <div className="relative w-full flex flex-col items-center justify-between gap-4 p-4 flex-grow">
+    <div className="relative w-1/3 h-full border-[3px] border-secondary p-4  rounded-lg flex flex-col transition items-center duration-300 hover:bg-[#33395b] shadow-lg">
+    
         {/* Player Header */}
         <div className="z-10 w-4/5 flex flex-col items-center gap-2">
           <h1 className="text-center">{player.name}</h1>
@@ -61,7 +61,8 @@ export default function PlayerColumn() {
         />
 
         {/* Player Menu */}
-        <div className="flex items-center justify-evenly flex-wrap w-full gap-4">
+        <div className="w-[80%] absolute bottom-2 left-1/2 transform -translate-x-1/2">
+          <div className="flex items-center justify-evenly flex-wrap w-full gap-4">
           <div
             onClick={() => handleOpenModal("spellbookModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
@@ -111,7 +112,7 @@ export default function PlayerColumn() {
             <p>Attributes</p>
           </div> */}
         </div>
-      </div>
+        </div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function DungeonColumn() {
   };
 
   return (
-    <div className="bg-primary text-center w-1/3 h-full border-3 border-secondary p-4 overflow-hidden rounded-xl hover:bg-[#33395b] transition duration-300 flex flex-col justify-between shadow-lg">
+    <div className="bg-primary text-center w-1/3 h-full border-[3px] border-secondary p-4 overflow-hidden rounded-xl hover:bg-[#33395b] transition duration-300 flex flex-col justify-between shadow-lg">
       <h1 className="text-center my-4 border-b-2 border-primary">Dungeons</h1>
       <div className="relative flex flex-col items-center justify-between h-full ">
         <div className="h-full">
