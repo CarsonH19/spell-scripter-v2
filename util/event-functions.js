@@ -31,7 +31,7 @@ import { roomTransition } from "@/app/(main)/dungeon/_components/middle-content/
 // import { callFadeTransition } from "../components/UI/FadeEffect";
 import callFadeTransition from "@/components/ui/FadeEffect";
 // import { locationNarration } from "../components/GameWindow/GameWindow";
-import { locationNarration } from "@/app/(main)/dungeon/page";
+import { locationNarration } from "@/util/narration-util";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {

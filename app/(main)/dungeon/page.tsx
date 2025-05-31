@@ -17,7 +17,9 @@ import { logActions } from "@/store/log-slice";
 import { addCharacterToOrder } from "@/util/misc-util";
 import { dungeonActions } from "@/store/dungeon-slice";
 import eventFunctions from "@/util/event-functions";
-import playSoundEffect from "@/util/audio-util";
+// import playSoundEffect from "@/util/audio-util";
+import { locationNarration } from "@/util/narration-util";
+
 
 const DungeonPage = () => {
   const [showBottom, setShowBottom] = useState(true);
@@ -102,24 +104,24 @@ async function handleGameFlow(dispatch, setShowBottom) {
   }
 }
 
-export async function locationNarration(dispatch, location) {
-  console.log("locationNArration Called");
-  dispatch(logActions.updateLogs({ change: "CLEAR" }));
-  dispatch(logActions.updateLogs({ change: "PAUSE" }));
-  await delay(2000);
-  playSoundEffect(false, "misc", "enterDungeon");
-  dispatch(
-    logActions.updateLogs({
-      change: "ADD",
-      text: `${location}`,
-    })
-  );
-  await delay(4000);
-  // Clear Narrative
-  dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
-  dispatch(logActions.updateLogs({ change: "CLEAR" }));
-}
+// export async function locationNarration(dispatch, location) {
+//   console.log("locationNArration Called");
+//   dispatch(logActions.updateLogs({ change: "CLEAR" }));
+//   dispatch(logActions.updateLogs({ change: "PAUSE" }));
+//   await delay(2000);
+//   playSoundEffect(false, "misc", "enterDungeon");
+//   dispatch(
+//     logActions.updateLogs({
+//       change: "ADD",
+//       text: `${location}`,
+//     })
+//   );
+//   await delay(4000);
+//   // Clear Narrative
+//   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+//   dispatch(logActions.updateLogs({ change: "CLEAR" }));
+// }
 
-async function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+// async function delay(ms) {
+//   return new Promise((resolve) => setTimeout(resolve, ms));
+// }
