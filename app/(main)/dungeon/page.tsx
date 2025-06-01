@@ -25,8 +25,6 @@ const DungeonPage = () => {
   const [showBottom, setShowBottom] = useState(true);
   const dispatch = useDispatch();
   const { roomCounter, image } = useSelector((state) => state.dungeon);
-
-  console.log(`url(${image})`);
   
   useEffect(() => {
     handleGameFlow(dispatch, setShowBottom);
@@ -58,7 +56,7 @@ async function handleGameFlow(dispatch, setShowBottom) {
     setShowBottom(false);
     await locationNarration(dispatch, dungeon.name);
   }
-
+  
   setShowBottom(true);
 
   // Handle Combat
@@ -125,3 +123,7 @@ async function handleGameFlow(dispatch, setShowBottom) {
 // async function delay(ms) {
 //   return new Promise((resolve) => setTimeout(resolve, ms));
 // }
+
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

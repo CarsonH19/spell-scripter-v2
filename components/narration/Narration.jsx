@@ -22,9 +22,10 @@ export default function Narration() {
       clearTimeout(timeoutIdRef.current);
     }
 
+    // NOTE: Dynamically update time if needed for different narrations
     timeoutIdRef.current = setTimeout(() => {
       dispatch(logActions.updateLogs({ change: "REMOVE" }));
-    }, 2000);
+    }, 5000);
 
     return () => {
       if (timeoutIdRef.current) {
@@ -35,17 +36,23 @@ export default function Narration() {
 
   return (
     <div className="fixed z-10 top-1/2 left-1/2 w-full transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center pointer-events-none">
-      <ul className={`flex flex-col min-h-[35rem] list-none ${style}`}>
-        {narration.map((item) => (
-          <li
-            key={item.id}
-            className={`text-4xl text-[var(--text)] text-center transition duration-300 ${
-              style ? "" : isPaused ? "" : "animate-fadeInAndOut"
-            }`}
-          >
-            {item.text}
-          </li>
-        ))}
+      <ul className="flex flex-col list-none w-full">
+        {narration.map((item) => {
+          const isCentered = style.includes("animate-fadeInAndOut5");
+
+          return (
+            <div
+              key={item.id}
+              className={`w-full ${
+                isCentered
+                  ? "flex justify-center items-center min-h-[35rem]"
+                  : ""
+              }`}
+            >
+              <li className={style}>{item.text}</li>
+            </div>
+          );
+        })}
       </ul>
     </div>
   );
@@ -54,18 +61,14 @@ export default function Narration() {
 // Helper function
 function getNarrationStyle(narration) {
   const dungeon = store.getState().dungeon;
-  let style;
 
   if (
     narration === "Encounter!" ||
     narration === dungeon.name ||
     narration === dungeon.path
   ) {
-    style =
-      "flex flex-col justify-center items-center text-[7rem] font-cinzel text-[var(--text)] animate-fadeInAndOut";
+    return "text-[5rem] font-cinzel text-[var(--text)] animate-fadeInAndOut5 text-center";
   } else {
-    style = "";
+    return "text-4xl text-[var(--text)] text-center transition animate-fadeInAndOut3";
   }
-
-  return style;
 }

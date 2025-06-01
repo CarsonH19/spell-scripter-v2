@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        cinzel: ['CinzelDecorative', 'sans-serif'],
+      },
       keyframes: {
         fadeInAndOut: {
           "0%": { opacity: "0" },
@@ -21,7 +24,8 @@ const config: Config = {
         // },
       },
       animation: {
-        fadeInAndOut: "fadeInAndOut 3.1s ease-in-out",
+        fadeInAndOut5: "fadeInAndOut 5s ease-in-out forwards",
+        fadeInAndOut3: "fadeInAndOut 3s ease-in-out forwards",
       },
       colors: {
         foreground: "hsl(var(--foreground))",
