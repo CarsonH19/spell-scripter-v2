@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { openModal } from "@/store/ui-actions";
 
+import { Button } from "@/components/ui/button";
+
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {
 //   faToolbox,
@@ -28,29 +30,67 @@ export default function Buttons() {
   return (
     !isDialogue && (
       <div className="absolute top-[96%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/3 flex justify-center items-end gap-2">
-        <Backpack
-          className={
-            "w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black"
-          }
+        {/* INVENTORY */}
+        <Button
+          size="sm"
+          variant="secondary"
+          className="w-12 h-12"
           onClick={() => handleOpenModal("inventoryModal")}
-          style={isDanger ? { pointerEvents: "none", opacity: 0.6 } : {}}
-        />
+        >
+          <Backpack
+            className={
+              "transition-transform duration-300 hover:scale-125"
+            }
+            style={isDanger ? { pointerEvents: "none", opacity: 0.6 } : {}}
+          />
+        </Button>
+
         {/* <Users
           className="h-8 w-8 p-2 rounded-lg text-primary border border-primary bg-secondary transition-transform hover:text-secondary hover:bg-primary"
           onClick={() => handleOpenModal("partyModal")}
         /> */}
-        <ShieldAlert
-          className="h-8 w-8 p-2 rounded-lg text-primary border border-primary bg-secondary transition-transform hover:text-secondary hover:bg-primary"
+
+        {/* QUESTS */}
+        <Button
+          size="sm"
+          variant="secondary"
+          className="w-12 h-12"
           onClick={() => handleOpenModal("questsModal")}
-        />
-        <BookText
-          className="h-8 w-8 p-2 rounded-lg text-primary border border-primary bg-secondary transition-transform hover:text-secondary hover:bg-primary"
+        >
+          <ShieldAlert
+            className={
+              "transition-transform duration-300 hover:scale-125"
+            }
+          />
+        </Button>
+
+        {/* TOMES */}
+        <Button
+          size="sm"
+          variant="secondary"
+          className="w-12 h-12"
           onClick={() => handleOpenModal("dungeonTomesModal")}
-        />
-        <Settings
-          className="h-8 w-8 p-2 rounded-lg text-primary border border-primary bg-secondary transition-transform hover:text-secondary hover:bg-primary"
+        >
+          <BookText
+            className={
+              "transition-transform duration-300 hover:scale-125"
+            }
+          />
+        </Button>
+        
+        {/* SETTINGS */}
+        <Button
+          size="sm"
+          variant="secondary"
+          className="w-12 h-12"
           onClick={() => handleOpenModal("settingsModal")}
-        />
+        >
+          <Settings
+            className={
+              "transition-transform duration-300 hover:scale-125"
+            }
+          />
+        </Button>
       </div>
     )
   );
