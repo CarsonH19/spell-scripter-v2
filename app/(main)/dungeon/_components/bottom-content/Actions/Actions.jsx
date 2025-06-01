@@ -24,6 +24,8 @@ import { useEffect, useState } from "react";
 
 import { X, Sparkles } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+
 export default function Actions() {
   const dispatch = useDispatch();
   // Dialogue - is dialogue.active the action are not rendered
@@ -210,36 +212,66 @@ export default function Actions() {
     content = (
       <div className="relative w-1/5 h-[85%] mx-4 mb-[4.5rem] flex flex-col justify-end items-center gap-2">
         {(!isDisabled || entrance) && (
-          <button
+          <Button
+            size="lg"
+            variant="secondary"
             disabled={isDisabled}
             onClick={() => handlePlayerChoice("CAST SPELL")}
-            className={`h-16 w-4/5 border text-white ${
+            className={`mb-2 w-3/5  ${
               isDisabled ? "opacity-40 pointer-events-none" : ""
             }`}
           >
-            Cast Spell
-          </button>
+            <div className="transition-transform duration-200 hover:scale-125">
+              Cast Spell
+            </div>
+          </Button>
         )}
         {!isDisabled && isCharacterTurn && (
           <>
-            <button
+            {/* ATTACK BUTTON */}
+            <Button
+              size="lg"
+              variant="secondary"
+              disabled={isDisabled}
               onClick={() => handlePlayerChoice("ATTACK")}
-              className="h-16 w-4/5 border text-white"
+              className={`mb-2 w-3/5  ${
+                isDisabled ? "opacity-40 pointer-events-none" : ""
+              }`}
             >
-              Attack
-            </button>
-            <button
+              <div className="transition-transform duration-200 hover:scale-125">
+                Attack
+              </div>
+            </Button>
+
+            {/* GUARD BUTTON */}
+            <Button
+              size="lg"
+              variant="secondary"
+              disabled={isDisabled}
               onClick={() => handlePlayerChoice("GUARD")}
-              className="h-16 w-4/5 border text-white"
+              className={`mb-2 w-3/5  ${
+                isDisabled ? "opacity-40 pointer-events-none" : ""
+              }`}
             >
-              Guard
-            </button>
-            <button
+              <div className="transition-transform duration-200 hover:scale-125">
+                Guard
+              </div>
+            </Button>
+
+            {/* USE ITEM BUTTON */}
+            <Button
+              size="lg"
+              variant="secondary"
+              disabled={isDisabled}
               onClick={() => handlePlayerChoice("USE ITEM")}
-              className="h-16 w-4/5 border text-white"
+              className={`mb-2 w-3/5  ${
+                isDisabled ? "opacity-40 pointer-events-none" : ""
+              }`}
             >
-              Use Item
-            </button>
+              <div className="transition-transform duration-200 hover:scale-125">
+                Use Item
+              </div>
+            </Button>
           </>
         )}
       </div>
