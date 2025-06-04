@@ -1,5 +1,4 @@
-
-"use client"
+"use client";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,6 +12,8 @@ import { uiActions } from "@/store/ui-slice";
 import { dungeonActions } from "@/store/dungeon-slice";
 
 import { getDialogue } from "@/util/dialogue-util";
+
+import { Button } from "@/components/ui/button";
 
 export default function EventOptions() {
   const dispatch = useDispatch();
@@ -62,9 +63,11 @@ export default function EventOptions() {
           }
 
           return (
-            <button
+            <Button
               key={option.text}
-              className="min-w-[12rem] p-2 border border-text animate-fadeIn hover:bg-primary hover:text-white"
+              size="lg"
+              variant="primary"
+              className=""
               onClick={() =>
                 handleClickEventOption(dispatch, eventFunction, choice, option)
               }
@@ -78,7 +81,7 @@ export default function EventOptions() {
               ) : (
                 <span>{option.text}</span>
               )}
-            </button>
+            </Button>
           );
         })}
       </>
@@ -92,6 +95,9 @@ export default function EventOptions() {
   );
 }
 
+// Used to dynamically retrieve the necessary event objects under certain conditions
+// TO DO: Move this function to a different file and import it.
+// TO DO: Expand on the different events that have different event options
 function getEventOptions(event) {
   const player = store
     .getState()
