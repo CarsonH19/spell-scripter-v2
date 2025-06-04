@@ -15,6 +15,8 @@ import { TOMES } from "@/data/tomes";
 
 import { RootState } from "@/store";
 
+import { Button } from "@/components/ui/button";
+
 export default function TomeColumn() {
   const dispatch = useDispatch();
   const tomeSlice = useSelector((state: RootState) => state.tome);
@@ -47,27 +49,31 @@ export default function TomeColumn() {
             const percentage = calculatePercentage(tome.questions);
 
             return (
-              <div
-                key={tome.name}
-                className="relative w-full h-24 border-2 border-accent rounded-lg flex flex-col items-center justify-center gap-0 transition duration-300 ease-in-out bg-primary mb-2 hover:bg-accent hover:cursor-pointer hover:text-black"
+              <Button
+                size="lg"
+                variant="secondary"
+                className="w-full h-[5rem] mb-2 transition-transform duration-300 hover:scale-105"
                 onClick={() => handleOpenTome(tomeInfo)}
+                key={tome.name}
               >
-                <h3 className="text-lg font-serif hover:text-black transition-colors duration-300">
-                  {tome.name}
-                </h3>
-                <Progress
-                  className="w-4/5 h-1 bg-[#b0aaaa] rounded-md hover:text-black"
-                  value={percentage}
-                  // max="100"
-                />
-                <p
-                  className={`text-center text-lg ${
-                    percentage === 100 ? "text-lightgreen" : "text-lightcoral"
-                  }`}
-                >
-                  {percentage === 100 ? "Mastered" : `${percentage}%`}
-                </p>
-              </div>
+                <div className="w-full h-full flex flex-col justify-evenly items-center flex-wrap">
+                  <p className="text-black">
+                    {tome.name}
+                  </p>
+                  <Progress
+                    className="w-full h-1 bg-[#b0aaaa] rounded-md hover:text-black"
+                    value={percentage}
+                    // max="100"
+                  />
+                  <p
+                    className={`text-center text-md ${
+                      percentage === 100 ? "text-lightgreen" : "text-black"
+                    }`}
+                  >
+                    {percentage === 100 ? "Mastered" : `${percentage}%`}
+                  </p>
+                </div>
+              </Button>
             );
           }
 
@@ -75,7 +81,7 @@ export default function TomeColumn() {
             return (
               <div
                 key={tome.name}
-                className="relative w-full h-24 border-2 border-text/50 rounded-lg flex flex-col items-center justify-center transition duration-300 ease-in-out bg-primary mb-2 opacity-50 gap-1"
+                className="relative w-full h-[5rem] border-2 border-text/50 rounded-lg flex flex-col items-center justify-center transition duration-300 ease-in-out bg-primary mb-2 opacity-50 gap-1"
               >
                 <h3 className="text-md font-serif text-text/50">{tome.name}</h3>
                 <Lock className="" />
