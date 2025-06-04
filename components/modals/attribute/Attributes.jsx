@@ -18,7 +18,7 @@ export default function Attributes() {
   }
 
   return (
-    <div className="flex flex-col justify-evenly w-full h-full bg-primary rounded-lg">
+    <div className="flex flex-col justify-evenly w-full h-full bg-[#424769] rounded-lg">
       {/* {!isInventoryOpen && (
         <div
           className={`flex items-center justify-center gap-4 text-2xl font-semibold ${
@@ -32,23 +32,23 @@ export default function Attributes() {
       {/* Strength Section */}
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4">
+          <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4 text-shadow-sm">
             Strength
           </h4>
           <div className="flex items-center gap-6 mt-2">
-            <p className="text-lg font-semibold text-text ">
+            <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
               {player.stats.strength.totalStrength}
             </p>
           </div>
         </div>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           Max HP: {player.stats.strength.maxHealth}
         </p>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           Attack: {Math.floor(player.stats.strength.attack / 2)} -{" "}
           {player.stats.strength.attack}
         </p>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           HP Regeneration: {player.stats.strength.healthRegen}
         </p>
       </div>
@@ -56,22 +56,22 @@ export default function Attributes() {
       {/* Agility Section */}
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4">
+          <h4 className="w-40 text-center text-shadow-sm text-lg font-medium border-b border-text mt-4">
             Agility
           </h4>
           <div className="flex items-center gap-6 mt-2">
-            <p className="text-lg font-semibold text-text ">
+            <p className="text-[1.5rem] text-shadow-sm font-semibold text-text ">
               {player.stats.agility.totalAgility}
             </p>
           </div>
         </div>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           Defense: {player.stats.agility.defense}
         </p>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           Hit Chance Bonus: +{player.stats.agility.hitChance}
         </p>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           Speed Bonus: +{player.stats.agility.speed}
         </p>
       </div>
@@ -79,22 +79,22 @@ export default function Attributes() {
       {/* Arcana Section */}
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4">
+          <h4 className="w-40 text-center text-lg text-shadow-sm font-medium border-b border-text mt-4">
             Arcana
           </h4>
           <div className="flex items-center gap-6 mt-2">
-            <p className="text-lg font-semibold text-text ">
+            <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
               {player.stats.arcana.totalArcana}
             </p>
           </div>
         </div>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           Max MP: {player.stats.arcana.maxMana}
         </p>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           Spell Power: {player.stats.arcana.spellPower}
         </p>
-        <p className="text-sm text-text ">
+        <p className="text-sm text-text text-shadow-sm">
           MP Regeneration: {player.stats.arcana.manaRegen}
         </p>
       </div>

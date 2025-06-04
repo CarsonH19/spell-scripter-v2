@@ -9,8 +9,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      textShadow: {
+        sm: "1px 1px 2px rgba(0, 0, 0, 0.50)",
+        DEFAULT: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+        lg: "4px 4px 6px rgba(0, 0, 0, 0.6)",
+      },
       fontFamily: {
-        cinzel: ['CinzelDecorative', 'sans-serif'],
+        cinzel: ["CinzelDecorative", "sans-serif"],
       },
       keyframes: {
         fadeInAndOut: {
@@ -37,7 +42,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
-        primary: "#2D3250",
+        primary: "#424769",
         secondary: "#7077A1",
         text: "rgb(222, 221, 221)",
         background: "#2D3250",
@@ -70,6 +75,10 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("tailwind-scrollbar"),
+    require("tailwindcss-textshadow"),
+  ],
 };
 export default config;

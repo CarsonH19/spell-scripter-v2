@@ -264,7 +264,7 @@ export default function Actions() {
               variant="secondary"
               disabled={isDisabled}
               onClick={() => handlePlayerChoice("USE ITEM")}
-              className={`mb-2 w-3/5  ${
+              className={`mb-2 w-3/5 ${
                 isDisabled ? "opacity-40 pointer-events-none" : ""
               }`}
             >

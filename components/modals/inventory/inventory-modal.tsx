@@ -82,7 +82,7 @@ export default function InventoryModal() {
         Inventory
       </h1>
       <div className="flex gap-4 w-[90%] my-4 h-[80%]">
-        <div className="flex flex-col w-[30%] p-4 border border-secondary rounded-lg bg-primary mt-10">
+        <div className="flex flex-col w-[30%] border border-secondary rounded-lg bg-primary mt-10">
           {/* STATS */}
           <Attributes />
         </div>
