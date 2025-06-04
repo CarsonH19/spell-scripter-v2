@@ -88,26 +88,26 @@ export default function InventoryModal() {
         </div>
         <div className="flex flex-col justify-between w-[70%]">
           <div className="flex flex-col justify-start h-full">
-            <div className="flex justify-evenly mt-4 w-full h-[5%]">
+            <div className="flex justify-evenly mt-4 w-full h-[6%]">
               <button
-                className={`w-32 text-xs border border-secondary bg-background text-text cursor-pointer ${
-                  active === 1 ? "bg-secondary" : ""
+                className={`w-32 text-xs border border-secondary border-b-0 bg-background text-text cursor-pointer rounded-t-lg rounded-b-none  ${
+                  active === 1 ? "bg-primary" : ""
                 }`}
                 onClick={() => handleButtonClick(1)}
               >
                 Equipment
               </button>
               <button
-                className={`w-32 text-xs border border-secondary bg-background text-text cursor-pointer ${
-                  active === 2 ? "bg-secondary" : ""
+                className={`w-32 text-xs border border-secondary border-b-0 bg-background text-text cursor-pointer rounded-t-lg rounded-b-none ${
+                  active === 2 ? "bg-primary" : ""
                 }`}
                 onClick={() => handleButtonClick(2)}
               >
                 Consumables
               </button>
               <button
-                className={`w-32 text-xs border border-secondary bg-background text-text cursor-pointer ${
-                  active === 3 ? "bg-secondary" : ""
+                className={`w-32 text-xs border border-secondary border-b-0 bg-background text-text cursor-pointer rounded-t-lg rounded-b-none ${
+                  active === 3 ? "bg-primary" : ""
                 }`}
                 onClick={() => handleButtonClick(3)}
               >
