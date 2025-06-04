@@ -11,6 +11,8 @@ import { RootState } from "@/store";
 
 import updateStatTotals from "@/store/stats-actions";
 
+import { Button } from "@/components/ui/button";
+
 export default function PlayerColumn() {
   const dispatch = useDispatch();
   const player = useSelector((state: RootState) => state.player);
@@ -27,92 +29,111 @@ export default function PlayerColumn() {
 
   return (
     <div className="relative w-1/3 h-full border-[3px] border-secondary p-4  rounded-lg flex flex-col transition items-center duration-300 hover:bg-[#33395b] shadow-lg">
-    
-        {/* Player Header */}
-        <div className="z-10 w-4/5 flex flex-col items-center gap-2">
-          <h1 className="text-center">{player.name}</h1>
-          <div className="relative w-full flex justify-between text-sm">
-            <p>Level: {player.level}</p>
-            <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              {Math.round(
-                ((player.totalMasteryPoints - prevLevel) /
-                  (nextLevel - prevLevel)) *
-                  100
-              )}
-            </p>
-            <p>
-              {player.totalMasteryPoints}/{nextLevel}
-            </p>
-          </div>
-          <Progress
-            value={player.totalMasteryPoints - prevLevel}
-            max={nextLevel - prevLevel}
-            className="w-full h-2 rounded bg-gray-400"
-          ></Progress>
-          <p>Mastery Points: {player.totalMasteryPoints}</p>
+      {/* Player Header */}
+      <div className="z-10 w-4/5 flex flex-col items-center gap-2">
+        <h1 className="text-center">{player.name}</h1>
+        <div className="relative w-full flex justify-between text-sm">
+          <p>Level: {player.level}</p>
+          <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            {Math.round(
+              ((player.totalMasteryPoints - prevLevel) /
+                (nextLevel - prevLevel)) *
+                100
+            )}
+          </p>
+          <p>
+            {player.totalMasteryPoints}/{nextLevel}
+          </p>
         </div>
+        <Progress
+          value={player.totalMasteryPoints - prevLevel}
+          max={nextLevel - prevLevel}
+          className="w-full h-2 rounded bg-gray-400"
+        ></Progress>
+        <p>Mastery Points: {player.totalMasteryPoints}</p>
+      </div>
 
-        {/* Player Image */}
-        <Image
-          src={`/assets/images/player/player-1.png`}
-          alt="Player Image"
-          width={300}
-          height={400}
-        />
+      {/* Player Image */}
+      <Image
+        src={`/assets/images/player/player-1.png`}
+        alt="Player Image"
+        width={300}
+        height={400}
+      />
 
-        {/* Player Menu */}
-        <div className="w-[80%] absolute bottom-2 left-1/2 transform -translate-x-1/2">
-          <div className="flex items-center justify-evenly flex-wrap w-full gap-4">
-          <div
-            onClick={() => handleOpenModal("spellbookModal")}
-            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
-          >
-            <BookText className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
-            <p>Spellbook</p>
+      {/* Player Menu */}
+      <div className="w-[80%] absolute bottom-2 left-1/2 transform -translate-x-1/2">
+        <div className="flex items-center justify-evenly flex-wrap w-full gap-4">
+          <div className="text-center">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => handleOpenModal("spellbookModal")}
+              className="w-12 h-12"
+            >
+              <BookText className="transition-transform duration-300 hover:scale-125" />
+            </Button>
+            <p className="text-sm">Spellbook</p>
           </div>
 
-          <div
-            onClick={() => handleOpenModal("inventoryModal")}
-            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
-          >
-            <Backpack className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
-            <p>Inventory</p>
+          <div className="text-center">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => handleOpenModal("inventoryModal")}
+              className="w-12 h-12"
+            >
+              <Backpack className="transition-transform duration-300 hover:scale-125" />
+            </Button>
+            <p className="text-sm">Inventory</p>
           </div>
 
-          <div
-            onClick={() => handleOpenModal("heroesModal")}
-            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
-          >
-            <Users className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
-            <p>Heroes</p>
+          <div className="text-center">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => handleOpenModal("heroesModal")}
+              className="w-12 h-12"
+            >
+              <Users className="transition-transform duration-300 hover:scale-125" />
+            </Button>
+            <p className="text-sm">Heroes</p>
           </div>
 
-          <div
-            onClick={() => handleOpenModal("questsModal")}
-            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
-          >
-            <ShieldAlert className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
-            <p>Quests</p>
+          <div className="text-center">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => handleOpenModal("questsModal")}
+              className="w-12 h-12"
+            >
+              <ShieldAlert className="transition-transform duration-300 hover:scale-125" />
+            </Button>
+            <p className="text-sm">Quests</p>
           </div>
 
           {/* Settings Icon */}
-          <div
-            onClick={() => handleOpenModal("settingsModal")}
-            className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
-          >
-            <Settings className="w-12 h-12 p-2 cursor-pointer text-accent border-2 border-accent rounded-md transition-0.5s hover:bg-accent hover:text-black" />
-            <p>Settings</p>
+          <div className="text-center">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => handleOpenModal("settingsModal")}
+              className="w-12 h-12"
+            >
+              <Settings className="transition-transform duration-300 hover:scale-125" />
+            </Button>
+            <p className="text-sm">Settings</p>
           </div>
 
-          {/* <div
+          {/* <Button
             // onClick={() => handleOpenModal("attributeModal")}
             className="flex flex-col justify-center items-center text-center text-sm cursor-pointer gap-1"
           >
             <Backpack className="w-10 h-10 p-2 cursor-pointer text-accent border-2 border-accent rounded-md" />
             <p>Attributes</p>
-          </div> */}
+          </Button> */}
         </div>
-        </div>
+      </div>
     </div>
   );
 }
