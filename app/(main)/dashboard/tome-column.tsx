@@ -8,6 +8,7 @@ import {
 
 import { Progress } from "@/components/ui/progress";
 
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "@/store/ui-slice";
 import { openModal } from "@/store/ui-actions";
@@ -18,6 +19,7 @@ import { RootState } from "@/store";
 import { Button } from "@/components/ui/button";
 
 export default function TomeColumn() {
+  const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
   const tomeSlice = useSelector((state: RootState) => state.tome);
 
@@ -30,17 +32,12 @@ export default function TomeColumn() {
 
   return (
     <div className="shadow-xl relative flex flex-col items-center w-1/3 h-full border-[3px] border-secondary p-4 bg-background rounded-lg hover:bg-[#33395b] transition duration-300">
-      <Tooltip>
-        <TooltipTrigger>
-          <CircleAlert className="absolute right-0 mr-2 text-secondary" />
-        </TooltipTrigger>
-        <TooltipContent
-          title="What Are Tomes?"
-          containerStyles="tomes-info-container"
-          position="tomes-info"
-          detailOne="Study tomes to learn different JavaScript concepts to aid you in spell casting. By successfully casting spells within a dungeon you can master tomes and acquire mastery points."
-        />
-      </Tooltip>
+      <CircleAlert
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="absolute right-0 mr-2 text-secondary z-30"
+      />
+
       <h1 className="text-center border-b-2 border-primary mb-4">Tomes</h1>
       <div className="w-full p-4 gap-4 overflow-y-auto scrollbar-custom">
         {tomeSlice.map((tome, index) => {
@@ -57,11 +54,9 @@ export default function TomeColumn() {
                 key={tome.name}
               >
                 <div className="w-full h-full flex flex-col justify-evenly items-center flex-wrap">
-                  <p className="text-black">
-                    {tome.name}
-                  </p>
+                  <p className="text-black">{tome.name}</p>
                   <Progress
-                    className="w-full h-1 bg-[#b0aaaa] rounded-md hover:text-black"
+                    className="w-full h-1 bg-[#b0aaaa] rounded-md hover:text-black z-[0]"
                     value={percentage}
                     // max="100"
                   />
@@ -89,6 +84,22 @@ export default function TomeColumn() {
             );
           }
         })}
+      </div>
+
+      {/* TIP */}
+      <div
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
+          isHovered
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="absolute inset-0 bg-background opacity-85 rounded-md transition-opacity duration-500" />
+        <p className="relative text-[1.5rem] z-20 text-center text-white p-2 transition-opacity duration-500">
+          Study tomes to learn different JavaScript concepts to aid you in spell
+          casting. By successfully casting spells within a dungeon you can
+          master tomes and acquire mastery points.
+        </p>
       </div>
     </div>
   );

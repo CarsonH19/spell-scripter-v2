@@ -15,7 +15,7 @@ const TooltipContent = React.forwardRef<
     title?: string;
 
     containerStyles?: string;
-    position: "LEFT" | "RIGHT" | "TOP" | "BOTTOM";
+    position: "LEFT" | "RIGHT" | "TOP" | "BOTTOM" | "TOME TIP";
     detailOne?: string;
     count?: number;
     detailTwo?: string | string[];
@@ -57,9 +57,13 @@ const TooltipContent = React.forwardRef<
         break;
       case "BOTTOM":
         positionStyles = "absolute left-[-7.5rem] top-[4.6rem]";
-
+        break;
+      case "TOME TIP":
+        positionStyles = "relative left-[0rem] top-[rem]";
         break;
     }
+
+    console.log(type);
 
     switch (type) {
       case "ITEM":
@@ -116,7 +120,6 @@ const TooltipContent = React.forwardRef<
         break;
 
       case "SKILL":
-        console.log(position);
         content = (
           <div className={cn(containerStyles, "text-center")}>
             {title && <h3 className="font-bold mb-1">{title}</h3>}
@@ -133,7 +136,15 @@ const TooltipContent = React.forwardRef<
         break;
 
       case "TIP":
-        content = "";
+        content = (
+          <div className={"text-center"}>
+            {title && <h3 className="font-bold mb-1">{title}</h3>}
+            {detailOne && <p className="text-sm">{detailOne}</p>}
+            {/* <hr className="my-2" />
+            {detailThree && <p className="text-sm">{detailThree}</p>}
+            {detailTwo && <p className="text-sm">{detailTwo}</p>} */}
+          </div>
+        );
         break;
     }
 
