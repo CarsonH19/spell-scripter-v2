@@ -61,7 +61,7 @@ const initialState: SpellbookState = {
       {
         name: "Smoldering Heart",
         image: "/assets/images/spellbook/evocation/smoldering-heart.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "When casting spells that deal Fire damage, you have a 10% chance to inflict the Burning condition.",
           "When casting spells that deal Fire damage, you have a 15% chance to inflict the Burning condition.",
@@ -81,7 +81,7 @@ const initialState: SpellbookState = {
       {
         name: "Frigid Gaze",
         image: "/assets/images/spellbook/evocation/frigid-gaze.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "When casting spells that deal Ice damage, you have a 8% chance to inflict the Chilled condition.",
           "When casting spells that deal Ice damage, you have a 12% chance to inflict the Chilled condition.",
@@ -101,7 +101,7 @@ const initialState: SpellbookState = {
       {
         name: "Charged Touch",
         image: "/assets/images/spellbook/evocation/charged-touch.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "When casting spells that deal Lightning damage, you have a 6% chance to inflict the Stunned condition.",
           "When casting spells that deal Lightning damage, you have a 9% chance to inflict the Stunned condition.",
@@ -115,7 +115,7 @@ const initialState: SpellbookState = {
       {
         name: "Consuming Flames",
         image: "/assets/images/spellbook/evocation/consuming-flames.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "Enemies Burning from your spells are dealt 5 Fire damage each round.",
           "Enemies Burning from your spells are dealt 7 Fire damage each round.",
@@ -135,7 +135,7 @@ const initialState: SpellbookState = {
       {
         name: "Evoker",
         image: "/assets/images/spellbook/evocation/evoker.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "The mana cost of all Evocation spells is reduced by 2MP",
           "The mana cost of all Evocation spells is reduced by 4MP",
@@ -147,7 +147,7 @@ const initialState: SpellbookState = {
       {
         name: "Frozen Solid",
         image: "/assets/images/spellbook/evocation/frozen-solid.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "Enemies Chilled by your spells take 3% more damage from Attacks for each stack of Chilled they possess.",
           "Enemies Chilled by your spells take 6% more damage from Attacks for each stack of Chilled they possess.",
@@ -283,7 +283,7 @@ const initialState: SpellbookState = {
       {
         name: "Abjurer",
         image: "/assets/images/spellbook/abjuration/abjurer.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "The mana cost of all Abjuration spells is reduced by 2MP",
           "The mana cost of all Abjuration spells is reduced by 4MP",
@@ -295,7 +295,7 @@ const initialState: SpellbookState = {
       {
         name: "Dual Casting",
         image: "/assets/images/spellbook/abjuration/dual-casting.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "When targeting an ally with a Novice or Apprentice Abjuration spell there is a 33% chance to target an additional random ally.",
           "When targeting an ally with a Novice or Apprentice  Abjuration spell there is a 66% chance to target an additional random ally.",
@@ -363,7 +363,7 @@ const initialState: SpellbookState = {
       {
         name: "Summoned Resilience",
         image: "/assets/images/spellbook/conjuration/summoned-resilience.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "Increase the max HP of your summons by +10.",
           "Increase the max HP of your summons by +20.",
@@ -375,7 +375,7 @@ const initialState: SpellbookState = {
       {
         name: "Summoned Dexterity",
         image: "/assets/images/spellbook/conjuration/summoned-dexterity.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "Increase the Speed & Hit Chance of your summons by +1.",
           "Increase the Speed & Hit Chance of your summons by +2.",
@@ -413,7 +413,7 @@ const initialState: SpellbookState = {
       {
         name: "Conjurer",
         image: "/assets/images/spellbook/conjuration/conjurer.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "The mana cost of all Conjuration spells is reduced by 2MP",
           "The mana cost of all Conjuration spells is reduced by 4MP",
@@ -425,7 +425,7 @@ const initialState: SpellbookState = {
       {
         name: "Summoned Might",
         image: "/assets/images/spellbook/conjuration/summoned-might.jpg",
-        type: "Buff",
+        type: "Power",
         description: [
           "Increase the Attack of your summons by +2.",
           "Increase the Attack of your summons by +4.",

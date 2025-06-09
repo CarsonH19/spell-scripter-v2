@@ -1,10 +1,10 @@
 "use client";
 import { CircleAlert, Lock } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+// import {
+//   Tooltip,
+//   TooltipContent,
+//   TooltipTrigger,
+// } from "@/components/ui/tooltip";
 
 import { Progress } from "@/components/ui/progress";
 
@@ -39,7 +39,7 @@ export default function TomeColumn() {
       />
 
       <h1 className="text-center border-b-2 border-primary mb-4">Tomes</h1>
-      <div className="w-full p-4 gap-4 overflow-y-auto scrollbar-custom">
+      <div className="relative w-full p-4 gap-4 overflow-y-auto scrollbar-custom">
         {tomeSlice.map((tome, index) => {
           const tomeInfo = TOMES[index];
           if (tome.unlocked) {
@@ -49,7 +49,7 @@ export default function TomeColumn() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="w-full h-[5rem] mb-2 transition-transform duration-300 hover:scale-105"
+                className="w-full h-[5rem] mb-2 transition-transform duration-300 hover:scale-95"
                 onClick={() => handleOpenTome(tomeInfo)}
                 key={tome.name}
               >
@@ -84,22 +84,22 @@ export default function TomeColumn() {
             );
           }
         })}
-      </div>
 
-      {/* TIP */}
-      <div
-        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
-          isHovered
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="absolute inset-0 bg-background opacity-85 rounded-md transition-opacity duration-500" />
-        <p className="relative text-[1.5rem] z-20 text-center text-white p-2 transition-opacity duration-500">
-          Study tomes to learn different JavaScript concepts to aid you in spell
-          casting. By successfully casting spells within a dungeon you can
-          master tomes and acquire mastery points.
-        </p>
+        {/* TIP */}
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
+            isHovered
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="absolute inset-0 bg-background opacity-85 rounded-md transition-opacity duration-500" />
+          <p className="relative text-[1.5rem] z-20 text-center text-white p-2 transition-opacity duration-500">
+            Study tomes to learn different JavaScript concepts to aid you in
+            spell casting. By successfully casting spells within a dungeon you
+            can master tomes and acquire mastery points.
+          </p>
+        </div>
       </div>
     </div>
   );

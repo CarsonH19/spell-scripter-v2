@@ -1,18 +1,15 @@
+import { Button } from "@/components/ui/button";
+
 export default function School({ text, active, onChangeSchool }) {
+  const variant = active ? "primary" : "secondary"
   return (
-    <li
+    <Button
+      size="lg"
+      variant={variant}
+      className="w-full h-[3rem] mb-2 transition-transform duration-300 hover:scale-95"
       onClick={onChangeSchool}
-      className={`cursor-pointer mb-4 border text-center rounded-md ${
-        active
-          ? "bg-[var(--accent)] text-[var(--background)] border-[var(--accent)]"
-          : "bg-[var(--primary)] border-[var(--accent)]"
-      } ${
-        text === "?"
-          ? "opacity-50 pointer-events-none border-[var(--secondary)]"
-          : ""
-      } text-xl`}
     >
       {text}
-    </li>
+    </Button>
   );
 }

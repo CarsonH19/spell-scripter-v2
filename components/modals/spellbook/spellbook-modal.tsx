@@ -1,5 +1,7 @@
 "use client";
 
+import { CircleAlert } from "lucide-react";
+
 import { useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RotateCcw } from "lucide-react";
@@ -11,7 +13,10 @@ import { playerActions } from "@/store/player-slice";
 import playSoundEffect from "@/util/audio-util";
 import { RootState } from "@/store";
 
+import { Button } from "@/components/ui/button";
+
 export default function SpellbookModal() {
+  const [isHovered, setIsHovered] = useState(false);
   const [school, setSchool] = useState("evocation");
   const dispatch = useDispatch();
 
@@ -69,8 +74,8 @@ export default function SpellbookModal() {
   );
 
   return (
-    <div className="h-[100%] w-[100%] min-w-[50rem] bg-[var(--background)] flex flex-col items-center border-2 border-[var(--secondary)] p-4 rounded-md overflow-visible">
-      <h1 className="text-center m-0 border-b-2 border-[var(--secondary)] w-[30%]">
+    <div className="h-[100%] w-[100%] min-w-[50rem] bg-[var(--background)] flex flex-col items-center border-2 border-[var(--secondary)] p-4 overflow-visible">
+      <h1 className="text-center p-0 border-b-2 border-[var(--secondary)] w-[30%]">
         Spellbook
       </h1>
       <div className="flex p-4 h-full w-full">
@@ -90,6 +95,7 @@ export default function SpellbookModal() {
                   }
                 />
               ) : (
+                // TO DO: Update & Style button for locked school
                 <School key={schoolData.name} text={"?"} />
               )
             )}
@@ -103,20 +109,28 @@ export default function SpellbookModal() {
                   : "text-[var(--text)]"
               }`}
             >
-              <RotateCcw className="cursor-pointer" />
+              <RotateCcw />
               <p>{player.masteryPoints}</p>
             </div>
-            <button
+            <Button
+              size="lg"
+              variant="secondary"
               onClick={handleResetButton}
-              className={`w-48 h-12 text-lg font-semibold bg-[var(--accent)] text-[var(--primary)] rounded-md transition-transform transform hover:scale-110 disabled:opacity-60 disabled:pointer-events-none`}
+              className="w-[80%] h-[5rem] mb-2 transition-transform duration-300 hover:scale-95"
               disabled={pointsExpended === 0}
             >
               Reset School Mastery
-            </button>
+            </Button>
           </div>
         </div>
 
-        <div className="flex flex-col justify-between items-center w-[90%] gap-0.5 bg-[var(--background)] rounded-md">
+        <div className=" relative flex flex-col justify-between items-center w-[90%] gap-0.5 bg-[var(--background)] rounded-md">
+          {/* TIP */}
+          <CircleAlert
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="absolute right-2 top-2 text-secondary z-30"
+          />
           {expertiseLevels.map((level) => {
             const expertise = level.name;
 
@@ -158,6 +172,29 @@ export default function SpellbookModal() {
               </div>
             );
           })}
+
+          {/* TIP */}
+          <div
+            className={`absolute h-full inset-0 flex items-center justify-center transition-opacity duration-500 ${
+              isHovered
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
+          >
+            <div className="absolute inset-0 bg-background opacity-85 rounded-md transition-opacity duration-500" />
+            <ul className="relative flex h-full flex-col justify-around text-[1.5rem] z-20 text-center text-white p-2 transition-opacity duration-500">
+              <li>
+                Expend Mastery Points to acquire new spells and powers from your
+                spellbook.
+              </li>
+              <li>
+                Unlock greater expertise by expending more Mastery Points.
+              </li>
+              <li>
+                Reset your Mastery Points to try different schools of magic.
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
