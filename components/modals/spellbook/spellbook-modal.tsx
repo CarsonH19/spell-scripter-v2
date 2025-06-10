@@ -110,7 +110,9 @@ export default function SpellbookModal() {
               }`}
             >
               <RotateCcw />
-              <p>{player.masteryPoints}</p>
+              <p>
+                {player.masteryPoints} / {player.totalMasteryPoints}
+              </p>
             </div>
             <Button
               size="lg"
@@ -137,38 +139,50 @@ export default function SpellbookModal() {
             return (
               <div
                 key={level.name}
-                className={`relative h-[25%] w-full bg-[var(--primary)] rounded-md ${
-                  pointsExpended >= level.threshold ? "" : "bg-opacity-20"
+                className={`relative h-[25%] w-full rounded-md bg-primary transition-opacity duration-1000 ${
+                  pointsExpended >= level.threshold ? "" : "opacity-50"
+                } ${
+                  pointsExpended >= level.threshold &&
+                  pointsExpended < level.maxPoints
+                    ? "border-2 border-text"
+                    : ""
                 }`}
               >
-                {pointsExpended >= level.threshold && (
-                  <h3 className="absolute top-[1.5rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg">
+                {((pointsExpended >= level.threshold &&
+                  pointsExpended < level.maxPoints) ||
+                  (level.name === "Expert" && pointsExpended === 16)) && (
+                  <h3 className="absolute top-[1.5rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg font-bold transition-opacity duration-1000">
                     {level.name}
                   </h3>
                 )}
+                {pointsExpended >= level.threshold &&
+                  pointsExpended < level.maxPoints && (
+                    <h4 className="absolute top-[1.5rem] right-6 transform -translate-x-1/2 -translate-y-1/2 text-base transition-opacity duration-1000">
+                      {pointsExpended} / {level.maxPoints}
+                    </h4>
+                  )}
                 {pointsExpended >= level.threshold && (
-                  <h4 className="absolute top-[1.5rem] right-0 transform -translate-x-1/2 -translate-y-1/2 text-base">
-                    {pointsExpended} / {level.maxPoints}
-                  </h4>
-                )}
-                <ul className="m-0 p-0 h-full list-none flex justify-around items-center">
-                  {spellbook[school][level.name.toLowerCase()].map((skill) => {
-                    const activeExpertise =
-                      skill.points < skill.max &&
-                      pointsExpended >= level.threshold &&
-                      pointsExpended < level.maxPoints;
+                  <ul className="mt-2 p-0 h-full list-none flex justify-evenly items-center transition-opacity duration-2000">
+                    {spellbook[school][level.name.toLowerCase()].map(
+                      (skill) => {
+                        const activeExpertise =
+                          skill.points < skill.max &&
+                          pointsExpended >= level.threshold &&
+                          pointsExpended < level.maxPoints;
 
-                    return (
-                      <Skill
-                        key={skill.name}
-                        skill={skill}
-                        school={school}
-                        expertise={expertise}
-                        activeExpertise={activeExpertise}
-                      />
-                    );
-                  })}
-                </ul>
+                        return (
+                          <Skill
+                            key={skill.name}
+                            skill={skill}
+                            school={school}
+                            expertise={expertise}
+                            activeExpertise={activeExpertise}
+                          />
+                        );
+                      }
+                    )}
+                  </ul>
+                )}
               </div>
             );
           })}

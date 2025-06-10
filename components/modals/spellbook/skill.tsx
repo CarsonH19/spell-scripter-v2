@@ -77,11 +77,17 @@ export default function Skill({ school, skill, expertise, activeExpertise }) {
 
   return (
     <div key={skill.name}>
-      {(activeExpertise || activeSkill) && (
+      {
         <Tooltip>
           <TooltipTrigger>
             <div
-              className="h-16 w-16 bg-secondary list-none cursor-pointer rounded-md border-2 border-secondary hover:scale-110 hover:border-text transition-transform bg-center bg-no-repeat bg-cover flex justify-end items-end pr-1"
+              className={`h-16 w-16 bg-secondary list-none rounded-md border-2 border-secondary transition-transform bg-center bg-no-repeat bg-cover flex justify-end items-end pr-1
+                ${skill.points !== skill.max && !activeExpertise ? "opacity-40" : ""}
+                ${
+                activeExpertise
+                  ? "hover:scale-110 cursor-pointer hover:border-text"
+                  : "cursor-none"
+              }`}
               onClick={
                 activeExpertise
                   ? () => handleSkillClick(school, skill.name)
@@ -108,23 +114,25 @@ export default function Skill({ school, skill, expertise, activeExpertise }) {
             }
           />
         </Tooltip>
-      )}
-      {!activeExpertise && !activeSkill && (
+      }
+      {/* {!activeExpertise && !activeSkill && (
         <div
           onClick={
             activeExpertise
               ? () => handleSkillClick(school, skill.name)
               : undefined
           }
-          className="h-16 w-16 bg-cover bg-center rounded-lg pointer-events-none border-2 border-secondary opacity-40"
+          className="h-16 w-16 bg-cover bg-center pointer-events-auto rounded-lg border-2 border-red-500"
           style={{
             backgroundImage: `url(${skill.image})`,
           }}
         />
-      )}
+      )} */}
       <p
         className={`text-sm text-center ${
-          activeSkill ? "opacity-100" : "opacity-40"
+          activeExpertise || (skill.points < skill.max && activeExpertise)
+            ? "opacity-100"
+            : "opacity-40"
         }`}
       >
         {skill.points} / {skill.max}
