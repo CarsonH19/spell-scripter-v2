@@ -5,6 +5,10 @@ import store from "../../../store/index";
 import { useState } from "react";
 
 import { CircleAlert } from "lucide-react";
+import { Heart } from "lucide-react";
+import { Sparkles } from "lucide-react";
+
+import { Progress } from "@/components/ui/progress";
 
 // TODO: Add Tooltips to each stat to explain what they change/do
 export default function Attributes() {
@@ -23,54 +27,74 @@ export default function Attributes() {
   }
 
   return (
-    <div className=" relative flex flex-col justify-evenly w-full h-full bg-[#424769] rounded-lg">
-      {/* TIP */}
-      <CircleAlert
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="absolute right-2 top-2 text-secondary z-30"
-      />
-      {/* {!isInventoryOpen && (
+    <div className=" relative flex flex-col justify-between w-full h-full p-2 bg-[#424769] rounded-lg">
+      <div className="flex justify-between items-start ">
+        <p className="color-text text-md text-shadow-md">
+          Level: {player.level}
+        </p>
+
         <div
-          className={`flex items-center justify-center gap-4 text-2xl font-semibold ${
-            player.attributePoints > 0 ? "text-accent" : "text-text"
+          className={`flex items-center gap-1 ${
+            player.identifier === "ENEMY" ? "justify-start" : "justify-end"
           }`}
         >
-          <h4>{player.attributePoints}</h4>
+          <Heart size={"1rem"} className="text-red-500" />
+          <p className="text-md">
+            <span>{player.currentHealth}</span>/
+            <span>{player.stats.strength.maxHealth}</span>
+          </p>
         </div>
-      )} */}
+        <div
+          className={`flex items-center gap-1 ${
+            player.identifier === "ENEMY" ? "justify-start" : "justify-end"
+          }`}
+        >
+          <Sparkles size={"1rem"} className="text-blue-500" />
+
+          <p className="text-md">
+            <span>{player.currentMana}</span>/
+            <span>{player.stats.arcana.maxMana}</span>
+          </p>
+        </div>
+
+        <CircleAlert
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="text-secondary z-30"
+        />
+      </div>
 
       {/* Strength Section */}
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4 text-shadow-sm">
+          <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-2 text-shadow-sm">
             Strength
           </h4>
-          <div className="flex items-center gap-6 mt-2">
+          <div className="flex items-center gap-6 ">
             <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
               {player.stats.strength.totalStrength}
             </p>
           </div>
         </div>
         <p className="text-sm text-text text-shadow-sm">
-          Max HP: {player.stats.strength.maxHealth}
+          Max Health: {player.stats.strength.maxHealth}
         </p>
         <p className="text-sm text-text text-shadow-sm">
           Attack: {Math.floor(player.stats.strength.attack / 2)} -{" "}
           {player.stats.strength.attack}
         </p>
         <p className="text-sm text-text text-shadow-sm">
-          HP Regeneration: {player.stats.strength.healthRegen}
+          Health Regeneration: {player.stats.strength.healthRegen}
         </p>
       </div>
 
       {/* Agility Section */}
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-shadow-sm text-lg font-medium border-b border-text mt-4">
+          <h4 className="w-40 text-center text-shadow-sm text-lg font-medium border-b border-text mt-2">
             Agility
           </h4>
-          <div className="flex items-center gap-6 mt-2">
+          <div className="flex items-center gap-6">
             <p className="text-[1.5rem] text-shadow-sm font-semibold text-text ">
               {player.stats.agility.totalAgility}
             </p>
@@ -80,33 +104,33 @@ export default function Attributes() {
           Defense: {player.stats.agility.defense}
         </p>
         <p className="text-sm text-text text-shadow-sm">
-          Hit Chance Bonus: +{player.stats.agility.hitChance}
+          Hit Chance: {player.stats.agility.hitChance}
         </p>
         <p className="text-sm text-text text-shadow-sm">
-          Speed Bonus: +{player.stats.agility.speed}
+          Speed: {player.stats.agility.speed}
         </p>
       </div>
 
       {/* Arcana Section */}
       <div className="flex flex-col items-center w-full">
         <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-lg text-shadow-sm font-medium border-b border-text mt-4">
+          <h4 className="w-40 text-center text-lg text-shadow-sm font-medium border-b border-text mt-2">
             Arcana
           </h4>
-          <div className="flex items-center gap-6 mt-2">
+          <div className="flex items-center gap-6">
             <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
               {player.stats.arcana.totalArcana}
             </p>
           </div>
         </div>
         <p className="text-sm text-text text-shadow-sm">
-          Max MP: {player.stats.arcana.maxMana}
+          Max Mana: {player.stats.arcana.maxMana}
         </p>
         <p className="text-sm text-text text-shadow-sm">
           Spell Power: {player.stats.arcana.spellPower}
         </p>
         <p className="text-sm text-text text-shadow-sm">
-          MP Regeneration: {player.stats.arcana.manaRegen}
+          Mana Regeneration: {player.stats.arcana.manaRegen}
         </p>
       </div>
 
@@ -118,18 +142,29 @@ export default function Attributes() {
             : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="relative flex flex-col justify-evenly w-full h-full inset-0 bg-background opacity-85 rounded-md transition-opacity duration-500">
+        <div className="relative flex flex-col justify-evenly w-full h-full inset-0 bg-background opacity-100 rounded-md transition-opacity duration-500">
+          {/* Level Section */}
+          <div className="relative flex flex-col items-center w-full">
+            <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4 text-shadow-sm">
+              Level
+            </h4>
+            <p className="text-center">
+              With each level your stats increase slightly but your attribute
+              scores remain the same.
+            </p>
+          </div>
+
           {/* Strength Section */}
           <div className="relative flex flex-col items-center w-full">
             <div className="flex flex-col items-center">
               <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4 text-shadow-sm">
                 Strength
               </h4>
-              <div className="flex items-center gap-6 mt-2">
+              {/* <div className="flex items-center gap-6 mt-2">
                 <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
                   {player.stats.strength.totalStrength}
                 </p>
-              </div>
+              </div> */}
             </div>
             <p className="text-sm text-text text-shadow-sm">
               Increases Max Health
@@ -138,7 +173,7 @@ export default function Attributes() {
               Increases Basic Attack Damage
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              HP Recovered Each Room
+              Health Recovered Each Room
             </p>
           </div>
 
@@ -148,20 +183,20 @@ export default function Attributes() {
               <h4 className="w-40 text-center text-shadow-sm text-lg font-medium border-b border-text mt-4">
                 Agility
               </h4>
-              <div className="flex items-center gap-6 mt-2">
+              {/* <div className="flex items-center gap-6 mt-2">
                 <p className="text-[1.5rem] text-shadow-sm font-semibold text-text ">
                   {player.stats.agility.totalAgility}
                 </p>
-              </div>
+              </div> */}
             </div>
             <p className="text-sm text-text text-shadow-sm">
-              Defense: {player.stats.agility.defense}
+              Increases Chance For Attacks To Miss
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              Hit Chance Bonus: +{player.stats.agility.hitChance}
+              Increases Chance For Attacks To Hit
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              Speed Bonus: +{player.stats.agility.speed}
+              More Likely To Start Earlier In Initiative
             </p>
           </div>
 
@@ -171,20 +206,20 @@ export default function Attributes() {
               <h4 className="w-40 text-center text-lg text-shadow-sm font-medium border-b border-text mt-4">
                 Arcana
               </h4>
-              <div className="flex items-center gap-6 mt-2">
+              {/* <div className="flex items-center gap-6 mt-2">
                 <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
                   {player.stats.arcana.totalArcana}
                 </p>
-              </div>
+              </div> */}
             </div>
             <p className="text-sm text-text text-shadow-sm">
-              Max MP: {player.stats.arcana.maxMana}
+              Increases Max Mana
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              Spell Power: {player.stats.arcana.spellPower}
+              Bonus Damaging & Healing With Spells
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              MP Regeneration: {player.stats.arcana.manaRegen}
+              Mana Recovered Each Room
             </p>
           </div>
         </div>

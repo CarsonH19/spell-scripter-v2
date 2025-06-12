@@ -48,8 +48,6 @@ export default function Skill({ school, skill, expertise, activeExpertise }) {
     skillDescription = skill.description[descriptionIndex];
   }
 
-  console.log(expertise);
-
   const handleSkillClick = (school, name) => {
     // Check if point is available and add point to skill
     if (player.masteryPoints > 0) {
@@ -82,12 +80,17 @@ export default function Skill({ school, skill, expertise, activeExpertise }) {
           <TooltipTrigger>
             <div
               className={`h-16 w-16 bg-secondary list-none rounded-md border-2 border-secondary transition-transform bg-center bg-no-repeat bg-cover flex justify-end items-end pr-1
-                ${skill.points !== skill.max && !activeExpertise ? "opacity-40" : ""}
                 ${
-                activeExpertise
-                  ? "hover:scale-110 cursor-pointer hover:border-text"
-                  : "cursor-none"
-              }`}
+                  (skill.points !== 0 && !activeExpertise) ||
+                  (activeExpertise && player.masteryPoints > 0)
+                    ? ""
+                    : "opacity-40"
+                }
+                ${
+                  activeExpertise
+                    ? "hover:scale-110 cursor-pointer hover:border-text"
+                    : "cursor-none"
+                }`}
               onClick={
                 activeExpertise
                   ? () => handleSkillClick(school, skill.name)

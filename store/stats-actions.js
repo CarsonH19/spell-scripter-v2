@@ -85,7 +85,7 @@ export default function updateStatTotals(dispatch, id) {
   if (totalStrength < 0) totalStrength = 0;
 
   maxHealth += calculateMaxHealth(character, totalStrength);
-  healthRegen += calculateHealthRegen(totalStrength);
+  healthRegen += calculateHealthRegen(character, totalStrength);
   attack += calculateAttackBonus(character, totalStrength);
 
   // Agility
@@ -291,12 +291,17 @@ export default function updateStatTotals(dispatch, id) {
     return maxHealth;
   }
 
-  function calculateHealthRegen(totalStrength) {
+  function calculateHealthRegen(character, totalStrength) {
+    let baseHealthRegen = character.level * 2;
     let healthRegen = totalStrength * 2;
+    console.log(baseHealthRegen);
+    healthRegen = healthRegen + baseHealthRegen;
 
     if (healthRegen < 0) {
       healthRegen = 0;
     }
+    console.log(healthRegen);
+
     return healthRegen;
   }
 

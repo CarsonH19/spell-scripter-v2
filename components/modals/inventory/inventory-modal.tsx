@@ -35,8 +35,6 @@ export default function InventoryModal() {
     setActive(index);
   };
 
-  console.log(player);
-
   let itemGroup;
   const attunedItems = player.inventory.attunedItems;
 
