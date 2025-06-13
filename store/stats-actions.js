@@ -91,14 +91,14 @@ export default function updateStatTotals(dispatch, id) {
   // Agility
   if (totalAgility < 0) totalAgility = 0;
 
-  defense += calculateDefense(guard, totalAgility);
-  speed += calculateSpeed(totalAgility);
-  hitChance += calculateHitChance(totalAgility);
+  defense += calculateDefense(guard, character, totalAgility);
+  speed += calculateSpeed(character, totalAgility);
+  hitChance += calculateHitChance(character, totalAgility);
 
   // Arcana
   if (totalArcana < 0) totalArcana = 0;
   maxMana += calculateMaxMana(character, totalArcana);
-  manaRegen += calculateManaRegen(totalArcana);
+  manaRegen += calculateManaRegen(character, totalArcana);
   spellPower += calculateSpellPower(character, totalArcana);
 
   if (healthRegen < 0) {
@@ -276,6 +276,7 @@ export default function updateStatTotals(dispatch, id) {
   // ===============================
 
   function calculateMaxHealth(character, totalStrength) {
+    // Units of 10
     let baseHealth;
     let strengthBonusHealth;
     let maxHealth;
@@ -292,15 +293,14 @@ export default function updateStatTotals(dispatch, id) {
   }
 
   function calculateHealthRegen(character, totalStrength) {
+    // Units of 2
     let baseHealthRegen = character.level * 2;
     let healthRegen = totalStrength * 2;
-    console.log(baseHealthRegen);
     healthRegen = healthRegen + baseHealthRegen;
 
     if (healthRegen < 0) {
       healthRegen = 0;
     }
-    console.log(healthRegen);
 
     return healthRegen;
   }
@@ -325,16 +325,24 @@ export default function updateStatTotals(dispatch, id) {
   //           Agility => Hit Chance / Speed (Initiative/Flee Chance) / Defense
   // ===============================
 
-  function calculateHitChance(totalAgility) {
-    // +1 per agility / d20 roll + hitChance
-    const hitChance = totalAgility;
+  function calculateHitChance(character, totalAgility) {
+    // Units of 1
+    let baseHitChance = character.level * 1;
+    let hitChance = totalAgility * 1;
+    hitChance = hitChance + baseHitChance;
+
+    if (hitChance < 0) {
+      hitChance = 0;
+    }
 
     return hitChance;
   }
 
-  function calculateDefense(guard, totalAgility) {
-    // Base defense of 8
-    let defense = 6 + totalAgility;
+  function calculateDefense(guard, character, totalAgility) {
+    // Units of 1
+    // Base defense of 6
+    let baseDefense = character.level * 1; 
+    let defense = totalAgility + baseDefense + 6;
 
     // Guarding (+50% defense)
     if (guard) {
@@ -344,9 +352,16 @@ export default function updateStatTotals(dispatch, id) {
     return defense;
   }
 
-  function calculateSpeed(totalAgility) {
-    // +1 per agility / d20 roll + speed
-    const speed = totalAgility;
+  function calculateSpeed(character, totalAgility) {
+    // Units of 5
+    // d20 roll + speed
+    let baseSpeed = character.level * 5;
+    let speed = totalAgility * 5;
+    speed = speed + baseSpeed;
+
+    if (speed < 0) {
+      speed = 0;
+    }
 
     return speed;
   }
@@ -356,26 +371,29 @@ export default function updateStatTotals(dispatch, id) {
   // ===============================
 
   function calculateMaxMana(character, totalArcana) {
+    // Units of 10
     let baseMana;
-    let arcanaBonusMana;
+    let arcanaBonusMana = totalArcana * 10;
     let maxMana;
 
     if (character.identifier === "PLAYER") {
-      baseMana = 10 * character.level + 30;
+      baseMana = 10 * character.level + 20;
     } else if (totalArcana > 0) {
       baseMana = 10 * character.level;
     } else {
       baseMana = 0;
     }
 
-    arcanaBonusMana = totalArcana * 10;
     maxMana = baseMana + arcanaBonusMana;
 
     return maxMana;
   }
 
-  function calculateManaRegen(totalArcana) {
-    let manaRegen = totalArcana * 2;
+  function calculateManaRegen(character, totalArcana) {
+    // Units of 3
+    let baseManaRegen = character.level * 3;
+    let manaRegen = totalArcana * 3;
+    manaRegen = manaRegen + baseManaRegen;
 
     if (manaRegen < 0) {
       manaRegen = 0;
@@ -386,7 +404,7 @@ export default function updateStatTotals(dispatch, id) {
 
   function calculateSpellPower(character, totalArcana) {
     let basePower;
-    let arcanaBonusPower;
+    let arcanaBonusPower = totalArcana * 2;
     let totalSpellPower;
 
     if (character.identifier === "PLAYER") {
@@ -397,7 +415,6 @@ export default function updateStatTotals(dispatch, id) {
       basePower = 0;
     }
 
-    arcanaBonusPower = totalArcana * 2;
     totalSpellPower = basePower + arcanaBonusPower;
 
     return totalSpellPower;

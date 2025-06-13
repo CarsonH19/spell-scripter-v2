@@ -27,7 +27,7 @@ export default function Attributes() {
   }
 
   return (
-    <div className=" relative flex flex-col justify-between w-full h-full p-2 bg-[#424769] rounded-lg">
+    <div className=" relative flex flex-col justify-start w-full h-full p-2 bg-[#424769] rounded-lg">
       <div className="flex justify-between items-start ">
         <p className="color-text text-md text-shadow-md">
           Level: {player.level}
@@ -64,74 +64,77 @@ export default function Attributes() {
         />
       </div>
 
-      {/* Strength Section */}
-      <div className="flex flex-col items-center w-full">
-        <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-2 text-shadow-sm">
-            Strength
-          </h4>
-          <div className="flex items-center gap-6 ">
-            <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
-              {player.stats.strength.totalStrength}
-            </p>
+      {/* STATS */}
+      <div className="h-full flex flex-col justify-evenly">
+        {/* Strength Section */}
+        <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center">
+            <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-2 text-shadow-sm">
+              Strength
+            </h4>
+            <div className="flex items-center gap-6 ">
+              <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
+                {player.stats.strength.totalStrength}
+              </p>
+            </div>
           </div>
+          <p className="text-sm text-text text-shadow-sm">
+            Max Health: {player.stats.strength.maxHealth}
+          </p>
+          <p className="text-sm text-text text-shadow-sm">
+            Attack: {Math.floor(player.stats.strength.attack / 2)} -{" "}
+            {player.stats.strength.attack}
+          </p>
+          <p className="text-sm text-text text-shadow-sm">
+            Health Regeneration: {player.stats.strength.healthRegen}
+          </p>
         </div>
-        <p className="text-sm text-text text-shadow-sm">
-          Max Health: {player.stats.strength.maxHealth}
-        </p>
-        <p className="text-sm text-text text-shadow-sm">
-          Attack: {Math.floor(player.stats.strength.attack / 2)} -{" "}
-          {player.stats.strength.attack}
-        </p>
-        <p className="text-sm text-text text-shadow-sm">
-          Health Regeneration: {player.stats.strength.healthRegen}
-        </p>
-      </div>
 
-      {/* Agility Section */}
-      <div className="flex flex-col items-center w-full">
-        <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-shadow-sm text-lg font-medium border-b border-text mt-2">
-            Agility
-          </h4>
-          <div className="flex items-center gap-6">
-            <p className="text-[1.5rem] text-shadow-sm font-semibold text-text ">
-              {player.stats.agility.totalAgility}
-            </p>
+        {/* Agility Section */}
+        <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center">
+            <h4 className="w-40 text-center text-shadow-sm text-lg font-medium border-b border-text mt-2">
+              Agility
+            </h4>
+            <div className="flex items-center gap-6">
+              <p className="text-[1.5rem] text-shadow-sm font-semibold text-text ">
+                {player.stats.agility.totalAgility}
+              </p>
+            </div>
           </div>
+          <p className="text-sm text-text text-shadow-sm">
+            Defense: {player.stats.agility.defense}
+          </p>
+          <p className="text-sm text-text text-shadow-sm">
+            Hit Chance: {player.stats.agility.hitChance}
+          </p>
+          <p className="text-sm text-text text-shadow-sm">
+            Speed: {player.stats.agility.speed}
+          </p>
         </div>
-        <p className="text-sm text-text text-shadow-sm">
-          Defense: {player.stats.agility.defense}
-        </p>
-        <p className="text-sm text-text text-shadow-sm">
-          Hit Chance: {player.stats.agility.hitChance}
-        </p>
-        <p className="text-sm text-text text-shadow-sm">
-          Speed: {player.stats.agility.speed}
-        </p>
-      </div>
 
-      {/* Arcana Section */}
-      <div className="flex flex-col items-center w-full">
-        <div className="flex flex-col items-center">
-          <h4 className="w-40 text-center text-lg text-shadow-sm font-medium border-b border-text mt-2">
-            Arcana
-          </h4>
-          <div className="flex items-center gap-6">
-            <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
-              {player.stats.arcana.totalArcana}
-            </p>
+        {/* Arcana Section */}
+        <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center">
+            <h4 className="w-40 text-center text-lg text-shadow-sm font-medium border-b border-text mt-2">
+              Arcana
+            </h4>
+            <div className="flex items-center gap-6">
+              <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
+                {player.stats.arcana.totalArcana}
+              </p>
+            </div>
           </div>
+          <p className="text-sm text-text text-shadow-sm">
+            Max Mana: {player.stats.arcana.maxMana}
+          </p>
+          <p className="text-sm text-text text-shadow-sm">
+            Spell Power: {player.stats.arcana.spellPower}
+          </p>
+          <p className="text-sm text-text text-shadow-sm">
+            Mana Regeneration: {player.stats.arcana.manaRegen}
+          </p>
         </div>
-        <p className="text-sm text-text text-shadow-sm">
-          Max Mana: {player.stats.arcana.maxMana}
-        </p>
-        <p className="text-sm text-text text-shadow-sm">
-          Spell Power: {player.stats.arcana.spellPower}
-        </p>
-        <p className="text-sm text-text text-shadow-sm">
-          Mana Regeneration: {player.stats.arcana.manaRegen}
-        </p>
       </div>
 
       {/* TIP */}
@@ -148,9 +151,11 @@ export default function Attributes() {
             <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4 text-shadow-sm">
               Level
             </h4>
-            <p className="text-center">
-              With each level your stats increase slightly but your attribute
-              scores remain the same.
+            <p className="text-center shadow-sm text-sm">
+              Increasing your level raises all stats slightly.
+            </p>
+            <p className="text-center shadow-sm text-sm">
+              However, your attribute score remains the same.
             </p>
           </div>
 
@@ -160,20 +165,11 @@ export default function Attributes() {
               <h4 className="w-40 text-center text-lg font-medium border-b border-text mt-4 text-shadow-sm">
                 Strength
               </h4>
-              {/* <div className="flex items-center gap-6 mt-2">
-                <p className="text-[1.5rem] font-semibold text-text text-shadow-sm">
-                  {player.stats.strength.totalStrength}
-                </p>
-              </div> */}
             </div>
+            <p className="text-sm text-text text-shadow-sm">Maximum Health</p>
+            <p className="text-sm text-text text-shadow-sm">Attack Damage Range</p>
             <p className="text-sm text-text text-shadow-sm">
-              Increases Max Health
-            </p>
-            <p className="text-sm text-text text-shadow-sm">
-              Increases Basic Attack Damage
-            </p>
-            <p className="text-sm text-text text-shadow-sm">
-              Health Recovered Each Room
+              Health Recovered on Clearing a Room
             </p>
           </div>
 
@@ -190,13 +186,13 @@ export default function Attributes() {
               </div> */}
             </div>
             <p className="text-sm text-text text-shadow-sm">
-              Increases Chance For Attacks To Miss
+              Chance For Attacks To Miss
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              Increases Chance For Attacks To Hit
+              Chance For Attacks To Hit
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              More Likely To Start Earlier In Initiative
+              Chance to Start Earlier in Combat
             </p>
           </div>
 
@@ -213,13 +209,13 @@ export default function Attributes() {
               </div> */}
             </div>
             <p className="text-sm text-text text-shadow-sm">
-              Increases Max Mana
+              Maximum Mana
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              Bonus Damaging & Healing With Spells
+              Damage & Healing Spell Effectiveness
             </p>
             <p className="text-sm text-text text-shadow-sm">
-              Mana Recovered Each Room
+              Mana Recovered on Clearing a Room
             </p>
           </div>
         </div>
