@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useSelector } from "react-redux";
 
@@ -24,6 +24,7 @@ export default function Threat() {
               <ArrowRight size={"12rem"} className="text-text" />
             </TooltipTrigger>
             <TooltipContent
+              type="TIP"
               position={"bottom-left"}
               title={"Following"}
               text={dungeon.following}
@@ -44,6 +45,7 @@ export default function Threat() {
             <Skull size={"3rem"} className="text-text" />
           </TooltipTrigger>
           <TooltipContent
+            type="TIP"
             position={"bottom-left"}
             title={"Threat"}
             text={threat}

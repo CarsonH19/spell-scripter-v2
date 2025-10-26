@@ -89,7 +89,7 @@ export default function Skill({ school, skill, expertise, activeExpertise }) {
                 ${
                   activeExpertise
                     ? "hover:scale-110 cursor-pointer hover:border-text"
-                    : "cursor-none"
+                    : ""
                 }`}
               onClick={
                 activeExpertise
