@@ -21,8 +21,10 @@ export default function MiddleContent() {
     dispatch(
       uiActions.changeUi({ element: "continueIsVisible", visible: false })
     );
+    dispatch(uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true }))
     roomTransition(dispatch);
   };
+
 
   return (
     <div className="relative h-[30%] w-full flex items-end justify-center">

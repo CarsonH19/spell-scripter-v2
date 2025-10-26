@@ -47,7 +47,7 @@ const ContentWrapper = ({ children }: { children: React.ReactNode }) => {
       {modalIsVisible && <Modal />}
 
       {/* DIALOGUE */}
-      {dialogueActive && <Dialogue />}
+      {/* {dialogueActive && <Dialogue />} */}
 
       <main className="h-screen w-screen min-w-[1250px] bg-background">
         <div className="absolute top-0 right-0 p-4">

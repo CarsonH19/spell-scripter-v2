@@ -488,10 +488,10 @@ async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// export default async function handleDialogue(dispatch, type, choice = null) {
+// export async function handleDialogue(dispatch, type, choice = null) {
 //   const event = store.getState().dungeon.contents.event;
-//   await getDialogue(dispatch, type, choice);
-//   await checkForDialogue(dispatch, type);
+//   // await getDialogue(dispatch, type, choice);
+//   // await checkForDialogue(dispatch, type);
 
 //   // Render event options after dialogue
 //   if (type === "before" && event.options) {

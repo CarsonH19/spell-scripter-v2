@@ -12,12 +12,12 @@ import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { startCombat } from "@/store/combat-actions";
-import checkForDialogue from "@/util/dialogue-util";
+// import checkForDialogue from "@/util/dialogue-util";
 import { logActions } from "@/store/log-slice";
 import { addCharacterToOrder } from "@/util/misc-util";
 import { dungeonActions } from "@/store/dungeon-slice";
 import eventFunctions from "@/util/event-functions";
-// import playSoundEffect from "@/util/audio-util";
+import playSoundEffect from "@/util/audio-util";
 import { locationNarration } from "@/util/narration-util";
 
 
@@ -63,7 +63,7 @@ async function handleGameFlow(dispatch, setShowBottom) {
   if (!event) {
     // Sets initiative & adds enemies to combat order then begins the combatLoop
     // Dialogue
-    await checkForDialogue(dispatch, "before");
+    // await checkForDialogue(dispatch, "before");
     startCombat(dispatch, dungeon.contents.enemies);
   }
 
@@ -78,8 +78,8 @@ async function handleGameFlow(dispatch, setShowBottom) {
     }
 
     // Dialogue
-    await checkForDialogue(dispatch, "before");
-
+    // await checkForDialogue(dispatch, "before");
+    console.log(event)
     // AUTO Events
     if (event.type === "AUTO") {
       // Call auto event function after dialogue

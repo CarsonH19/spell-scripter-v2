@@ -661,7 +661,6 @@ export function getRoomMusic(dungeon) {
 }
 
 export function playEncounterMusic() {
-  console.log("Encounter Music")
   const dungeon = store.getState().dungeon;
   let music;
 
@@ -697,11 +696,12 @@ export function playEncounterMusic() {
     }
   }
 
-  if (music) {
-    const musicURL = `/assets/audio/music/${music}.mp3`;
-    if (musicURL !== currentMusic._src) {
-      playMusic(backgroundMusic[music]);
-      playMusic(backgroundMusic[music]);
-    }
-  }
+  // FIX: Error with currentMusic._src returning null
+  // if (music) {
+  //   const musicURL = `/assets/audio/music/${music}.mp3`;
+  //   if (musicURL !== currentMusic._src) {
+  //     playMusic(backgroundMusic[music]);
+  //     playMusic(backgroundMusic[music]);
+  //   }
+  // }
 }

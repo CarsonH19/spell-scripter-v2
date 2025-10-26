@@ -22,6 +22,8 @@ export default function EventOptions() {
   const isAuto = dungeon.contents.event.type === "AUTO";
   let eventOptions = [];
 
+  // dispatch(uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true }))
+
   if (dungeon.contents.event) {
     eventOptions = getEventOptions(dungeon.contents.event);
     for (let i = 0; i < dungeon.contents.event.options.length; i++) {
