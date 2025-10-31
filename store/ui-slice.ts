@@ -43,7 +43,7 @@ const initialState: UiState = {
   itemListIsVisible: false,
   continueIsVisible: false,
   modalIsVisible: false,
-  eventOptionsAreVisible: false,
+  eventOptionsAreVisible: true,
   modal: {
     heroesModal: false,
     inventoryModal: false,

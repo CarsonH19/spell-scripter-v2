@@ -14,6 +14,7 @@ export default function MiddleContent() {
     (state) => state.ui.eventOptionsAreVisible
   );
 
+  console.log("Hello");
   // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
 
@@ -21,10 +22,11 @@ export default function MiddleContent() {
     dispatch(
       uiActions.changeUi({ element: "continueIsVisible", visible: false })
     );
-    dispatch(uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true }))
+    dispatch(
+      uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
+    );
     roomTransition(dispatch);
   };
-
 
   return (
     <div className="relative h-[30%] w-full flex items-end justify-center">

@@ -77,17 +77,16 @@ async function handleGameFlow(dispatch, setShowBottom) {
       }
     }
 
-    // Dialogue
-    // await checkForDialogue(dispatch, "before");
-    console.log(event)
-    // AUTO Events
-    if (event.type === "AUTO") {
-      // Call auto event function after dialogue
-      const eventFunction = eventFunctions[event.function];
-      eventFunction(dispatch);
+    // // Dialogue
+    // // await checkForDialogue(dispatch, "before");
+    // // AUTO Events
+    // if (event.type === "AUTO") {
+    //   // Call auto event function after dialogue
+    //   const eventFunction = eventFunctions[event.function];
+    //   eventFunction(dispatch);
 
-      dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
-    }
+    //   dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
+    // }
 
     // Narration
     dispatch(logActions.updateLogs({ change: "PAUSE" }));

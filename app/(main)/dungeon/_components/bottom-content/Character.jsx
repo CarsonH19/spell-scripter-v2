@@ -205,6 +205,7 @@ export default function Character({ character }) {
     </div>
   );
 
+  console.log(character.image);
   const image = (
     <div
       className={cn(
@@ -215,8 +216,10 @@ export default function Character({ character }) {
     >
       <Image
         src={`${character.image}.png`}
+        // src={`/assets/images/player/player-1.png`}
         alt={character.name}
         fill
+        unoptimized
         className="h-full w-full object-cover overflow-visible z-2"
       />
       <DamageDisplay character={character} />

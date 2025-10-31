@@ -31,7 +31,7 @@ export const upsertPlayer = async () => {
       clerk_user_id: userId,
       identifier: "PLAYER",
       name: "Spell Scripter",
-      image: "/assets/images/player/player",
+      image: "/assets/images/player/player-1",
       icon: "/assets/images/player/player-1-icon",
       level: 1,
       mastery_points: 0,
