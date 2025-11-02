@@ -10,11 +10,11 @@ import playSoundEffect from "@/util/audio-util";
 
 export default function MiddleContent() {
   const dispatch = useDispatch();
+
   const eventOptionsAreVisible = useSelector(
     (state) => state.ui.eventOptionsAreVisible
   );
 
-  console.log("Hello");
   // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
 

@@ -18,11 +18,13 @@ import { Button } from "@/components/ui/button";
 export default function EventOptions() {
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
-  const isTrap = dungeon.contents.event.type === "TRAP";
-  const isAuto = dungeon.contents.event.type === "AUTO";
   let eventOptions = [];
 
-  // dispatch(uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true }))
+  // If no event - stop execution
+  if (!dungeon?.contents?.event) return;
+
+  const isTrap = dungeon.contents.event.type === "TRAP";
+  const isAuto = dungeon.contents.event.type === "AUTO";
 
   if (dungeon.contents.event) {
     eventOptions = getEventOptions(dungeon.contents.event);

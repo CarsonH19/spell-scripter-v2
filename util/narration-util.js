@@ -1,4 +1,6 @@
 import { logActions } from "@/store/log-slice";
+import { uiActions } from "@/store/ui-slice";
+
 import playSoundEffect from "@/util/audio-util";
 
 export async function locationNarration(dispatch, location) {
@@ -18,6 +20,10 @@ export async function locationNarration(dispatch, location) {
   await delay(5000);
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
+  // FIX: eventOptionsAreVisible is set to true so that after the title screen of the location is shown for the dungeon entrance the event option to enter is visible
+  dispatch(
+        uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
+      );
 }
 
 async function delay(ms) {
