@@ -132,35 +132,37 @@ export default function Actions() {
               player.stats.arcana.spellPower
             );
 
-            return (
-              <Tooltip key={spellObject.name}>
-                <TooltipTrigger>
-                  <div
+            if (search === spellObject.castTime || spellObject.castTime === "ANYTIME") {
+              return (
+                <Tooltip key={spellObject.name}>
+                  <TooltipTrigger>
+                    <div
+                      key={spellObject.name}
+                      onClick={() =>
+                        handleSelectChoice(spellObject, "spellListIsVisible")
+                      }
+                      className={`w-16 h-16 bg-center bg-no-repeat bg-cover rounded-lg border-2 ${
+                        playerMana >= spellObject.manaCost
+                          ? "border-primary opacity-100 cursor-pointer"
+                          : "border-gray-600 opacity-60 pointer-events-none"
+                      }`}
+                      style={{
+                        backgroundImage: `url(${spellObject.image})`,
+                      }}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent
                     key={spellObject.name}
-                    onClick={() =>
-                      handleSelectChoice(spellObject, "spellListIsVisible")
-                    }
-                    className={`w-16 h-16 bg-center bg-no-repeat bg-cover rounded-lg border-2 ${
-                      playerMana >= spellObject.manaCost
-                        ? "border-primary opacity-100 cursor-pointer"
-                        : "border-gray-600 opacity-60 pointer-events-none"
-                    }`}
-                    style={{
-                      backgroundImage: `url(${spellObject.image})`,
-                    }}
+                    type={"SKILL"}
+                    title={spellObject.name}
+                    text={spellObject.school}
+                    detailOne={spellDescription}
+                    detailTwo={`Mana Cost: ${spellObject.manaCost}`}
+                    position="TOP"
                   />
-                </TooltipTrigger>
-                <TooltipContent
-                  key={spellObject.name}
-                  type={"SKILL"}
-                  title={spellObject.name}
-                  text={spellObject.school}
-                  detailOne={spellDescription}
-                  detailTwo={`Mana Cost: ${spellObject.manaCost}`}
-                  position="TOP"
-                />
-              </Tooltip>
-            );
+                </Tooltip>
+              );
+            }
           })}
         </ul>
         <X
