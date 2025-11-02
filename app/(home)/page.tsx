@@ -1,5 +1,7 @@
 "use client";
 
+import store from "./../../store/index";
+
 import { Button } from "@/components/ui/button";
 import {
   ClerkLoaded,
@@ -102,17 +104,21 @@ async function startTransition(dispatch) {
   await delay(2000);
 
   // Get Player & Update State
-  const player = await upsertPlayer();
-  const dungeon = await upsertDungeon();
+  // FIX: uncomment to activate db & remove player & dungeon constant
+  // const player = await upsertPlayer();
+  // const dungeon = await upsertDungeon();
 
-  dispatch(playerActions.updatePlayer(player));
-  dispatch(dungeonActions.updateDungeon(dungeon));
+  const dungeon = store.getState().dungeon;
+  const player = store.getState().player;
 
   console.log("PLAYER", player);
   console.log("DUNGEON", dungeon);
+  //
+  //
 
-
-
+  dispatch(playerActions.updatePlayer(player));
+  dispatch(dungeonActions.updateDungeon(dungeon));
+  
   // dispatch(uiActions.changeUi({ element: "startIsVisible", visible: false })); // false
 
   // dispatch(

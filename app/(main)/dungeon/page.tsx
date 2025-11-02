@@ -1,18 +1,14 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import store from "@/store";
-
 import BottomContent from "./_components/bottom-content/BottomContent";
 import Buttons from "../dungeon/_components/buttons/Buttons";
-
 import MiddleContent from "./_components/middle-content/MiddleContent";
 import TopContent from "./_components/top-content/TopContent";
-
 import { useEffect, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { startCombat } from "@/store/combat-actions";
-// import checkForDialogue from "@/util/dialogue-util";
 import { logActions } from "@/store/log-slice";
 import { addCharacterToOrder } from "@/util/misc-util";
 import { dungeonActions } from "@/store/dungeon-slice";
@@ -20,15 +16,23 @@ import eventFunctions from "@/util/event-functions";
 import playSoundEffect from "@/util/audio-util";
 import { locationNarration } from "@/util/narration-util";
 
-
 const DungeonPage = () => {
   const [showBottom, setShowBottom] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
   const dispatch = useDispatch();
   const { roomCounter, image } = useSelector((state) => state.dungeon);
-  
+
   useEffect(() => {
-    handleGameFlow(dispatch, setShowBottom);
-  }, [roomCounter]);
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      handleGameFlow(dispatch, setShowBottom);
+    }
+  }, [isMounted, roomCounter]);
+
+  if (typeof window === "undefined") return null;
 
   return (
     <div
@@ -46,6 +50,7 @@ const DungeonPage = () => {
 };
 
 export default DungeonPage;
+
 
 async function handleGameFlow(dispatch, setShowBottom) {
   const dungeon = store.getState().dungeon;
@@ -77,16 +82,16 @@ async function handleGameFlow(dispatch, setShowBottom) {
       }
     }
 
-    // // Dialogue
-    // // await checkForDialogue(dispatch, "before");
-    // // AUTO Events
-    // if (event.type === "AUTO") {
-    //   // Call auto event function after dialogue
-    //   const eventFunction = eventFunctions[event.function];
-    //   eventFunction(dispatch);
+    // Dialogue
+    // await checkForDialogue(dispatch, "before");
+    // AUTO Events
+    if (event.type === "AUTO") {
+      // Call auto event function after dialogue
+      const eventFunction = eventFunctions[event.function];
+      eventFunction(dispatch);
 
-    //   dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
-    // }
+      dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
+    }
 
     // Narration
     dispatch(logActions.updateLogs({ change: "PAUSE" }));
