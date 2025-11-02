@@ -50,19 +50,23 @@ export default function InventoryModal() {
       break;
   }
 
-  // Counter logic
-  const counters = [];
-  itemGroup.map((item) => {
-    let existingItem = counters.find((obj) => obj.name === item.name);
-    if (existingItem) {
-      existingItem.counter++;
-    } else {
-      counters.push({ ...item, counter: 1 });
-    }
-  });
+// Counter logic
+const counters = [];
+
+itemGroup.forEach((item) => {
+  // Count total occurrences across both arrays
+  const totalCount =
+    itemGroup.filter((i) => i.name === item.name).length +
+    attunedItems.filter((i) => i.name === item.name).length;
+
+  // Add to counters only once per unique item name
+  if (!counters.some((obj) => obj.name === item.name)) {
+    counters.push({ ...item, counter: totalCount });
+  }
+});
 
   // Counting Set Pieces
-  let setCounts = {};
+  const setCounts = {};
   // Iterate over the attuned items and count the occurrences of each set
   player.inventory.attunedItems.forEach((item) => {
     if (item.set) {

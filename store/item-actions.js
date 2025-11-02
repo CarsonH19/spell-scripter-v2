@@ -30,7 +30,7 @@ export default async function activateItem(dispatch, item) {
       {
         // In Dungeon -> combat-slice
         if (!dashboard) {
-          if (player.inventory.attunedItems.includes(item)) {
+          if (player.inventory.attunedItems.some(i => i.name === item.name)) {
             // remove item from attunedItems
             dispatch(
               combatActions.changePlayerAttunement({ item, change: "REMOVE" })
@@ -49,14 +49,17 @@ export default async function activateItem(dispatch, item) {
         }
         // In Dashboard -> player-slice
         if (dashboard) {
-          if (player.inventory.attunedItems.includes(item)) {
+          if (player.inventory.attunedItems.some(i => i.name === item.name)) {
+            console.log("REMOVE")
+            console.log(item)
             // remove item from attunedItems
             dispatch(
               playerActions.changeAttunement({ item, change: "REMOVE" })
             );
             changeStatusEffect(dispatch, player, "REMOVE", item);
             playSoundEffect(false, "ui", "unattune");
-          } else if (player.inventory.attunedItems.length < 5) {
+          } else if (player.inventory.attunedItems.length < 5 && !player.inventory.attunedItems.some(i => i.name === item.name)) {
+            console.log("ADD")
             // equip item to attunedItems
             dispatch(playerActions.changeAttunement({ item, change: "ADD" }));
             changeStatusEffect(dispatch, player, "ADD", item);

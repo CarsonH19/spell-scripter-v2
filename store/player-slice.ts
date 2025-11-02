@@ -39,6 +39,7 @@ interface PlayerStats {
 
 interface InventoryItem {
   id: string;
+  name: boolean;
   type: "EQUIPMENT" | "CONSUMABLE" | "MISC";
 }
 
@@ -267,7 +268,7 @@ const playerSlice = createSlice({
       action: PayloadAction<{ item: InventoryItem; change: "ADD" | "REMOVE" }>
     ) {
       const { item, change } = action.payload;
-      const id = item.id;
+      const itemName = item.name;
 
       switch (change) {
         case "ADD":
@@ -290,7 +291,7 @@ const playerSlice = createSlice({
             itemGroup = state.inventory.miscItems;
           }
 
-          const itemIndex = itemGroup?.findIndex((i) => i.id === id);
+          const itemIndex = itemGroup?.findIndex((i) => i.name === itemName);
           if (itemIndex !== undefined && itemIndex !== -1) {
             itemGroup.splice(itemIndex, 1);
           }
@@ -302,7 +303,7 @@ const playerSlice = createSlice({
       action: PayloadAction<{ item: InventoryItem; change: "ADD" | "REMOVE" }>
     ) {
       const { item, change } = action.payload;
-      const id = item.id;
+      const itemName = item.name;
 
       switch (change) {
         case "ADD":
@@ -312,7 +313,7 @@ const playerSlice = createSlice({
           ) {
             state.inventory.attunedItems.push(item);
             const itemIndex = state.inventory.equipment.findIndex(
-              (i) => i.id === id
+              (i) => i.name === itemName
             );
             if (itemIndex !== -1) {
               state.inventory.equipment.splice(itemIndex, 1);
@@ -322,7 +323,7 @@ const playerSlice = createSlice({
 
         case "REMOVE":
           const itemIndex = state.inventory.attunedItems.findIndex(
-            (i) => i.id === id
+            (i) => i.name === itemName
           );
           if (itemIndex !== -1) {
             state.inventory.attunedItems.splice(itemIndex, 1);

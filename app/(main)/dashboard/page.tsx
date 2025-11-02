@@ -43,6 +43,13 @@ const DashboardPage = () => {
         change: "ADD",
       })
     );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
+        change: "ADD",
+      })
+    );
   }, []);
 
   useEffect(() => {

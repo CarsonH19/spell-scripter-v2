@@ -90,7 +90,10 @@ export async function exitDungeonTransition(dispatch) {
   dispatch(
     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
   );
+  console.log("Before")
   await delay(3000);
+    console.log("After")
+
   // const newPlayer = store.getState().player;
 
   playMusic(backgroundMusic.intangibleAscension);
