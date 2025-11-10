@@ -15,14 +15,14 @@ const TooltipContent = React.forwardRef<
     title?: string;
 
     containerStyles?: string;
-    position: "LEFT" | "RIGHT" | "TOP" | "BOTTOM" | "TOME TIP";
+    position: "LEFT" | "RIGHT" | "TOP" | "BOTTOM" | "TOME TIP" | "EFFECT";
     detailOne?: string;
     count?: number;
     detailTwo?: string | string[];
     detailThree?: string;
     detailFour?: string;
     detailFive?: string;
-    type?: "ITEM" | "SKILL" | "SPELL" | "TIP";
+    type?: "ITEM" | "SKILL" | "SPELL" | "TIP" | "EFFECT";
   }
 >(
   (
@@ -62,8 +62,6 @@ const TooltipContent = React.forwardRef<
         positionStyles = "relative left-[0rem] top-[rem]";
         break;
     }
-
-    console.log(type);
 
     switch (type) {
       case "ITEM":
@@ -143,6 +141,18 @@ const TooltipContent = React.forwardRef<
             {/* <hr className="my-2" />
             {detailThree && <p className="text-sm">{detailThree}</p>}
             {detailTwo && <p className="text-sm">{detailTwo}</p>} */}
+          </div>
+        );
+        break;
+
+      case "EFFECT":
+        content = (
+          <div className={"text-center"}>
+            {title && <h4 className="font-bold mb-1">{title}</h4>}
+            {detailOne && <p className="italic text-sm mb-1">{detailOne}</p>}
+            {detailTwo && <p className="text-sm">{detailTwo}</p>}
+            <hr className="my-2" />
+            {detailThree && <p className="text-sm">{detailThree}</p>}
           </div>
         );
         break;

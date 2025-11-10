@@ -154,6 +154,7 @@ export default function Character({ character }) {
             // const isCharacterEnemy = character.identifier === "ENEMY";
 
             // Duration logic
+            console.log(effect)
             const duration =
               effect.durationType === "ROUND"
                 ? `Duration: ${effect.duration} ${
@@ -184,17 +185,18 @@ export default function Character({ character }) {
                 </TooltipTrigger>
                 <TooltipPortal container={document.getElementById("container")}>
                   <TooltipContent
+                    type={"EFFECT"}
+                    position={"BOTTOM"}
                     title={effect.name}
-                    text={effect.description}
-                    detailOne={duration}
-                    detailTwo={
+                    detailOne={effect.description}
+                    detailTwo={duration}
+                    detailThree={
                       effect.effect
                         ? effect.effect.map((line, index) => (
                             <span key={index}>{line}</span>
                           ))
                         : null
                     }
-                    position="effect"
                   />
                 </TooltipPortal>
               </Tooltip>
