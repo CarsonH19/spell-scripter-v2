@@ -314,11 +314,7 @@ export function rollToHit(dispatch, attacker, target) {
     castStormShield(dispatch, attacker);
   }
 
-  if (chanceToHit > defense) {
-    return true;
-  } else {
-    return false;
-  }
+  return chanceToHit > defense ? true : false;
 }
 
 export function calcDamage(character, spell, spellPower) {

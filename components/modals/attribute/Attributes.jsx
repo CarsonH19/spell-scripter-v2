@@ -40,7 +40,8 @@ export default function Attributes() {
         >
           <Heart size={"1rem"} className="text-red-500" />
           <p className="text-md">
-            <span>{player.currentHealth}</span>/
+            {!dashboard && <span>{player.currentHealth}</span>}
+            {!dashboard && '/'}
             <span>{player.stats.strength.maxHealth}</span>
           </p>
         </div>
@@ -52,7 +53,8 @@ export default function Attributes() {
           <Sparkles size={"1rem"} className="text-blue-500" />
 
           <p className="text-md">
-            <span>{player.currentMana}</span>/
+            {!dashboard && <span>{player.currentMana}</span>}
+            {!dashboard && '/'}
             <span>{player.stats.arcana.maxMana}</span>
           </p>
         </div>
@@ -167,7 +169,9 @@ export default function Attributes() {
               </h4>
             </div>
             <p className="text-sm text-text text-shadow-sm">Maximum Health</p>
-            <p className="text-sm text-text text-shadow-sm">Attack Damage Range</p>
+            <p className="text-sm text-text text-shadow-sm">
+              Attack Damage Range
+            </p>
             <p className="text-sm text-text text-shadow-sm">
               Health Recovered on Clearing a Room
             </p>
@@ -208,9 +212,7 @@ export default function Attributes() {
                 </p>
               </div> */}
             </div>
-            <p className="text-sm text-text text-shadow-sm">
-              Maximum Mana
-            </p>
+            <p className="text-sm text-text text-shadow-sm">Maximum Mana</p>
             <p className="text-sm text-text text-shadow-sm">
               Damage & Healing Spell Effectiveness
             </p>

@@ -52,8 +52,6 @@ export default function ConfirmationModal() {
     openModal(dispatch, modal);
   };
 
-  console.log(characters)
-
   return (
     <div className="relative bg-[var(--background)] h-full min-h-[40rem] w-full flex flex-col justify-between items-center border-4 border-[var(--secondary)] p-4">
       <div className="flex flex-row w-full min-h-[40rem] min-w-[90rem] h-[90%] p-4 gap-2 overflow-visible">
