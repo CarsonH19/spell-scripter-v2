@@ -44,7 +44,6 @@ const statusEffectFunctions = {
         damageDisplay: [],
       };
 
-      console.log("SHADOW ADDED");
       dispatch(dungeonActions.addEnemy({ enemy: shadow, change: "ADD" }));
       // dispatch(combatActions.addCharacter({ character: shadow }));
     }

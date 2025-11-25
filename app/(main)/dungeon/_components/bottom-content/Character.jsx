@@ -154,7 +154,6 @@ export default function Character({ character }) {
             // const isCharacterEnemy = character.identifier === "ENEMY";
 
             // Duration logic
-            console.log(effect)
             const duration =
               effect.durationType === "ROUND"
                 ? `Duration: ${effect.duration} ${
@@ -207,7 +206,6 @@ export default function Character({ character }) {
     </div>
   );
 
-  console.log(character.image);
   const image = (
     <div
       className={cn(

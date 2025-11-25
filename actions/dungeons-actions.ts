@@ -17,11 +17,8 @@ export const upsertDungeon = async () => {
   });
 
   if (existingDungeon) {
-    console.log("Existing Dungeon");
     return existingDungeon;
   }
-
-  console.log("New Dungeon");
 
   const newDungeon = await db.insert(dungeons).values({
     clerk_user_id: userId, // Ensure it's passed as string

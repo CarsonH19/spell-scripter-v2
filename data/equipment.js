@@ -259,8 +259,9 @@ const EQUIPMENT = {
     image: "/assets/images/items/equipment/spine-of-the-necromancer.jpg",
     type: "EQUIPMENT",
     rarity: "Epic",
-    useInCombat: false,
-    effect: ["+12 Spell Power", "-1 Agility", "-1 Strength"],
+    useInCombat: true,
+    effect: ["Use to cast Death Ray","+12 Spell Power", "-1 Agility", "-1 Strength"],
+    target: "ENEMY",
     stats: {
       strength: { strengthChange: -1 },
       agility: { agilityChange: -1 },

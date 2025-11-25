@@ -158,11 +158,14 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
               break;
             case "USE ITEM":
               {
-                // choose a spell from spell list
+                // choose an item from item list
                 const selectedItem = await select();
-                // Restart the while loop allowing players to change actions
+                console.log("selectedItem", selectedItem);
                 if (selectedItem === null) continue;
-                await activateItem(dispatch, selectedItem);
+                if (selectedItem) {
+                  // Restart the while loop allowing players to change actions
+                  await activateItem(dispatch, selectedItem);
+                }
               }
               break;
           }
@@ -257,17 +260,17 @@ export function setPlayerAction(action) {
 }
 
 // =============================================================
-//                     SELECT SPELL
+//                     SELECT SPELL/ITEM
 // =============================================================
 
-// Used to await which spell the player wants to cast
+// Used to await which spell/item the player wants to cast
 export async function select() {
   return new Promise((resolve) => {
     selectResolver = resolve;
   });
 }
 
-// Function to set the selected spell in the Spell component
+// Function to set the selected spell/item in the Spell component
 export function setSelect(choice) {
   if (selectResolver) {
     selectResolver(choice);

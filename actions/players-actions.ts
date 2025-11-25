@@ -18,12 +18,8 @@ export const upsertPlayer = async () => {
   });
 
   if (existingPlayer) {
-    console.log("Existing Player")
     return existingPlayer;
   }
-
-
-  console.log("New Player")
 
   const newPlayer = await db
     .insert(players)

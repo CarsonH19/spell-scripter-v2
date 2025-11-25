@@ -14,7 +14,7 @@ const DamageDisplay = memo(({ character }) => {
     };
   }, [character.damageDisplay, dispatch, character.id]);
 
-  console.log(character.damageDisplay);
+  // console.log(character.damageDisplay);
 
   return (
     <ul className="absolute top-70 left-1/2 transform -translate-x-1/2 w-4/5 h-full flex flex-col items-center justify-start pt-12 z-5">
@@ -22,7 +22,7 @@ const DamageDisplay = memo(({ character }) => {
         .slice()
         .reverse()
         .map((item) => {
-          console.log(item);
+          // console.log(item);
           return (
             <li
               key={item.id}

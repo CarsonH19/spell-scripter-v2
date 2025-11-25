@@ -30,36 +30,109 @@ export default async function activateItem(dispatch, item) {
       {
         // In Dungeon -> combat-slice
         if (!dashboard) {
-          if (player.inventory.attunedItems.some(i => i.name === item.name)) {
-            // remove item from attunedItems
-            dispatch(
-              combatActions.changePlayerAttunement({ item, change: "REMOVE" })
-            );
-            changeStatusEffect(dispatch, player, "REMOVE", item);
-            playSoundEffect(false, "ui", "unattune");
-          } else if (player.inventory.attunedItems.length < 5) {
-            // equip item to attunedItems
-            dispatch(
-              combatActions.changePlayerAttunement({ item, change: "ADD" })
-            );
-            // NOTE - must update player state at the end of the dungeon gameplay
-            changeStatusEffect(dispatch, player, "ADD", item);
-            playSoundEffect(false, "ui", "magicStone", 0.2);
+          // Checks if player is in danger -> player is in combat
+          const isDanger = store.getState().dungeon.danger;
+          if (isDanger) {
+            const snakeCaseItem = toSnakeCase(item.name);
+            const equipmentFunction = itemFunctions[snakeCaseItem];
+            let target;
+            // console.log("activateItem Equipment", item);
+
+            if (equipmentFunction) {
+              // equipment only targets the player
+              if (item.target && item.target === "PLAYER") {
+                dispatch(
+                  uiActions.changeUi({
+                    element: "modalIsVisible",
+                    visible: false,
+                  })
+                );
+                target = player;
+              }
+
+              // Equipment can target an enemy
+              if (item.target && item.target === "ENEMY") {
+                dispatch(logActions.updateLogs({ change: "CLEAR" }));
+                dispatch(logActions.updateLogs({ change: "PAUSE" }));
+                // If consumable is selected in the modal, close the modal to select a target
+                dispatch(
+                  uiActions.changeUi({
+                    element: "modalIsVisible",
+                    visible: false,
+                  })
+                );
+                dispatch(
+                  logActions.updateLogs({
+                    change: "ADD",
+                    text: `Choose an enemy!`,
+                  })
+                );
+                target = await getTarget("ENEMIES");
+                // console.log("target", target);
+                dispatch(logActions.updateLogs({ change: "CLEAR" }));
+                dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+              }
+
+              // Equipment can target an ally
+              if (item.target && item.target === "ALLY") {
+                dispatch(logActions.updateLogs({ change: "CLEAR" }));
+                dispatch(logActions.updateLogs({ change: "PAUSE" }));
+                // If consumable is selected in the modal, close the modal to select a target
+                dispatch(
+                  uiActions.changeUi({
+                    element: "modalIsVisible",
+                    visible: false,
+                  })
+                );
+                dispatch(
+                  logActions.updateLogs({
+                    change: "ADD",
+                    text: `Choose an ally!`,
+                  })
+                );
+                target = await getTarget("ALLIES");
+                dispatch(logActions.updateLogs({ change: "CLEAR" }));
+                dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+              }
+
+              equipmentFunction(dispatch, target);
+            }
+          } else {
+            if (
+              player.inventory.attunedItems.some((i) => i.name === item.name)
+            ) {
+              // remove item from attunedItems
+              dispatch(
+                combatActions.changePlayerAttunement({ item, change: "REMOVE" })
+              );
+              changeStatusEffect(dispatch, player, "REMOVE", item);
+              playSoundEffect(false, "ui", "unattune");
+            } else if (player.inventory.attunedItems.length < 5) {
+              // equip item to attunedItems
+              dispatch(
+                combatActions.changePlayerAttunement({ item, change: "ADD" })
+              );
+              // NOTE - must update player state at the end of the dungeon gameplay
+              changeStatusEffect(dispatch, player, "ADD", item);
+              playSoundEffect(false, "ui", "magicStone", 0.2);
+            }
           }
         }
         // In Dashboard -> player-slice
         if (dashboard) {
-          if (player.inventory.attunedItems.some(i => i.name === item.name)) {
-            console.log("REMOVE")
-            console.log(item)
+          if (player.inventory.attunedItems.some((i) => i.name === item.name)) {
+            // console.log("REMOVE");
+            // console.log(item);
             // remove item from attunedItems
             dispatch(
               playerActions.changeAttunement({ item, change: "REMOVE" })
             );
             changeStatusEffect(dispatch, player, "REMOVE", item);
             playSoundEffect(false, "ui", "unattune");
-          } else if (player.inventory.attunedItems.length < 5 && !player.inventory.attunedItems.some(i => i.name === item.name)) {
-            console.log("ADD")
+          } else if (
+            player.inventory.attunedItems.length < 5 &&
+            !player.inventory.attunedItems.some((i) => i.name === item.name)
+          ) {
             // equip item to attunedItems
             dispatch(playerActions.changeAttunement({ item, change: "ADD" }));
             changeStatusEffect(dispatch, player, "ADD", item);
@@ -77,6 +150,7 @@ export default async function activateItem(dispatch, item) {
         const itemFunction = itemFunctions[snakeCaseItem];
 
         // Don't include items that can only be used in specific situations
+        // FIX: Move this logic for "specific items" to its own file in util
         if (
           item.name !== "Skeleton Key" &&
           item.name !== "Laughing Coffin Coin" &&

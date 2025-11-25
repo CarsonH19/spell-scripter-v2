@@ -132,7 +132,10 @@ export default function Actions() {
               player.stats.arcana.spellPower
             );
 
-            if (search === spellObject.castTime || spellObject.castTime === "ANYTIME") {
+            if (
+              search === spellObject.castTime ||
+              spellObject.castTime === "ANYTIME"
+            ) {
               return (
                 <Tooltip key={spellObject.name}>
                   <TooltipTrigger>
@@ -174,8 +177,17 @@ export default function Actions() {
   } else if (itemUI) {
     let counters = [];
     const itemList = player.inventory.consumables;
+    const attunedItemsList = player.inventory.attunedItems
 
     itemList.map((item) => {
+      let existingItem = counters.find((obj) => obj.name === item.name);
+      if (existingItem) {
+        existingItem.counter++;
+      } else {
+        counters.push({ ...item, counter: 1 });
+      }
+    });
+    attunedItemsList.map((item) => {
       let existingItem = counters.find((obj) => obj.name === item.name);
       if (existingItem) {
         existingItem.counter++;
@@ -193,13 +205,29 @@ export default function Actions() {
           {counters.map((item) => {
             if (item.useInCombat) {
               return (
-                <Item
-                  key={item.id}
-                  item={item}
-                  count={item.counter}
-                  onClick={() => handleSelectChoice(item, "itemListIsVisible")}
-                  className="w-16 h-16 bg-center bg-no-repeat bg-cover rounded-lg border-2 border-primary hover:scale-110 cursor-pointer"
-                />
+                <Tooltip key={item.name}>
+                  <TooltipTrigger>
+                    <Item
+                      key={item.id}
+                      item={item}
+                      count={item.counter}
+                      onClick={() =>
+                        handleSelectChoice(item, "itemListIsVisible")
+                      }
+                      className="w-16 h-16 bg-center bg-no-repeat bg-cover rounded-lg border-2 border-primary hover:scale-110 cursor-pointer"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent
+                    key={item.id}
+                    type={"ITEM"}
+                    position={"TOP"}
+                    title={item.name}
+                    detailOne={item.rarity}
+                    count={item.counter}
+                    detailTwo={item.description}
+                    detailThree={item.effect}
+                  />
+                </Tooltip>
               );
             }
           })}

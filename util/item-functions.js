@@ -251,6 +251,11 @@ export const itemFunctions = {
       return 5;
     }
   },
+  SPINE_OF_THE_NECROMANCER: (dispatch, target) => {
+    // Casts "Death Ray" deals 30 damage.
+    console.log("Item Function Called")
+    changeHealth(dispatch, target, "DAMAGE", 30, "NECROTIC");
+  },
   // ==================================================================
   //                            MISC. ITEMS
   // ==================================================================
