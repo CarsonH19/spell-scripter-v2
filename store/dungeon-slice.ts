@@ -41,7 +41,7 @@ const initialState: DungeonState = {
   path: null,
   pathCounter: null,
   roomCounter: 0,
-  threat: -1,
+  threat: 0,
   danger: false,
   image:
     "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance",

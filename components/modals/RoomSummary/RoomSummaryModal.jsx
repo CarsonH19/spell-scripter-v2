@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import classes from "./RoomSummaryModal.module.css";
 
-// import Tooltip from "../../UI/Tooltip";
 import {
   Tooltip,
   TooltipContent,
@@ -25,27 +23,19 @@ import progressActiveQuests from "@/util/quest-util";
 
 import { backgroundMusic, playMusic } from "@/data/audio/music";
 
-import store from "@/store/index";
+import Item from "../inventory/item";
 
 export default function RoomSummaryModal() {
   const dispatch = useDispatch();
   const event = useSelector((state) => state.dungeon.contents.event);
   const enemies = useSelector((state) => state.dungeon.contents.enemies);
   const itemsLooted = useSelector((state) => state.dungeon.contents.items);
-
-  // Check for summon removal
-  checkForSummonEnd(dispatch);
-
   const order = useSelector((state) => state.combat.order);
 
   useEffect(() => {
-    // Play music after clearing room
     playMusic(backgroundMusic.threeThousandYearsOld);
-
-    // Check for quest progression
     progressActiveQuests(dispatch, "EVENT");
 
-    // Ensure event options are not visible (needed for TRADE events)
     dispatch(
       uiActions.changeUi({
         element: "eventOptionsAreVisible",
@@ -53,17 +43,12 @@ export default function RoomSummaryModal() {
       })
     );
 
-    // Clear dialogue
     dispatch(dialogueActions.clearDialogue("ALL"));
-
-    // Clear any lingering narrations
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
     dispatch(logActions.updateLogs({ change: "CLEAR" }));
 
-    // Toggle off danger
     dispatch(dungeonActions.dangerToggle({ danger: false }));
 
-    // Add items looted from room/enemies to player's inventory in the combat-slice
     for (let i = 0; i < itemsLooted.length; i++) {
       dispatch(
         combatActions.changePlayerInventory({
@@ -74,7 +59,6 @@ export default function RoomSummaryModal() {
     }
 
     for (let i = 0; i < order.length; i++) {
-      // Regen Health for Player & Heroes
       if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
         changeHealth(
           dispatch,
@@ -83,7 +67,6 @@ export default function RoomSummaryModal() {
           order[i].stats.strength.healthRegen
         );
 
-        // Regen Mana for Player
         if (order[i].identifier === "PLAYER") {
           dispatch(
             combatActions.updateMana({
@@ -93,15 +76,12 @@ export default function RoomSummaryModal() {
           );
         }
 
-        // Decrement Status Effects
         checkStatusEffect(dispatch, order[i].id, "DECREMENT", "ROOM");
         checkStatusEffect(dispatch, order[i].id, "REMOVE");
-        // Remove Round & Action durationType status effects
         checkStatusEffect(dispatch, order[i].id, "END");
       }
     }
 
-    // SKILL - Improved Arcane Shield - Add minimum temp. hit points to shield
     const improvedArcaneShield = checkSkillPoints("Improved Arcane Shield");
     if (improvedArcaneShield) {
       const player = order.find((char) => char.id === "Player");
@@ -111,68 +91,88 @@ export default function RoomSummaryModal() {
   }, [dispatch]);
 
   return (
-    <div className={classes.summary}>
-      <h1>Room Cleared!</h1>
-      <div className={classes.container}>
-        {/* <div>TOME PROGRESS BAR</div>
-        <div>QTE QUESTIONS</div> */}
+    <div
+      className="
+      h-[90%] w-[30%] min-w-[40rem]
+      bg-[var(--background)]
+      flex flex-col items-center justify-start
+      border-2 border-[var(--secondary)]
+      p-4 gap-4 rounded-[10px]
+      text-center
+    "
+    >
+      <h1 className="text-2xl m-0 p-0 w-1/2 border-b-2 border-[var(--secondary)]">
+        Room Cleared!
+      </h1>
+
+      <div className="flex flex-col items-center justify-center w-full">
         {event && (
-          <div className={classes.event}>
-            <h2>Event</h2>
-            <p>{event.outcome}</p>
+          <div className="w-full my-4">
+            <h2 className="border-b border-[var(--secondary)]">Event</h2>
+            <p className="m-4">{event.outcome}</p>
           </div>
         )}
+
         {enemies.length > 0 && (
-          <div className={classes.enemies}>
-            <h2>Enemies Defeated</h2>
-            <ul>
-              {enemies.map((enemy) => {
-                return (
-                  <Tooltip key={enemy.id}>
-                    <TooltipTrigger>
-                      <li
-                        style={{
-                          backgroundImage: enemy.icon
-                            ? `url(${enemy.icon}.png)`
-                            : "none",
-                        }}
-                      ></li>
-                    </TooltipTrigger>
-                    <TooltipContent
-                      key={enemy.id}
-                      position="room-summary-icon"
-                      title={enemy.name}
+          <div className="w-full my-4">
+            <h2 className="mb-12 border-b border-[var(--secondary)]">
+              Enemies Defeated
+            </h2>
+            <ul className="flex justify-center gap-4">
+              {enemies.map((enemy) => (
+                <Tooltip key={enemy.id}>
+                  <TooltipTrigger>
+                    <li
+                      className="
+                        w-16 h-16 
+                        border-2 border-[var(--secondary)] 
+                        rounded 
+                        bg-[var(--primary)]
+                        bg-center bg-no-repeat bg-contain
+                        list-none transition-transform
+                        hover:scale-110 hover:border-[var(--text)]
+                      "
+                      style={{
+                        backgroundImage: enemy.icon
+                          ? `url(${enemy.icon}.png)`
+                          : "none",
+                      }}
                     />
-                  </Tooltip>
-                );
-              })}
+                  </TooltipTrigger>
+                  <TooltipContent
+                    title={enemy.name}
+                    type="SUMMARY"
+                    position="TOP"
+                    detailOne={enemy.level}
+                  />
+                </Tooltip>
+              ))}
             </ul>
           </div>
         )}
+
         {itemsLooted.length > 0 && (
-          <div className={classes.items}>
-            <h2>Items Looted</h2>
-            <ul>
-              {itemsLooted.map((item) => {
-                return (
-                  <Tooltip key={item.id}>
-                    <TooltipTrigger>
-                      <li
-                        style={{
-                          backgroundImage: item.image
-                            ? `url(${item.image}.png)`
-                            : "none",
-                        }}
-                      ></li>
-                    </TooltipTrigger>
-                    <TooltipContent
-                      key={item.id}
-                      position="room-summary-icon"
-                      title={item.name}
-                    />
-                  </Tooltip>
-                );
-              })}
+          <div className="w-full my-4">
+            <h2 className="mb-12 border-b border-[var(--secondary)]">
+              Items Looted
+            </h2>
+            <ul className="flex justify-center gap-4">
+              {itemsLooted.map((item) => (
+                <Tooltip key={item.id}>
+                  <TooltipTrigger>
+                    <Item item={item} count={item.counter} />
+                  </TooltipTrigger>
+                  <TooltipContent
+                    type="ITEM"
+                    position="TOP"
+                    title={item.name}
+                    detailOne={item.rarity}
+                    count={item.counter}
+                    detailTwo={item.description}
+                    detailThree={item.effect}
+                  />
+                </Tooltip>
+              ))}
             </ul>
           </div>
         )}

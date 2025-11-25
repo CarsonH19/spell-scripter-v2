@@ -22,7 +22,7 @@ const TooltipContent = React.forwardRef<
     detailThree?: string;
     detailFour?: string;
     detailFive?: string;
-    type?: "ITEM" | "SKILL" | "SPELL" | "TIP" | "EFFECT";
+    type?: "ITEM" | "SKILL" | "SPELL" | "TIP" | "EFFECT" | "SUMMARY";
   }
 >(
   (
@@ -83,7 +83,7 @@ const TooltipContent = React.forwardRef<
             {detailOne && (
               <div className="flex justify-between">
                 <p className={`text-sm ${rarityColor}`}>{detailOne}</p>
-                <p className={`text-sm text-text`}>Quantity: {count}</p>
+                <p className={`text-sm text-text`}>Quantity: {count || 0}</p>
               </div>
             )}
             {detailTwo && (
@@ -102,8 +102,13 @@ const TooltipContent = React.forwardRef<
                   }
 
                   return (
-                    <li key={index} className={statChangeColor}>
-                      <span className="text-text pb-1 pr-1">o</span>
+                    <li
+                      key={index}
+                      className={statChangeColor}
+                    >
+                      <span className="text-text pb-1 pr-1">
+                        o
+                      </span>
                       {item}
                     </li>
                   );
@@ -152,6 +157,20 @@ const TooltipContent = React.forwardRef<
             {detailOne && <p className="italic text-sm mb-1">{detailOne}</p>}
             {detailTwo && <p className="text-sm">{detailTwo}</p>}
             <hr className="my-2" />
+            {detailThree && <p className="text-sm">{detailThree}</p>}
+          </div>
+        );
+        break;
+
+      case "SUMMARY":
+        content = (
+          <div className={"text-center"}>
+            {title && <h3 className="text-center font-bold mb-1">{title}</h3>}
+            <hr className="my-2" />
+            {detailOne && (
+              <p className="italic text-sm mb-1">Level: {detailOne}</p>
+            )}
+            {detailTwo && <p className="text-sm">{detailTwo}</p>}
             {detailThree && <p className="text-sm">{detailThree}</p>}
           </div>
         );

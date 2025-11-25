@@ -13,6 +13,7 @@ import { ArrowRight, Skull } from "lucide-react";
 export default function Threat() {
   const dungeon = useSelector((state) => state.dungeon);
   const threat = useSelector((state) => state.dungeon.threat);
+  console.log(threat);
 
   return (
     <div className="w-1/3 flex justify-end items-center text-[var(--text)] gap-12">
@@ -48,8 +49,8 @@ export default function Threat() {
             type="TIP"
             position={"bottom-left"}
             title={"Threat"}
-            text={threat}
-            detailOne={
+            detailOne={threat}
+            detailTwo={
               "Threat determines the difficulty of the encounters you will face. Threat is raised after each cleared room, when you fail to cast a spell, and in other specific instances."
             }
           />

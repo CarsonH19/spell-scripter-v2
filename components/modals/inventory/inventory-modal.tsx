@@ -35,6 +35,7 @@ export default function InventoryModal() {
     setActive(index);
   };
 
+  console.log(player);
   let itemGroup;
   const attunedItems = player.inventory.attunedItems;
 
@@ -50,20 +51,20 @@ export default function InventoryModal() {
       break;
   }
 
-// Counter logic
-const counters = [];
+  // Counter logic
+  const counters = [];
 
-itemGroup.forEach((item) => {
-  // Count total occurrences across both arrays
-  const totalCount =
-    itemGroup.filter((i) => i.name === item.name).length +
-    attunedItems.filter((i) => i.name === item.name).length;
+  itemGroup.forEach((item) => {
+    // Count total occurrences across both arrays
+    const totalCount =
+      itemGroup.filter((i) => i.name === item.name).length +
+      attunedItems.filter((i) => i.name === item.name).length;
 
-  // Add to counters only once per unique item name
-  if (!counters.some((obj) => obj.name === item.name)) {
-    counters.push({ ...item, counter: totalCount });
-  }
-});
+    // Add to counters only once per unique item name
+    if (!counters.some((obj) => obj.name === item.name)) {
+      counters.push({ ...item, counter: totalCount });
+    }
+  });
 
   // Counting Set Pieces
   const setCounts = {};
@@ -134,7 +135,7 @@ itemGroup.forEach((item) => {
                     <TooltipContent
                       key={item.id}
                       type={"ITEM"}
-                      position={"LEFT"}
+                      position={"TOP"}
                       title={item.name}
                       detailOne={item.rarity}
                       count={item.counter}
