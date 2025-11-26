@@ -49,7 +49,7 @@ export default function Threat() {
             type="TIP"
             position={"bottom-left"}
             title={"Threat"}
-            detailOne={threat}
+            detailOne={threat > 0 ? threat : null}
             detailTwo={
               "Threat determines the difficulty of the encounters you will face. Threat is raised after each cleared room, when you fail to cast a spell, and in other specific instances."
             }

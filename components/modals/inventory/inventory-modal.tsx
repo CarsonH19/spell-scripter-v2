@@ -134,7 +134,7 @@ export default function InventoryModal() {
                     <TooltipContent
                       key={item.id}
                       type={"ITEM"}
-                      position={"LEFT"}
+                      position={"BOTTOM"}
                       title={item.name}
                       detailOne={item.rarity}
                       count={item.counter}
