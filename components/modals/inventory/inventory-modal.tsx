@@ -35,7 +35,6 @@ export default function InventoryModal() {
     setActive(index);
   };
 
-  console.log(player);
   let itemGroup;
   const attunedItems = player.inventory.attunedItems;
 
@@ -135,7 +134,7 @@ export default function InventoryModal() {
                     <TooltipContent
                       key={item.id}
                       type={"ITEM"}
-                      position={"TOP"}
+                      position={"LEFT"}
                       title={item.name}
                       detailOne={item.rarity}
                       count={item.counter}
