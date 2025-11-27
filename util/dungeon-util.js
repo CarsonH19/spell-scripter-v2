@@ -4,7 +4,7 @@ import store from "../store/index";
 import { dungeonActions } from "../store/dungeon-slice";
 // Util
 import { getRoomEnemies } from "../util/dungeon/dungeon-enemies-util";
-import { getRoomEvent } from "../util/dungeon/dungeon-events-util;";
+import { getRoomEvent } from "../util/dungeon/dungeon-events-util";
 import { getRoomImage } from "../util/dungeon/dungeon-image-util";
 import { getRoomMusic } from "../util/dungeon/dungeon-music-util";
 // import { checkForActiveQuest } from "./quest-util";
