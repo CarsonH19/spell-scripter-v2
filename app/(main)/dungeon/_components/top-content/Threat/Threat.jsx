@@ -13,7 +13,7 @@ import { ArrowRight, Skull } from "lucide-react";
 export default function Threat() {
   const dungeon = useSelector((state) => state.dungeon);
   const threat = useSelector((state) => state.dungeon.threat);
-  console.log(threat);
+  console.log("TEEEEST");
 
   return (
     <div className="w-1/3 flex justify-end items-center text-[var(--text)] gap-12">

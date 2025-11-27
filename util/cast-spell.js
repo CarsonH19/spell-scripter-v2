@@ -14,7 +14,7 @@ import { openModal } from "../store/ui-actions";
 import CONDITIONS from "../data/conditions";
 import { checkSkillPoints } from "./spellbook-util";
 import statusEffectFunctions from "./status-effect-functions";
-import { constructStats } from "./dungeon-util";
+import { constructStats } from "@/util/misc-util";
 import updateStatTotals from "../store/stats-actions";
 import playSoundEffect from "./audio-util";
 import { dungeonActions } from "../store/dungeon-slice";

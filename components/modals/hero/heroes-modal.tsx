@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { heroActions } from "@/store/hero-slice";
 
-import { constructStats } from "@/util/dungeon-util";
+import { constructStats } from "@/util/misc-util";
 
 import playSoundEffect from "@/util/audio-util";
 

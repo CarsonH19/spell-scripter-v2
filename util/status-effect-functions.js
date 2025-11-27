@@ -5,7 +5,7 @@ import { combatActions } from "../store/combat-slice";
 import { checkForDeath } from "../store/health-actions";
 import { createArcaneShield } from "./skills";
 import { UNDEAD } from "../data/enemies";
-import { constructStats } from "./dungeon-util";
+import { constructStats } from "@/util/misc-util";
 import { dungeonActions } from "../store/dungeon-slice";
 import { v4 as uuidv4 } from "uuid";
 import playSoundEffect from "./audio-util";

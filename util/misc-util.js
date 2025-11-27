@@ -1,6 +1,5 @@
 import store from "../store/index";
 
-import { constructStats } from "./dungeon-util";
 import { v4 as uuidv4 } from "uuid";
 import { combatActions } from "@/store/combat-slice";
 import updateStatTotals from "@/store/stats-actions";
@@ -81,8 +80,37 @@ export function addCharacterToOrder(
   }
 }
 
-export function getRandomCooldown(max) {
-  return Math.floor(Math.random() * (max + 1));
+export function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Used to construct the stats for enemies, heroes, & summons
+export function constructStats(stats) {
+  return {
+    baseStrength: stats.baseStrength,
+    strength: {
+      totalStrength: 0,
+      attack: 0,
+      maxHealth: 0,
+      healthRegen: 0,
+    },
+    baseAgility: stats.baseAgility,
+    agility: {
+      totalAgility: 0,
+      defense: 0,
+      speed: 0,
+      hitChance: 0,
+    },
+    baseArcana: stats.baseArcana,
+    arcana: {
+      totalArcana: 0,
+      spellPower: 0,
+    },
+  };
 }
 
 // PRELOADING IMAGES

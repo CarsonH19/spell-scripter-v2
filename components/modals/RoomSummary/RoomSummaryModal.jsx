@@ -167,7 +167,7 @@ export default function RoomSummaryModal() {
                     position="TOP"
                     title={item.name}
                     detailOne={item.rarity}
-                    count={item.counter}
+                    // count={item.counter}
                     detailTwo={item.description}
                     detailThree={item.effect}
                   />
