@@ -1,33 +1,21 @@
 import store from "../store/index";
 
+// Actions
 import { dungeonActions } from "../store/dungeon-slice";
-
-import {getRoomEnemies} from "../util/dungeon/dungeon-enemies-util"
-// import { THIEVES, UNDEAD } from "../data/enemies";
-
-import {
-  COFFIN,
-  GRAVESTONE,
-  DUNGEON_ENTRANCE,
-  PATH_ENTRANCE,
-  PATH_EXIT,
-  // TRAPS,
-  BONEVAULT,
-  CANDLELIGHT_SHRINE,
-  UNLOCK_HERO,
-  AMBUSH,
-  THIEVES_RUIN,
-} from "../data/events";
-
-import { checkForActiveQuest } from "./quest-util";
-import { getImageFromList } from "./misc-util";
-
-// import { getTraderItems } from "../components/Modals/Trade/TradeModal";
-
+// Util
+import { getRoomEnemies } from "../util/dungeon/dungeon-enemies-util";
+import { getRoomEvent } from "../util/dungeon/dungeon-events-util;";
+import { getRoomImage } from "../util/dungeon/dungeon-image-util";
+// import { checkForActiveQuest } from "./quest-util";
+// Data
+import { DUNGEON_ENTRANCE } from "../data/events";
 import { musicPaths, playMusic } from "@/data/audio/music";
 import { backgroundMusic } from "@/data/audio/music";
 import { currentMusic } from "@/data/audio/music";
+// Components
+// import { getTraderItems } from "../components/Modals/Trade/TradeModal";
 
+// Create the foundation of a dungeon when entering
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
     name: "",
@@ -128,7 +116,7 @@ export function createNewRoom(dispatch) {
 
 function getRoomContent() {
   const dungeon = store.getState().dungeon;
-  const pathCounter = dungeon.pathCounter;
+  // const pathCounter = dungeon.pathCounter;
   let eventChance = Math.floor(Math.random() * 101);
   let content;
 
@@ -141,22 +129,23 @@ function getRoomContent() {
         content = "ENEMIES";
       }
 
-      // WAILING WARRENS
-      if (dungeon.path === "Wailing Warrens") {
-        // NOTE - Currently set to always enemies
-        content = "ENEMIES";
-        // NOTE: add logic to check for path specific event chance here
-      }
+      // PATH LOGIC
+      // // WAILING WARRENS
+      // if (dungeon.path === "Wailing Warrens") {
+      //   // NOTE - Currently set to always enemies
+      //   content = "ENEMIES";
+      //   // NOTE: add logic to check for path specific event chance here
+      // }
 
-      // THIEVES' RUIN
-      if (dungeon.path === "Thieves' Ruin") {
-        // NOTE - Currently set to always enemies
-        content = "ENEMIES";
-        // Laughing Coffin Event & 40% event chance
-        if (dungeon.pathCounter === 4 || eventChance > 999) {
-          content = "EVENT";
-        }
-      }
+      // // THIEVES' RUIN
+      // if (dungeon.path === "Thieves' Ruin") {
+      //   // NOTE - Currently set to always enemies
+      //   content = "ENEMIES";
+      //   // Laughing Coffin Event & 40% event chance
+      //   if (dungeon.pathCounter === 4 || eventChance > 999) {
+      //     content = "EVENT";
+      //   }
+      // }
 
       // NOTE:
       // FOLLOWING - change event chance when following
@@ -170,9 +159,10 @@ function getRoomContent() {
       }
   }
 
-  if (dungeon.path && pathCounter <= 0 && pathCounter !== null) {
-    content = "EXIT PATH";
-  }
+  // PATH LOGIC
+  // if (dungeon.path && pathCounter <= 0 && pathCounter !== null) {
+  //   content = "EXIT PATH";
+  // }
 
   return content;
 }
@@ -181,88 +171,88 @@ function getRoomContent() {
 //                            EVENTS
 // =====================================================================
 
-function getRoomEvent() {
-  const heroes = store.getState().hero.heroes;
-  const siggurd = heroes.find((hero) => hero.id === "Siggurd");
-  const liheth = heroes.find((hero) => hero.id === "Liheth");
+// function getRoomEvent() {
+//   const heroes = store.getState().hero.heroes;
+//   const siggurd = heroes.find((hero) => hero.id === "Siggurd");
+//   const liheth = heroes.find((hero) => hero.id === "Liheth");
 
-  const dungeon = store.getState().dungeon;
-  let events = [];
+//   const dungeon = store.getState().dungeon;
+//   let events = [];
 
-  // check dungeon
-  switch (dungeon.name) {
-    case "The Great Catacomb":
-      // DUNGEON EVENTS
-      if (!dungeon.path && !dungeon.following) {
-        // Traps
-        // events.push(TRAPS.COLLAPSING_CEILING);
-        // events.push(TRAPS.ROTATING_BLADES);
-        // events.push(TRAPS.SPIKE_WALLS);
+//   // check dungeon
+//   switch (dungeon.name) {
+//     case "The Great Catacomb":
+//       // DUNGEON EVENTS
+//       if (!dungeon.path && !dungeon.following) {
+//         // Traps
+//         // events.push(TRAPS.COLLAPSING_CEILING);
+//         // events.push(TRAPS.ROTATING_BLADES);
+//         // events.push(TRAPS.SPIKE_WALLS);
 
-        if (dungeon.threat < 20) {
-          events.push(GRAVESTONE);
-        }
-        if (dungeon.threat < 20) {
-          events.push(AMBUSH);
-        }
-        events.push(COFFIN);
-        events.push(BONEVAULT);
+//         if (dungeon.threat < 20) {
+//           events.push(GRAVESTONE);
+//         }
+//         if (dungeon.threat < 20) {
+//           events.push(AMBUSH);
+//         }
+//         events.push(COFFIN);
+//         events.push(BONEVAULT);
 
-        // // Check if Siggurd is unlocked
-        if (!siggurd.unlocked) {
-          events.push(UNLOCK_HERO.SIGGURD);
-        }
+//         // // Check if Siggurd is unlocked
+//         if (!siggurd.unlocked) {
+//           events.push(UNLOCK_HERO.SIGGURD);
+//         }
 
-        // // Check if Liheth is unlocked
-        if (!liheth.unlocked) {
-          events.push(UNLOCK_HERO.LIHETH);
-        } else {
-          events.push(CANDLELIGHT_SHRINE);
-        }
-      }
+//         // // Check if Liheth is unlocked
+//         if (!liheth.unlocked) {
+//           events.push(UNLOCK_HERO.LIHETH);
+//         } else {
+//           events.push(CANDLELIGHT_SHRINE);
+//         }
+//       }
 
-      // FOLLOWING EVENTS
-      if (
-        dungeon.following === "Thieves' Ruin Map" &&
-        dungeon.followCounter === 1
-      ) {
-        events.push(PATH_ENTRANCE.THIEVES_RUIN_ENTRANCE);
-      }
+//       // FOLLOWING EVENTS
+//       if (
+//         dungeon.following === "Thieves' Ruin Map" &&
+//         dungeon.followCounter === 1
+//       ) {
+//         events.push(PATH_ENTRANCE.THIEVES_RUIN_ENTRANCE);
+//       }
 
-      if (
-        dungeon.following === "Wandering Wisp" &&
-        dungeon.followCounter === 1
-      ) {
-        events.push(PATH_ENTRANCE.WAILING_WARRENS_ENTRANCE);
-      }
+//       if (
+//         dungeon.following === "Wandering Wisp" &&
+//         dungeon.followCounter === 1
+//       ) {
+//         events.push(PATH_ENTRANCE.WAILING_WARRENS_ENTRANCE);
+//       }
 
-      // PATH EVENTS
-      if (dungeon.path === "Wailing Warrens") {
-        // Ghostly Choir
-        // Whispering Wall
-        // Echoing Bells
-      } else if (dungeon.path === "Thieves' Ruin") {
-        // Only push Laughing Coffin at pathCounter 4
-        if (dungeon.pathCounter === 4) {
-          events.push({
-            ...THIEVES_RUIN.LAUGHING_COFFIN,
-            items: getTraderItems("Laughing Coffin"),
-          });
-        } else {
-          // events.push(
-          //   THIEVES_RUIN.FLOOR_SPIKES,
-          //   THIEVES_RUIN.POISONOUS_MIST,
-          //   THIEVES_RUIN.POISON_DARTS
-          // );
-        }
-      }
-      break;
-  }
+//       // PATH EVENTS
+//       if (dungeon.path === "Wailing Warrens") {
+//         // Ghostly Choir
+//         // Whispering Wall
+//         // Echoing Bells
+//       } else if (dungeon.path === "Thieves' Ruin") {
+//         // Only push Laughing Coffin at pathCounter 4
+//         if (dungeon.pathCounter === 4) {
+//           events.push({
+//             ...THIEVES_RUIN.LAUGHING_COFFIN,
+//             items: getTraderItems("Laughing Coffin"),
+//           });
+//         } else {
+//           // events.push(
+//           //   THIEVES_RUIN.FLOOR_SPIKES,
+//           //   THIEVES_RUIN.POISONOUS_MIST,
+//           //   THIEVES_RUIN.POISON_DARTS
+//           // );
+//         }
+//       }
+//       break;
+//   }
 
-  // Randomly choose an event from the new array
-  const randomIndex = Math.floor(Math.random() * events.length);
-  return events[randomIndex];
-}
+//   // Randomly choose an event from the new array
+//   const randomIndex = Math.floor(Math.random() * events.length);
+//   return events[randomIndex];
+// }
 
 // =====================================================================
 //                                ENEMIES
@@ -445,122 +435,123 @@ function getRoomEvent() {
 //                                IMAGE
 // =====================================================================
 
-function getRoomImage(dungeon) {
-  let backgroundImage;
+// function getRoomImage(dungeon) {
+//   let backgroundImage;
 
-  // Use general dungeon images
-  switch (dungeon.name) {
-    case "The Great Catacomb":
-      backgroundImage = getImageFromList(
-        "/assets/images/backgrounds/the-great-catacomb/catacomb",
-        26
-      );
-      break;
-  }
+//   // Use general dungeon images
+//   switch (dungeon.name) {
+//     case "The Great Catacomb":
+//       backgroundImage = getImageFromList(
+//         "/assets/images/backgrounds/the-great-catacomb/catacomb",
+//         26
+//       );
+//       break;
+//   }
 
-  // Check for path specific backgrounds (replaces dungeon imageList)
-  if (dungeon.path) {
-    switch (dungeon.path) {
-      case "Wailing Warrens":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/wailing-warrens/wailing-warrens",
-          12
-        );
-        break;
+//   // Check for path specific backgrounds (replaces dungeon imageList)
+//   if (dungeon.path) {
+//     switch (dungeon.path) {
+//       case "Wailing Warrens":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/wailing-warrens/wailing-warrens",
+//           12
+//         );
+//         break;
 
-      case "Thieves' Ruin":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/thieves-ruin/thieves-ruin",
-          9
-        );
-        break;
+//       case "Thieves' Ruin":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/thieves-ruin/thieves-ruin",
+//           9
+//         );
+//         break;
 
-      default:
-        break;
-    }
-  }
+//       default:
+//         break;
+//     }
+//   }
 
-  // Check for event specific backgrounds (replaces dungeon & path imageList)
-  if (dungeon.contents.event) {
-    switch (dungeon.contents.event.name) {
-      //THE GREAT CATACOMBS
-      case "Gravestone":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/events/gravestone",
-          5
-        );
-        break;
+//   // Check for event specific backgrounds (replaces dungeon & path imageList)
+//   if (dungeon.contents.event) {
+//     switch (dungeon.contents.event.name) {
+//       //THE GREAT CATACOMBS
+//       case "Gravestone":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/events/gravestone",
+//           5
+//         );
+//         break;
 
-      case "Coffin":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/events/coffin",
-          7
-        );
-        break;
+//       case "Coffin":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/events/coffin",
+//           7
+//         );
+//         break;
 
-      case "Bonevault":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/events/bonevault-door",
-          6
-        );
-        break;
+//       case "Bonevault":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/events/bonevault-door",
+//           6
+//         );
+//         break;
 
-      case "Unlocking Liheth":
-      case "Candlelight Shrine":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/events/candlelight-shrine",
-          7
-        );
-        break;
+//       case "Unlocking Liheth":
+//       case "Candlelight Shrine":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/events/candlelight-shrine",
+//           7
+//         );
+//         break;
 
-      // WAILING WARRENS
-      case "Wailing Warrens":
-      case "Wailing Warrens Exit":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/wailing-warrens/wailing-warrens-door",
-          1
-        );
-        break;
+//       // WAILING WARRENS
+//       case "Wailing Warrens":
+//       case "Wailing Warrens Exit":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/wailing-warrens/wailing-warrens-door",
+//           1
+//         );
+//         break;
 
-      // THIEVES RUIN
-      case "Thieves' Ruin":
-      case "Thieves' Ruin Exit":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/thieves-ruin/thieves-ruin-door",
-          2
-        );
-        break;
+//       // THIEVES RUIN
+//       case "Thieves' Ruin":
+//       case "Thieves' Ruin Exit":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/thieves-ruin/thieves-ruin-door",
+//           2
+//         );
+//         break;
 
-      case "Laughing Coffin":
-        backgroundImage = getImageFromList(
-          "/assets/images/backgrounds/thieves-ruin/laughing-coffin-tavern",
-          1
-        );
-        break;
+//       case "Laughing Coffin":
+//         backgroundImage = getImageFromList(
+//           "/assets/images/backgrounds/thieves-ruin/laughing-coffin-tavern",
+//           1
+//         );
+//         break;
 
-      default:
-        break;
-    }
-  }
+//       default:
+//         break;
+//     }
+//   }
 
-  return backgroundImage;
-}
+//   return backgroundImage;
+// }
 
 // =====================================================================
 //                                PATH
 // =====================================================================
 
-function getPathExit() {
-  const path = store.getState().dungeon.path;
+// PATH LOGIC
+// function getPathExit() {
+//   const path = store.getState().dungeon.path;
 
-  switch (path) {
-    case "Wailing Warrens":
-      return PATH_EXIT.WAILING_WARRENS_EXIT;
+//   switch (path) {
+//     case "Wailing Warrens":
+//       return PATH_EXIT.WAILING_WARRENS_EXIT;
 
-    case "Thieves' Ruin":
-      return PATH_EXIT.THIEVES_RUIN_EXIT;
-  }
-}
+//     case "Thieves' Ruin":
+//       return PATH_EXIT.THIEVES_RUIN_EXIT;
+//   }
+// }
 
 // =====================================================================
 //                         BACKGROUND MUSIC
